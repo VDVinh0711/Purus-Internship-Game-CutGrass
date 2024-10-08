@@ -16,14 +16,20 @@ export class Game {
             elementInput: new pc.ElementInput(canvas)
         });
 
+        this.app.start();
         this.setupPhysics();
         this.sceneManager = new SceneManager(this.app);
-        this.bladeManager = new BladeManager(this.app);
-        this.grassManager = new GrassManager(this.app);
 
-       
+        
+        this.bladeManager = new BladeManager();
+        this.app.root.addChild(this.bladeManager);
+
+        this.grassManager = new GrassManager();
+        this.app.root.addChild(this.grassManager);
+
+
         this.setupEventListeners();
-        this.app.start();
+        
     }
 
     private setupPhysics() {

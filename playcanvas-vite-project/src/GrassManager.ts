@@ -1,9 +1,10 @@
 import * as pc from 'playcanvas';
 
-export class GrassManager {
+export class GrassManager extends pc.Entity {
     private grasses: pc.Entity[] = [];
 
-    constructor(private app: pc.Application) {
+    constructor() {
+        super();
         this.createGrass();
     }
 
@@ -20,16 +21,16 @@ export class GrassManager {
         grass.addComponent('model', { type: 'sphere' });
         grass.setPosition(x, y, z);
         grass.setLocalScale(1, 1, 1);
-        // grass.addComponent('rigidbody', {
-        //     type: 'dynamic',
-        //     mass: 1,
-        //     restitution: 0.5
-        // });
-        // grass.addComponent('collision', {
-        //     type: 'sphere',
-        //     radius: 0.5
-        // });
-        this.app.root.addChild(grass);
+        grass.addComponent('rigidbody', {
+            type: 'dynamic',
+            mass: 1,
+            restitution: 0.5
+        });
+        grass.addComponent('collision', {
+            type: 'sphere',
+            radius: 0.5
+        });
+        this.root.addChild(grass);
         return grass;
     }
 }

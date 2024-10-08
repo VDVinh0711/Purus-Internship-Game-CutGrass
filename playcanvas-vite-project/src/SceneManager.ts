@@ -8,7 +8,7 @@ export class SceneManager {
     constructor(private app: pc.Application) {
         this.createCamera();
         this.createLight();
-      //  this.createGround();
+        //this.createGround();
     }
 
     private createCamera() {
@@ -17,7 +17,7 @@ export class SceneManager {
             clearColor: new pc.Color(0.5, 0.6, 0.9)
         });
         this.app.root.addChild(this.camera);
-        this.camera.setPosition(0, 5, 10);
+        this.camera.setPosition(0, 15, 10);
         this.camera.lookAt(0, 0, 0);
     }
 
