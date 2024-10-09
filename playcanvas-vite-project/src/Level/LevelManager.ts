@@ -58,7 +58,7 @@ export class LevelManager
         const level1: Level = {
             maps: [
                 {
-                    posSpawmBlade: new pc.Vec3(2,2,2),
+                    posSpawmBlade: new pc.Vec3(-3,2,-3),
                     spawnPoints: pcPoints
                 },
                 {
@@ -70,18 +70,24 @@ export class LevelManager
 
 
         this.levels.push(level1);
+        this.levels.push(level1);
     }
 
     public nextLevel()
     {
         this.currentlevel++;
-        this.currentmap == 0;
+        this.currentmap = 0;
     }
     public nextMap()
     {
         this.currentmap++;
     }
-
+    public canNextoLevel () : boolean
+    {
+        console.log(this.levels[this.currentlevel].maps.length);
+        console.log(this.currentmap);
+        return this.levels[this.currentlevel].maps.length -1  == this.currentmap;
+    }
     public getPosSpawmMaps() : pc.Vec3[]
     {
         return this.levels[this.currentlevel].maps[this.currentmap].spawnPoints;

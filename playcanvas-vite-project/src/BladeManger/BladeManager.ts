@@ -26,9 +26,10 @@ export class BladeManager extends pc.Entity {
     {
         super();
         this.Init();
-       // this.setupMouseHandler();
+        this.setupMouseHandler();
         this.registerEventCollisionHandler();
         this.registerEvent();
+        EntityManager.getInstance().registerEntity(SafeNameEntity.BladeManager,this);
     }
 
     private Init() 
@@ -43,12 +44,6 @@ export class BladeManager extends pc.Entity {
         this.rope = new Rope('Rope').Init();
         this.root.addChild(this.rope);
     }
-
-
-
-    
-
-
 
     //register event colision
     private registerEventCollisionHandler()
@@ -79,9 +74,11 @@ export class BladeManager extends pc.Entity {
 
 
 
-    private setPosCurrentMap()
+    public setPosCurrentMap()
     {
-        this.setPosition(LevelManager.getInstance().getPosSpawmBlade())
+        const posSet = LevelManager.getInstance().getPosSpawmBlade()
+        this.setPosition(posSet);
+        this.enRoot.setPosition(posSet); 
     }
     //event colision
     private onBladeCollision(result: any) {
@@ -104,6 +101,7 @@ export class BladeManager extends pc.Entity {
     //reset Blade
     private reset()
     {
+        this.isWaiting = true;
         this.countGrassCutted = 0;
     }
 
@@ -124,7 +122,8 @@ export class BladeManager extends pc.Entity {
     public update(dt: number)
     {
         if(GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
-        this.updateBlade(dt);
+        this.enRoot.update(dt);
+        this.enRotating.update(dt);
         this.rotateChainSaw(dt);
         //update rope
         this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
@@ -141,28 +140,18 @@ export class BladeManager extends pc.Entity {
         this.enRotating.setPosition(rootPos.x + x, rootPos.y, rootPos.z + z);
     }
 
-    private updateBlade(dt: number) 
-    {
-       
-        this.enRoot.update(dt);
-        this.enRotating.update(dt);
-        
-    }
+    
 
     private checkIsOnGround()
     {
         if(this.isWaiting) return;
         const posStart = this.enRoot.getPosition();
-        const posEnd =  new pc.Vec3(posStart.x,posStart.y - 5,posStart.z);
-        pc.Application.getApplication()?.drawLine(posStart,posEnd,new pc.Color(1,0,1));
+        const posEnd =  new pc.Vec3(posStart.x,posStart.y - 10,posStart.z);
+       // pc.Application.getApplication()?.drawLine(posStart,posEnd,new pc.Color(1,0,1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart,posEnd);
-        if(resultRay)
-        {
-           // console.log("inonground");
-        } 
-        else
-        {
-           GameManger.getInstance().onLose();
+        if (!resultRay) {
+            console.log("Ground check failed - no ground detected");
+            GameManger.getInstance().onLose();
         }
     }
 }

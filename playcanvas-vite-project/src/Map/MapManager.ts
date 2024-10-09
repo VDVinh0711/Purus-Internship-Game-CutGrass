@@ -45,6 +45,7 @@ export class MapManager extends pc.Entity
     public SpawmGroundCurrentMap()
     {
        this.Spawmmap(LevelManager.getInstance().getPosSpawmMaps());
+       console.log("Spawm map");
     }
 
     private Spawmmap(listPosSpawm : pc.Vec3[])

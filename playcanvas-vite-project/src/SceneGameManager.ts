@@ -29,9 +29,10 @@ export class SceneGameManager {
         this.setUpScene();
 
 
-        this.setupMouseHandler();
+        //this.setupMouseHandler();
         //test debug
-       GameManger.getInstance().onStartGame();
+        GameManger.getInstance().onStartGame();
+    
         
     }
 
@@ -83,7 +84,7 @@ export class SceneGameManager {
     private update(dt: number) {
         
         this.bladeManager.update(dt);
-        this.mapManager.update(dt);
+        //this.mapManager.update(dt);
       
     }
 

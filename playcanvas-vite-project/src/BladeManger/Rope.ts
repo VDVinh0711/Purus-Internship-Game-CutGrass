@@ -1,7 +1,6 @@
 import * as pc from 'playcanvas'
 export class Rope extends pc.Entity
 {
-    public actionColiwithGrass : any;
     constructor(name:string)
     {
         super();
@@ -12,6 +11,8 @@ export class Rope extends pc.Entity
     {
         this.setLocalScale(0.1,0.1,3);
         this.setLocalRotation(0,0,0);
+
+        this.AddComponent();
         this.setRender();
         this.setRigidbody();
         this.setcollision();
@@ -20,12 +21,17 @@ export class Rope extends pc.Entity
         return this;
     }
 
+    private AddComponent()
+    {
+        this.addComponent('collision');
+        this.addComponent('rigidbody');
+        this.addComponent('render');
+    }
     private setcollision()
     {
-        this.addComponent('collision', {
-            type: 'box',
-            halfExtents: new pc.Vec3(0.1, 0.1, 3)
-        });
+        if(this.collision == null) return;
+        this.collision.type  = 'box';
+        this.collision.halfExtents = new pc.Vec3(0.1,0.1,3);
 
         this.collision?.on('collisionstart',this.eventColision.bind(this));
 
@@ -33,19 +39,16 @@ export class Rope extends pc.Entity
 
     private setRigidbody()
     {
-        this.addComponent('rigidbody', {
-            type: 'kinematic',
-            mass: 1,
-            restitution: 0.5
-        });
+        if(this.rigidbody == null) return;
+        this.rigidbody.type = pc.RIGIDBODY_TYPE_KINEMATIC;
+        this.rigidbody.mass = 1;
+        this.rigidbody.restitution = 0.5; 
     }
 
     private setRender()
     {
-        this.addComponent('render', {
-            type: 'box'
-        })
-       
+        if(this.render == null) return;
+        this.render.type = 'box';
     }
 
 

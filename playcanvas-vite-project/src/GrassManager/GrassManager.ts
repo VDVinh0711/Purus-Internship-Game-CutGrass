@@ -50,6 +50,7 @@ export class GrassManager extends pc.Entity {
         this.grasses.forEach(grass => {
            PoolingGrass.getInstance().deSpawmGrass(grass); 
         });
+        this.grasses.length = 0;
     }
 
     public getCountGrass() : number
