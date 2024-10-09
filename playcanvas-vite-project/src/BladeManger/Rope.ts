@@ -1,6 +1,7 @@
 import * as pc from 'playcanvas'
 export class Rope extends pc.Entity
 {
+    public actionColiwithGrass : any;
     constructor(name:string)
     {
         super();
@@ -9,32 +10,50 @@ export class Rope extends pc.Entity
 
     public Init() : Rope
     {
-        this.setLocalScale(0.2,0.2,3);
+        this.setLocalScale(0.1,0.1,3);
         this.setLocalRotation(0,0,0);
-        this.addComponent('model', {
-            type: 'box'
-        })
-        this.addComponent('rigidbody', {
-            type: 'kinematic',
-            mass: 1,
-            restitution: 0.5
-        });
+        this.setRender();
+        this.setRigidbody();
+        this.setcollision();
+
+       
+        return this;
+    }
+
+    private setcollision()
+    {
         this.addComponent('collision', {
             type: 'box',
             halfExtents: new pc.Vec3(0.1, 0.1, 3)
         });
 
+        this.collision?.on('collisionstart',this.eventColision.bind(this));
 
-        this.collision?.on('collisionstart', (result)  => 
-            {
-                if(result.other.name != 'grass') return;
-                console.log(result.other.name);
-                result.other.destroy();
-            });
-
-        return this;
     }
 
+    private setRigidbody()
+    {
+        this.addComponent('rigidbody', {
+            type: 'kinematic',
+            mass: 1,
+            restitution: 0.5
+        });
+    }
+
+    private setRender()
+    {
+        this.addComponent('render', {
+            type: 'box'
+        })
+       
+    }
+
+
+    //call event when coli
+    private eventColision(result : any)
+    {
+        this.fire('rope:collision',result);
+    }
 
     public updateRope(posRoot : pc.Vec3 , posRotating : pc.Vec3)
     {
@@ -42,4 +61,6 @@ export class Rope extends pc.Entity
         this.setPosition(midPoint);
         this.lookAt(posRotating);
     }
+
+    
 }

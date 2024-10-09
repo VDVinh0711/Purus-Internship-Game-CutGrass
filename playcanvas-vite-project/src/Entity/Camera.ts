@@ -2,8 +2,8 @@ import * as pc from 'playcanvas'
 
 export class Camera extends pc.Entity
 {
-
-    private posCamera : pc.Vec3 = new pc.Vec3(0,4,15);
+    private corlorBackground : pc.Color = new pc.Color(0.5,0.6,0.9);
+    private posCamera : pc.Vec3 = new pc.Vec3(0,30,0.00001);
     private targetLook : pc.Vec3 = new pc.Vec3(0,0,0);
     constructor()
     {
@@ -15,7 +15,7 @@ export class Camera extends pc.Entity
     {
         this.name = 'camera';
         this.addComponent('camera', {
-            clearColor: new pc.Color(0.5, 0.6, 0.9)
+            clearColor: this.corlorBackground
         });
         this.setPosition(this.posCamera);
         this.lookAt(this.targetLook);

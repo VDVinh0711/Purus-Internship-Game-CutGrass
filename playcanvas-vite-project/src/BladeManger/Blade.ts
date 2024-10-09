@@ -1,8 +1,6 @@
 
 import * as pc from 'playcanvas'
 export class Blade extends pc.Entity {
-
-    private count: number = 1;
     constructor(name: string) {
         super();
         this.name = name;
@@ -31,18 +29,14 @@ export class Blade extends pc.Entity {
             type: 'box',
             halfExtents: new pc.Vec3(0.75, 0.15, 0.05)
         });
-        this.collision?.on('collisionstart', (result) => {
-            if (result.other.name != 'grass') return;
-            console.log(result.other.name);
-            result.other.destroy();
-        });
+        this.collision?.on('collisionstart', this.onColisionEnter.bind(this));
         
         
         return this;
     }
 
-    private onColisionEnter() {
-        console.log("result");
+    private onColisionEnter(result : any) {
+        this.fire('blade:collision', result);
     }
 
 

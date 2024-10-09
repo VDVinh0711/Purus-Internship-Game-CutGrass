@@ -1,7 +1,7 @@
 
 
 import * as pc from 'playcanvas';
-import { Game } from './Game';
+import { SceneGameManager } from './SceneGameManager';
 
 // Configure and load Ammo.js
 pc.WasmModule.setConfig('Ammo', {
@@ -20,7 +20,7 @@ async function main() {
     canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
 
-    new Game(canvas);
+    new SceneGameManager(canvas);
 }
 
 main().catch(console.error);
