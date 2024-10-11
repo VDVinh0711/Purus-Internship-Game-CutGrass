@@ -9,6 +9,7 @@ import { SafeNameEntity } from '../Helper/SafeNameEntity';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { LevelManager } from '../Level/LevelManager';
+import { ScoreManager } from '../Player/ScoreManager';
 export class BladeManager extends pc.Entity {
 
     private enRoot!: Blade;
@@ -20,13 +21,13 @@ export class BladeManager extends pc.Entity {
     private rope !: Rope;
     private countGrassCutted : number = 0;
     public isWaiting : boolean = true;
+    private grassManager !:GrassManager;
     
 
     constructor() 
     {
         super();
         this.Init();
-        this.setupMouseHandler();
         this.registerEventCollisionHandler();
         this.registerEvent();
         EntityManager.getInstance().registerEntity(SafeNameEntity.BladeManager,this);
@@ -43,6 +44,8 @@ export class BladeManager extends pc.Entity {
         // rope
         this.rope = new Rope('Rope').Init();
         this.root.addChild(this.rope);
+
+        this.grassManager = EntityManager.getInstance().getEntity(SafeNameEntity.GrassManager) as GrassManager;
     }
 
     //register event colision
@@ -60,6 +63,8 @@ export class BladeManager extends pc.Entity {
 
         EventManager.on(SafeKeyEvent.SetWaitingBlade, this.setWaiting.bind(this));
         EventManager.on(SafeKeyEvent.UnSetWatingBlade, this.unSetWaiting.bind(this));
+
+        EventManager.on(SafeKeyEvent.ClickIntoScreen, this.reverseDirectionAndRotate.bind(this));
     }
 
     private setWaiting()
@@ -86,14 +91,11 @@ export class BladeManager extends pc.Entity {
         if ( result.other.name === 'grass') {
             // Handle blade collision logic here
             PoolingGrass.getInstance().deSpawmGrass(result.other);
-
+            ScoreManager.getInstance().AddScore(1);
             //check win 
             this.countGrassCutted ++;
-            const grassManager = EntityManager.getInstance().getEntity(SafeNameEntity.GrassManager) as GrassManager;
-            if(this.countGrassCutted == grassManager.getCountGrass())
-            {
-                GameManger.getInstance().onWin();
-            }
+            if(this.countGrassCutted != this.grassManager.getCountGrass()) return;
+            GameManger.getInstance().onWin();
 
         }
     }
@@ -105,19 +107,13 @@ export class BladeManager extends pc.Entity {
         this.countGrassCutted = 0;
     }
 
-
-
-    
-    //event mouse
-    private setupMouseHandler() {
-        const mouse = new pc.Mouse(document.body);
-        mouse.on('mousedown', () => {
-            this.dir *= -1;
-            this.angle += Math.PI;
-            [this.enRoot, this.enRotating] = [this.enRotating, this.enRoot];
-        });
+    private reverseDirectionAndRotate()
+    {
+        this.dir *= -1;
+        this.angle += Math.PI;
+        [this.enRoot, this.enRotating] = [this.enRotating, this.enRoot];
     }
-
+    
     //update
     public update(dt: number)
     {
@@ -145,9 +141,9 @@ export class BladeManager extends pc.Entity {
     private checkIsOnGround()
     {
         if(this.isWaiting) return;
-        const posStart = this.enRoot.getPosition();
+        const posStart = this.enRoot.getPosition().clone();
         const posEnd =  new pc.Vec3(posStart.x,posStart.y - 10,posStart.z);
-       // pc.Application.getApplication()?.drawLine(posStart,posEnd,new pc.Color(1,0,1));
+        pc.Application.getApplication()?.drawLine(posStart,posEnd,new pc.Color(1,0,1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart,posEnd);
         if (!resultRay) {
             console.log("Ground check failed - no ground detected");

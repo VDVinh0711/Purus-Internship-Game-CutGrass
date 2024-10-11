@@ -5,6 +5,7 @@ import { MapManager } from './Map/MapManager.ts';
 import { Camera } from './Entity/Camera.ts';
 import { Light } from './Entity/Light.ts';
 import { GameManger } from './GameManager.ts';
+import { InputSystem } from './Utils/InputSystem.ts';
 export class SceneGameManager {
     private camera!: Camera;
     private light!: pc.Entity;
@@ -13,6 +14,7 @@ export class SceneGameManager {
     private bladeManager!: BladeManager;
     private grassManager!: GrassManager;
     private mapManager !: MapManager;
+    private inputSystem !: InputSystem;
 
 
     
@@ -28,8 +30,6 @@ export class SceneGameManager {
         this.setupEventListeners();
         this.setUpScene();
 
-
-        //this.setupMouseHandler();
         //test debug
         GameManger.getInstance().onStartGame();
     
@@ -61,6 +61,8 @@ export class SceneGameManager {
          this.bladeManager = new BladeManager();
          this.app.root.addChild(this.bladeManager);
 
+         this.inputSystem = new InputSystem();
+
     }
  
     private setupPhysics() {
@@ -73,13 +75,6 @@ export class SceneGameManager {
     }
 
 
-
-    private setupMouseHandler() {
-        const mouse = new pc.Mouse(document.body);
-        mouse.on('mousedown', () => {
-               GameManger.getInstance().nextMapInLevel();
-        });
-    }
 
     private update(dt: number) {
         

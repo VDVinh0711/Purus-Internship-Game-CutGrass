@@ -44,7 +44,6 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
-        //  EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
 
         setTimeout(() => {
             EventManager.emit(SafeKeyEvent.UnSetWatingBlade);

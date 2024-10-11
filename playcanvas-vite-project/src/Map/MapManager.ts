@@ -5,13 +5,14 @@ import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import EntityManager from '../Entity/EntityManager';
 import { SafeNameEntity } from '../Helper/SafeNameEntity';
 import { LevelManager } from '../Level/LevelManager';
+import { PoolingGround } from '../Utils/PoolingGround';
 
 export class MapManager extends pc.Entity
 {
     private width : number = 10;
     private height :number = 10 ;
     private space  :number = 1;
-    private grounds : pc.Entity[] = [];
+    private grounds : Ground[] = [];
     constructor()
     {
       super();
@@ -50,8 +51,10 @@ export class MapManager extends pc.Entity
 
     private Spawmmap(listPosSpawm : pc.Vec3[])
     {
+        
          listPosSpawm.forEach(posSpawm => {
-            const groundSpawm = new Ground();
+         
+            const groundSpawm = PoolingGround.getInstance().spawmGround();
             groundSpawm.setPosition(posSpawm);
             this.grounds.push(groundSpawm);
             this.root.addChild(groundSpawm);
@@ -63,7 +66,7 @@ export class MapManager extends pc.Entity
     private clearMap()
     {
       this.grounds.forEach(ground => {
-        ground.destroy();
+       PoolingGround.getInstance().deSpawmGround(ground);
       });
     }
     update(dt:number)

@@ -10,7 +10,6 @@ export class GrassManager extends pc.Entity {
     private grasses: Grass[] = [];
     constructor() {
         super();
-       
         this.setUpBegin();
     }
 
@@ -37,18 +36,18 @@ export class GrassManager extends pc.Entity {
 
     }
     private createGrassInstance(pos : pc.Vec3): pc.Entity {
-        const grass =  PoolingGrass.getInstance().spawmGrass();
-        grass.setPosition(pos.x, pos.y+2,pos.z);
+        const grass = PoolingGrass.getInstance().spawmGrass();
+        grass.setPosition(pos.x, pos.y + 2, pos.z);
         grass.enabled = true;
-        this.root.addChild(grass);
+        this.addChild(grass); 
         this.grasses.push(grass);
         return grass;
     }
 
     private clearGrass()
     {
-        this.grasses.forEach(grass => {
-           PoolingGrass.getInstance().deSpawmGrass(grass); 
+        this.grasses.forEach(grass => {  
+            PoolingGrass.getInstance().deSpawmGrass(grass); 
         });
         this.grasses.length = 0;
     }

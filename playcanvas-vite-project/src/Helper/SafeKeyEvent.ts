@@ -12,9 +12,11 @@ export class SafeKeyEvent
     public static readonly SpawmGrassFromCurMap : string = 'SpawmGrassFromCurMap';
     //Call event set pos to spawm Ground from current map
     public static readonly SpawmGroundFromCurMap : string = 'SpawmGroundFromCurMap';
-
-
+    //Call event set state waiting of blade is true
     public static readonly SetWaitingBlade : string = 'SetWaitingBlade';
+    //Call event set state waiting of blade is false
     public static readonly UnSetWatingBlade : string = 'UnsetWaitintBlade';
+    //call event when user click into screen
+    public static readonly ClickIntoScreen : string = 'ClickIntoScreen';
 
 }

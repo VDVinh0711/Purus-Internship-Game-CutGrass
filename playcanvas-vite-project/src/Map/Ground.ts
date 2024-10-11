@@ -7,6 +7,7 @@ export class Ground extends pc.Entity {
     }
 
     private init() {
+        this.setLocalScale(1,1,1);
         this.AddComponent();
         this.setRigidbody();
         this.setCollision();
@@ -23,7 +24,7 @@ export class Ground extends pc.Entity {
         if (this.render == null) return;
 
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0.82, 0.71, 0.55); // Red color
+        material.diffuse = new pc.Color(0.82, 0.71, 0.55); 
         material.metalness = 0.7;
         material.update();
 

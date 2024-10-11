@@ -1,5 +1,5 @@
 // EntityManager.ts
-class EntityManager {
+ export default class EntityManager {
     private static instance: EntityManager;
     private entities: Map<string, pc.Entity> = new Map();
 
@@ -20,5 +20,3 @@ class EntityManager {
         return this.entities.get(name);
     }
 }
-
-export default EntityManager;
