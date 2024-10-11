@@ -44,6 +44,8 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
+        EventManager.emit(SafeKeyEvent.SpawmItemHelper);
+        
 
         setTimeout(() => {
             EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
@@ -67,6 +69,7 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.ResetBladeManager);
         EventManager.emit(SafeKeyEvent.ClearGround);
         EventManager.emit(SafeKeyEvent.ClearGrasses);
+        EventManager.emit(SafeKeyEvent.ClearsItemsHelper);
     }
 
 }

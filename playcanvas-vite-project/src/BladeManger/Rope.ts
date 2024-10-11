@@ -1,6 +1,10 @@
 import * as pc from 'playcanvas'
 export class Rope extends pc.Entity
 {
+
+    private readonly scaleX : number = 0.1;
+    private readonly scaleY : number = 0.1;
+    private scaleZ : number = 3;
     constructor(name:string)
     {
         super();
@@ -9,7 +13,7 @@ export class Rope extends pc.Entity
 
     public Init() : Rope
     {
-        this.setLocalScale(0.1,0.1,3);
+        this.setLocalScale(this.scaleX,this.scaleY,this.scaleZ);
         this.setLocalRotation(0,0,0);
 
         this.AddComponent();
@@ -31,10 +35,17 @@ export class Rope extends pc.Entity
     {
         if(this.collision == null) return;
         this.collision.type  = 'box';
-        this.collision.halfExtents = new pc.Vec3(0.1,0.1,3);
-
+        this.collision.halfExtents = new pc.Vec3(this.scaleX/2,this.scaleY/2.1,this.scaleZ/2);
         this.collision?.on('collisionstart',this.eventColision.bind(this));
 
+    }
+
+    public setWidthRope(scaleZ : number)
+    {
+        this.scaleZ = scaleZ;
+        this.setLocalScale(this.scaleX,this.scaleY,this.scaleZ);
+        if(this.collision == null) return;
+        this.collision.halfExtents = new pc.Vec3(this.scaleX/2,this.scaleY/2.1,this.scaleZ/2);
     }
 
     private setRigidbody()

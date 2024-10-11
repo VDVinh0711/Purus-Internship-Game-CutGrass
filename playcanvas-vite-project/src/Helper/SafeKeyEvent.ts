@@ -18,5 +18,8 @@ export class SafeKeyEvent
     public static readonly UnSetWatingBlade : string = 'UnsetWaitintBlade';
     //call event when user click into screen
     public static readonly ClickIntoScreen : string = 'ClickIntoScreen';
-
+    //call event when spawm Itemhelper
+    public static readonly SpawmItemHelper : string  = 'SpawmItemHelper';
+    //call event to clear itemshelper
+    public static readonly ClearsItemsHelper : string = 'ClearItemHelper';
 }
