@@ -9,15 +9,15 @@ export class Blade extends pc.Entity {
     constructor(name: string) {
         super();
         this.name = name;
-        this.loadModelChild();
+        
     }
 
     public Init(position: pc.Vec3): Blade {
         this.setPosition(position);
         this.AddComponent();
-        this.setRigidbody();
-        this.setCollision();
-        this.collision?.on('collisionstart', this.onColisionEnter.bind(this));
+        this.loadModelChild();
+      
+      
 
         return this;
     }
@@ -26,29 +26,35 @@ export class Blade extends pc.Entity {
         this.modelChild = new pc.Entity('model');
         this.modelChild.rotate(90, 0, 0);
         this.addChild(this.modelChild);
-        this.loadAsset();
+        this.setModelChild();
 
     }
 
     private AddComponent() {
-        this.addComponent('rigidbody');
-        this.addComponent('collision');
+        this.setRigidbody();
+        this.setCollision();  
+      
     }
 
     private setRigidbody() {
+        this.addComponent('rigidbody');
         if (this.rigidbody == null) return;
         this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
         this.rigidbody.mass = 1;
         this.rigidbody.restitution = 0.5;
+
     }
 
     private setCollision() {
+        this.addComponent('collision');
         if (this.collision == null) return;
         this.collision.type = 'box';
         this.collision.halfExtents = new pc.Vec3(this.scaleX/2, this.scaleY/2, this.scaleZ/2);
+
+        this.collision.on('collisionstart', this.onColisionEnter.bind(this));
     }
 
-    private loadAsset() {
+    private setModelChild() {
 
         pc.Application.getApplication()?.assets.loadFromUrl("../../Asset/Models/Sword2.glb", "model", (err, asset: pc.Asset | undefined) => {
             if (err) {

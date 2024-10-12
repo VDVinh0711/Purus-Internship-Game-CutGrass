@@ -16,7 +16,6 @@ export class ScoreManager
     public AddScore(score : number)
     {
         this.score += score;
-        console.log(this.score);
     }
 
 }

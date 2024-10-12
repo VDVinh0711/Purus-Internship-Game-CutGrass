@@ -26,6 +26,8 @@ export class BladeManager extends pc.Entity {
     private bladeStat !: BladeStat;
 
 
+
+
     constructor() {
         super();
         this.Init();
@@ -60,10 +62,8 @@ export class BladeManager extends pc.Entity {
     private registerEvent() {
         EventManager.on(SafeKeyEvent.ResetBladeManager, this.reset.bind(this));
         EventManager.on(SafeKeyEvent.SetPosBladeFromCurMap, this.setPosCurrentMap.bind(this));
-
         EventManager.on(SafeKeyEvent.SetWaitingBlade, this.setWaiting.bind(this));
         EventManager.on(SafeKeyEvent.UnSetWatingBlade, this.unSetWaiting.bind(this));
-
         EventManager.on(SafeKeyEvent.ClickIntoScreen, this.handleClick.bind(this));
     }
 
@@ -88,7 +88,7 @@ export class BladeManager extends pc.Entity {
     }
 
 
-
+    
     public setPosCurrentMap() {
         const posSet = LevelManager.getInstance().getPosSpawmBlade()
         this.setPosition(posSet);
@@ -97,23 +97,21 @@ export class BladeManager extends pc.Entity {
     //event colision
     private onBladeCollision(result: any) {
         if (this.isWaiting) return;
-        switch (result.other.name) {
-            case 'grass':
-                {
-                    // Handle blade collision logic here
-                    PoolingGrass.getInstance().deSpawmGrass(result.other);
-                    let scoreAdd  = this.bladeStat.getIsPowering() ? 2 : 1;
-                    ScoreManager.getInstance().AddScore(scoreAdd);
-                    //check win 
-                    this.countGrassCutted++;
-                    if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
-                    GameManger.getInstance().onWin();
-                }
-            case 'itemhelper':
-                {
-                  this.bladeStat.reciveItemHelper(result.other);
-                  result.other.destroy();
-                }
+  
+        if(result.other.name ==='grass')
+        {
+            PoolingGrass.getInstance().deSpawmGrass(result.other);
+            let scoreAdd  = this.bladeStat.getIsPowering() ? 2 : 1;
+            ScoreManager.getInstance().AddScore(scoreAdd);
+            //check win 
+            this.countGrassCutted++;
+            if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
+            GameManger.getInstance().onWin();
+        }
+        if(result.other.name === 'itemhelper')
+        {
+            this.bladeStat.reciveItemHelper(result.other);
+            result.other.destroy();
         }
     }
 
@@ -121,16 +119,16 @@ export class BladeManager extends pc.Entity {
     private reset() {
         this.isWaiting = true;
         this.countGrassCutted = 0;
+        this.bladeStat.setIsPowering(false);
     }
 
 
     private handleClick()
     {
         this.reverseDirectionAndRotate();
-        if(this.checkIsOnGround()) return
+        if(this.checkIsOnGround()) return;
         if(this.bladeStat.getIsPowering())
         {
-            console.log("call this");
             this.reverseDirectionAndRotate();
             this.bladeStat.setIsPowering(false);
         }
@@ -177,10 +175,6 @@ export class BladeManager extends pc.Entity {
         const posEnd = new pc.Vec3(posStart.x, posStart.y - 10, posStart.z);
         pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart, posEnd);
-        // if (!resultRay) {
-          
-        //     GameManger.getInstance().onLose();
-        // }
         return resultRay!=null;
     }
 }

@@ -28,6 +28,7 @@ export class GameManger {
             this.nextLevel();
             return;
         }
+        console.log("next level");
         this.nextMapInLevel();
         
         //call event when win game

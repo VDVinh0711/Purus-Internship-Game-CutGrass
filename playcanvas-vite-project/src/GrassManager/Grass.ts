@@ -1,7 +1,7 @@
 import * as pc from 'playcanvas'
 export class Grass  extends pc.Entity
 {
-    private material!: pc.Material;
+   
     constructor()
     {
         super();
@@ -11,13 +11,7 @@ export class Grass  extends pc.Entity
 
     init() 
     {
-        this.material = this.createMaterial();
         this.AddComponent();
-        this.loadAsset();
-        //this.setRender();
-        this.setRigidbody();
-        this.setCollision();
-        return this;
     }
 
     private createMaterial() : pc.Material
@@ -29,41 +23,41 @@ export class Grass  extends pc.Entity
         return material;
     }
 
-
-    private loadAsset()
-    {
-        pc.Application.getApplication()?.assets.loadFromUrl("../../Asset/Models/Grass1.glb","model",(err, asset: pc.Asset | undefined) =>
-        {
-            if (err) {
-                console.log("erro");
-                console.error(err);
-                return;
-            }
-            this.addComponent("model",
-                {
-                    type: "asset",
-                    asset: asset,
-                }
-            )
-
-
-            this.setLocalScale(9,11,9);
-
-            const meshInstance = this.model?.meshInstances[0];
-
-      // set the material
-            meshInstance!.material = this.material;
-        })
-    }
     private AddComponent()
     {
-       // this.addComponent('render');
-        this.addComponent('rigidbody');
-        this.addComponent('collision');
+        this.setModel();
+        this.setRigidbody();
+        this.setCollision();
+    }
+
+    private setModel()
+    {
+        pc.Application.getApplication()?.assets.loadFromUrl("../../Asset/Models/Grass1.glb","model",(err, asset: pc.Asset | undefined) =>
+            {
+                if (err) {
+                    console.log("erro");
+                    console.error(err);
+                    return;
+                }
+            
+                this.addComponent("model",
+                    {
+                        type: "asset",
+                        asset: asset,
+                    }
+                )
+                this.setLocalScale(9,11,9);
+                const material = this.createMaterial();
+                const meshInstance = this.model?.meshInstances[0];
+    
+          // set the material
+                meshInstance!.material = material;
+            })
     }
 
     private setRigidbody()
     {
+        this.addComponent('rigidbody');
         if(this.rigidbody == null) return;
         this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
         this.rigidbody.mass = 1;
@@ -71,6 +65,7 @@ export class Grass  extends pc.Entity
     }
     private setCollision()
     {
+        this.addComponent('collision');
         if(this.collision == null) return;
         this.collision.type = 'box';
         this.collision.halfExtents = new pc.Vec3(0.1,1,0.1);

@@ -15,28 +15,25 @@ export class Rope extends pc.Entity
     {
         this.setLocalScale(this.scaleX,this.scaleY,this.scaleZ);
         this.setLocalRotation(0,0,0);
-
         this.AddComponent();
-        this.setRender();
-        this.setRigidbody();
-        this.setcollision();
-
-       
         return this;
     }
 
     private AddComponent()
     {
-        this.addComponent('collision');
-        this.addComponent('rigidbody');
-        this.addComponent('render');
+       this.setRender();
+       this.setRigidbody();
+       this.setcollision();
+       
+       
     }
     private setcollision()
     {
+        this.addComponent('collision');
         if(this.collision == null) return;
         this.collision.type  = 'box';
-        this.collision.halfExtents = new pc.Vec3(this.scaleX/2,this.scaleY/2.1,this.scaleZ/2);
-        this.collision?.on('collisionstart',this.eventColision.bind(this));
+        this.collision.halfExtents = new pc.Vec3(this.scaleX/2,this.scaleY/2.1,this.scaleZ);
+        this.collision.on('collisionstart',this.eventColision.bind(this));
 
     }
 
@@ -50,6 +47,7 @@ export class Rope extends pc.Entity
 
     private setRigidbody()
     {
+        this.addComponent('rigidbody');
         if(this.rigidbody == null) return;
         this.rigidbody.type = pc.RIGIDBODY_TYPE_KINEMATIC;
         this.rigidbody.mass = 1;
@@ -58,6 +56,7 @@ export class Rope extends pc.Entity
 
     private setRender()
     {
+        this.addComponent('render');
         if(this.render == null) return;
         this.render.type = 'box';
     }

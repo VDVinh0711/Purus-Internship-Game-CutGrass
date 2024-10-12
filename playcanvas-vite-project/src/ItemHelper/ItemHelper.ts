@@ -5,7 +5,6 @@ export class ItemHelper extends pc.Entity
 {
     public type !: ItemType;
     public duration : number = 4;
-    private material!: pc.Material;
     constructor(type : ItemType)
     {
       super();  
@@ -14,69 +13,63 @@ export class ItemHelper extends pc.Entity
     }
 
 
-    // private Init()
-    // {
-    //     this.AddComponent();
-    //     this.setRender();
-    //     this.setRigidbody();
-    //     this.setCollison();
-    // }
-
-    // private AddComponent()
-    // {
-    //     this.addComponent('render');
-    //     this.addComponent('rigidbody');
-    //     this.addComponent('collision');
-    // }
-
-
-    // private setRender()
-    // {
-    //     if(this.render == null) return;
-    //     this.render.type  = 'cylinder';
-    //     this.setLocalScale(0.1,20,0.1);
-    // }
-    // private setRigidbody()
-    // {
-    //     if(this.rigidbody == null) return;
-    //     this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
-    //     this.rigidbody.mass = 1;
-    //     this.rigidbody.restitution = 0.5;
-    // }
-    // private setCollison()
-    // {
-    //     if(this.collision == null) return;
-    //     this.collision.type = 'cylinder';
-    //     this.collision.height = 20;
-    //     this.collision.radius = 0.05;
-    //     this.collision.axis = 2; 
-    // }
-    
-    // constructor()
-    // {
-    //     super();
-    //     this.name = 'grass';
-    //     this.init();
-    // }
-
     init() 
     {
         this.name = 'itemhelper';
-        this.material = this.createMaterial();
-        this.addComponent('render', { type: 'box' , material: this.material });
-        this.setLocalScale(0.2,6, 0.2);
-        this.addComponent('rigidbody', {
-            type: pc.BODYTYPE_KINEMATIC,
-            mass: 1,
-            restitution: 0.5
-        });
-        this.addComponent('collision', {
-            type: 'box',
-            halfExtents: new pc.Vec3(0.1, 3, 0.1)
-        });
-        return this;
+        this.AddComponent();
+    }
+   
+
+    private AddComponent()
+    {
+       
+        this.setModel();
+        this.setRigidbody();
+        this.setCollison();
     }
 
+    private setCollison()
+    {
+        this.addComponent('collision');
+        if(this.collision == null) return;
+        this.collision.type = 'box';
+        this.collision.halfExtents = new pc.Vec3(0.1,3,0.1);
+    }
+    private setRigidbody()
+    {
+        this.addComponent('rigidbody');
+        if(this.rigidbody == null) return;
+        this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
+        this.rigidbody.mass = 1;
+        this.rigidbody.restitution = 0.5;
+    }
+    
+    private setModel()
+    {
+        pc.Application.getApplication()?.assets.loadFromUrl("../../Asset/Models/Flower2.glb","model",(err, asset: pc.Asset | undefined) =>
+            {
+                if (err) {
+                    console.log("erro");
+                    console.error(err);
+                    return;
+                }
+                this.addComponent("model",
+                    {
+                        type: "asset",
+                        asset: asset,
+                    }
+                )
+                this.setLocalScale(9,11,9);
+                const material = this.createMaterial();
+                const meshInstance = this.model?.meshInstances[0];
+    
+          // set the material
+                meshInstance!.material = material;
+            })
+    }
+    
+
+   
     private createMaterial() : pc.Material
     {
         const material = new pc.StandardMaterial();
@@ -85,4 +78,7 @@ export class ItemHelper extends pc.Entity
         material.update();
         return material;
     }
+
+
+    
 }

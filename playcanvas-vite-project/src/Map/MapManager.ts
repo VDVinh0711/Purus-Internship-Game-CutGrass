@@ -46,16 +46,16 @@ export class MapManager extends pc.Entity
     public SpawmGroundCurrentMap()
     {
        this.Spawmmap(LevelManager.getInstance().getPosSpawmMaps());
-       console.log("Spawm map");
     }
 
     private Spawmmap(listPosSpawm : pc.Vec3[])
     {
-        
+        console.log(listPosSpawm.length);
          listPosSpawm.forEach(posSpawm => {
          
             const groundSpawm = PoolingGround.getInstance().spawmGround();
             groundSpawm.setPosition(posSpawm);
+            groundSpawm.enabled = true;
             this.grounds.push(groundSpawm);
             this.root.addChild(groundSpawm);
          });   

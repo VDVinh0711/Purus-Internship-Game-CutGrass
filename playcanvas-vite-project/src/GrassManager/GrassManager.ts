@@ -38,7 +38,7 @@ export class GrassManager extends pc.Entity {
     private createGrassInstance(pos : pc.Vec3): pc.Entity {
         const grass = PoolingGrass.getInstance().spawmGrass();
         grass.setPosition(pos.x, pos.y+0.5, pos.z);
-       
+        grass.rotate(0,Math.random() * 600,0);
         grass.enabled = true;
         this.addChild(grass); 
         this.grasses.push(grass);
