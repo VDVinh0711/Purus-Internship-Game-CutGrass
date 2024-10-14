@@ -73,7 +73,7 @@ export class ItemHelper extends pc.Entity
     private createMaterial() : pc.Material
     {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0.56, 0.93, 0.56); // Red color
+        material.diffuse = new pc.Color(0.56, 0.93, 0.56); 
         material.metalness = 0.7;
         material.update();
         return material;

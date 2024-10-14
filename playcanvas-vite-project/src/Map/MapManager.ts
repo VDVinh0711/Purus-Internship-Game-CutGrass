@@ -5,7 +5,7 @@ import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import EntityManager from '../Entity/EntityManager';
 import { SafeNameEntity } from '../Helper/SafeNameEntity';
 import { LevelManager } from '../Level/LevelManager';
-import { PoolingGround } from '../Utils/PoolingGround';
+import { PoolingGround } from './PoolingGround';
 
 export class MapManager extends pc.Entity
 {

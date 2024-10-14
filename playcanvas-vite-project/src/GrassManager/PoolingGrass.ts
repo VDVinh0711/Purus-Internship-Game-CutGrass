@@ -1,5 +1,5 @@
 
-import { Grass } from '../GrassManager/Grass';
+import { Grass } from './Grass';
 
 export class PoolingGrass {
     private poolHolder: Grass[] = [];

@@ -71,6 +71,7 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.ClearGround);
         EventManager.emit(SafeKeyEvent.ClearGrasses);
         EventManager.emit(SafeKeyEvent.ClearsItemsHelper);
+        EventManager.emit(SafeKeyEvent.ClearParticles); 
     }
 
 }

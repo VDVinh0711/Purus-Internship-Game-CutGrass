@@ -22,4 +22,8 @@ export class SafeKeyEvent
     public static readonly SpawmItemHelper : string  = 'SpawmItemHelper';
     //call event to clear itemshelper
     public static readonly ClearsItemsHelper : string = 'ClearItemHelper';
+    // On Particles
+    public static readonly PlayParticle : string = 'Playparticles';
+    //Clear Particles
+    public static readonly ClearParticles : string  = 'ClearParticles';
 }

@@ -7,6 +7,7 @@ import { Light } from './Entity/Light.ts';
 import { GameManger } from './GameManager.ts';
 import { InputSystem } from './Utils/InputSystem.ts';
 import { ItemHelperManager } from './ItemHelper/ItemHelperManager.ts';
+import { ParticleSystem } from './Particle/ParticlesManager.ts';
 export class SceneGameManager {
     private camera!: Camera;
     private light!: pc.Entity;
@@ -16,6 +17,7 @@ export class SceneGameManager {
     private grassManager!: GrassManager;
     private mapManager !: MapManager;
     private inputSystem !: InputSystem;
+    private particleSystem !: ParticleSystem;
     private itemHelperManager !: ItemHelperManager;
 
 
@@ -67,7 +69,13 @@ export class SceneGameManager {
         this.itemHelperManager = new ItemHelperManager();
         this.app.root.addChild(this.itemHelperManager);
 
-         this.inputSystem = new InputSystem();
+        //InputSystem
+        this.inputSystem = new InputSystem();
+
+        //particlesystem
+        this.particleSystem = new ParticleSystem();
+        this.app.root.addChild(this.particleSystem);
+
 
     }
  
@@ -85,7 +93,8 @@ export class SceneGameManager {
     private update(dt: number) {
         
         this.bladeManager.update(dt);
-        this.mapManager.update(dt);
+        this.camera.update(dt);
+      //  this.mapManager.update(dt);
       
     }
 

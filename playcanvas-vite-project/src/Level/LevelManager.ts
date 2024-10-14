@@ -58,11 +58,11 @@ export class LevelManager
         const level1: Level = {
             maps: [
                 {
-                    posSpawmBlade: new pc.Vec3(-3,1,-3),
+                    posSpawmBlade: new pc.Vec3(-3.5,1,-3.5),
                     spawnPoints: pcPoints
                 },
                 {
-                    posSpawmBlade: new pc.Vec3(-2,1,2),
+                    posSpawmBlade: new pc.Vec3(-2.5,1,2.5),
                     spawnPoints: pcPoints2
                 }
             ]

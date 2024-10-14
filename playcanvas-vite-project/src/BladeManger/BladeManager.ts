@@ -2,7 +2,7 @@ import * as pc from 'playcanvas';
 import { Blade } from './Blade';
 import { Rope } from './Rope';
 import { GameManger } from '../GameManager';
-import { PoolingGrass } from '../Utils/PoolingGrass';
+import { PoolingGrass } from '../GrassManager/PoolingGrass';
 import { GrassManager } from '../GrassManager/GrassManager';
 import EntityManager from '../Entity/EntityManager';
 import { SafeNameEntity } from '../Helper/SafeNameEntity';
@@ -16,7 +16,7 @@ export class BladeManager extends pc.Entity {
     private enRoot!: Blade;
     private enRotating!: Blade;
     private angle: number = 0;
-    private radius: number = 2;
+    private radius: number = 3;
     private speed: number = 4;
     private dir: number = 1;
     private rope !: Rope;
@@ -38,16 +38,18 @@ export class BladeManager extends pc.Entity {
 
     private Init() {
         this.bladeStat = new BladeStat(this);
+      
+        // rope
+        this.rope = new Rope('Rope').Init();
+        this.rope.setWidthRope(this.radius);
+        this.root.addChild(this.rope);
+
         //Blade 1
         this.enRoot = new Blade('blade1').Init(new pc.Vec3(0, 0, 0));
         this.root.addChild(this.enRoot);
         //Blade 2
         this.enRotating = new Blade('blade2').Init(new pc.Vec3(0, 0, 0));
         this.root.addChild(this.enRotating);
-        // rope
-        this.rope = new Rope('Rope').Init();
-        this.rope.setWidthRope(this.radius);
-        this.root.addChild(this.rope);
 
         this.grassManager = EntityManager.getInstance().getEntity(SafeNameEntity.GrassManager) as GrassManager;
     }
@@ -86,6 +88,10 @@ export class BladeManager extends pc.Entity {
     public getSpeed(): number {
         return this.speed;
     }
+    public getPosRootBlade() : pc.Vec3
+    {
+       return  this.enRoot.getPosition();
+    }
 
 
     
@@ -103,6 +109,7 @@ export class BladeManager extends pc.Entity {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
             let scoreAdd  = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().AddScore(scoreAdd);
+            EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
             //check win 
             this.countGrassCutted++;
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
@@ -123,6 +130,7 @@ export class BladeManager extends pc.Entity {
     }
 
 
+    //handle click
     private handleClick()
     {
         this.reverseDirectionAndRotate();
@@ -138,6 +146,7 @@ export class BladeManager extends pc.Entity {
         } 
     }
 
+    //change root rotate and dir
     private reverseDirectionAndRotate() {
         this.dir *= -1;
         this.angle += Math.PI;
@@ -147,6 +156,7 @@ export class BladeManager extends pc.Entity {
 
     //update
     public update(dt: number) {
+       
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
         this.enRoot.update(dt);
         this.enRotating.update(dt);
@@ -158,6 +168,8 @@ export class BladeManager extends pc.Entity {
         //this.checkIsOnGround();
     }
 
+
+    //rotate blade
     private rotateChainSaw(dt: number) {
         this.angle += this.dir * (this.speed * dt);
         const rootPos = this.enRoot.getPosition();

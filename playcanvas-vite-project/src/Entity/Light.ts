@@ -2,7 +2,7 @@ import * as pc from 'playcanvas'
 
 export class Light extends pc.Entity
 {
-    private angleProjection : pc.Vec3  = new pc.Vec3(45,0,0);
+    private angleProjection : pc.Vec3  = new pc.Vec3(0,0,0);
     constructor()
     {
         super();
@@ -15,7 +15,7 @@ export class Light extends pc.Entity
         this.addComponent('light', {
             type: 'directional',
             color: new pc.Color(1, 1, 1),
-            castShadows: true,
+            castShadows: false,
             intensity: 2,
             shadowBias: 0.2,
             shadowDistance: 16,

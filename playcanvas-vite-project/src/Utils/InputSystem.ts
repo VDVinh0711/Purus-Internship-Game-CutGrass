@@ -1,7 +1,6 @@
 import * as pc from 'playcanvas';
 import { EventManager } from './Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
-import { test } from './test';
 export class InputSystem
 {
     constructor()
@@ -18,8 +17,6 @@ export class InputSystem
 
     OnMouseDown()
     {
-        EventManager.emit(SafeKeyEvent.ClickIntoScreen);
-
-        test.getInstance().logSomething();
+        EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
     }
 }
