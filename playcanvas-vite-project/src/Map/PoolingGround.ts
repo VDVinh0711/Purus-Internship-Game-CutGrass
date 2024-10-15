@@ -30,7 +30,7 @@ export class PoolingGround {
             ground = new Ground();
         } else {
             ground = this.poolHolder.pop()!;
-            console.log("Spawm from pool");
+         
         }
         ground.enabled = true;
         return ground;

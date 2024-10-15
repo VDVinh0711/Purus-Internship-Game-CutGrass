@@ -3,7 +3,7 @@ import { AssetManager } from '../Utils/AssetManager';
 
 export class Blade extends pc.Entity {
     private scaleX: number = 1;
-    private scaleY: number = 1;
+    private scaleY: number = 0.5;
     private scaleZ: number = 1;
     private modelChild!: pc.Entity;
 
@@ -33,20 +33,22 @@ export class Blade extends pc.Entity {
 
     private setRigidbody() {
         this.addComponent('rigidbody');
-        if (this.rigidbody) {
-            this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
-            this.rigidbody.mass = 1;
-            this.rigidbody.restitution = 0.5;
-        }
+        if (this.rigidbody == null) return;
+        this.rigidbody.type = pc.BODYTYPE_KINEMATIC;
+        this.rigidbody.mass = 1;
+        this.rigidbody.restitution = 0.5;
+
     }
 
     private setCollision() {
         this.addComponent('collision');
-        if (this.collision) {
-            this.collision.type = 'box';
-            this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
-            this.collision.on('collisionstart', this.onColisionEnter.bind(this));
-        }
+        if (this.collision == null) return
+        this.collision.type = 'cylinder'
+        // this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
+        this.collision.radius = 1;
+        this.collision.height = 0.5
+        this.collision.on('collisionstart', this.onColisionEnter.bind(this));
+
     }
 
     private setModelChild() {
@@ -58,7 +60,7 @@ export class Blade extends pc.Entity {
             asset: AssetManager.getInstance().getAsset('modelBlade'),
         });
         this.modelChild.setLocalScale(1, 1, 1);
-        
+
         const material = new pc.StandardMaterial();
         const assetTexure = AssetManager.getInstance().getAsset('textureBlade');
         material.diffuseMap = assetTexure?.resource;

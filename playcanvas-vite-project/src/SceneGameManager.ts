@@ -53,7 +53,6 @@ export class SceneGameManager {
     private onAssetsLoaded = () => {
         this.setUpScene();
         this.isLoading = false;
-        GameManger.getInstance().onStartGame();
     }
 
     private setUpScene() {
@@ -78,8 +77,10 @@ export class SceneGameManager {
         this.particleSystem = new ParticleSystem();
         this.app.root.addChild(this.particleSystem);
 
-        this.UIManager = new UiManager();
+        this.UIManager = new UiManager(this.app);
         this.app.root.addChild(this.UIManager);
+
+        GameManger.getInstance().setUpBegin();
 
     }
 

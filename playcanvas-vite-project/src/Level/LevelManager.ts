@@ -1,6 +1,8 @@
 
 
 import * as pc from 'playcanvas'
+import { EventManager } from '../Utils/Observer';
+import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 interface Map {
     posSpawmBlade : pc.Vec3;
     spawnPoints: pc.Vec3[];
@@ -29,6 +31,15 @@ export class LevelManager
             LevelManager.instance  = new LevelManager();
         }
         return LevelManager.instance;
+    }
+
+    public getCurrentLevel()
+    {
+        return this.currentlevel;
+    }
+    public getCurrentMap()
+    {
+        return this.currentmap;
     }
 
 
@@ -76,16 +87,18 @@ export class LevelManager
     public nextLevel()
     {
         this.currentlevel++;
+        EventManager.emit(SafeKeyEvent.OnChangeLevel,this.currentlevel);
         this.currentmap = 0;
+        EventManager.emit(SafeKeyEvent.OnChangeMap,this.currentmap);
     }
     public nextMap()
     {
         this.currentmap++;
+
+        EventManager.emit(SafeKeyEvent.OnChangeMap,this.currentmap);
     }
     public canNextoLevel () : boolean
     {
-        console.log(this.levels[this.currentlevel].maps.length);
-        console.log(this.currentmap);
         return this.levels[this.currentlevel].maps.length -1  == this.currentmap;
     }
     public getPosSpawmMaps() : pc.Vec3[]

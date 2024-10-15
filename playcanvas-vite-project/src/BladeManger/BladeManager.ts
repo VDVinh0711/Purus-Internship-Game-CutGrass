@@ -110,7 +110,7 @@ export class BladeManager extends pc.Entity {
         {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
             let scoreAdd  = this.bladeStat.getIsPowering() ? 2 : 1;
-            ScoreManager.getInstance().AddScore(scoreAdd);
+            ScoreManager.getInstance().addScore(scoreAdd);
             EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
             //check win 
             this.countGrassCutted++;

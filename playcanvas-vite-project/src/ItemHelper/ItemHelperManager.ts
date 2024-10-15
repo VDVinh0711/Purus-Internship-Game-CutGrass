@@ -25,7 +25,7 @@ export class ItemHelperManager extends pc.Entity
     {
         let pos =  LevelManager.getInstance().getPosSpawmMaps();
         let indexRandom = Math.floor(Math.random()* pos.length-1);
-        console.log(indexRandom);
+      
        this.spawmItemHelper(pos[indexRandom]);
        
     }

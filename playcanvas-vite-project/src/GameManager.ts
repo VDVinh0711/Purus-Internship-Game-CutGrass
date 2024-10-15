@@ -22,32 +22,47 @@ export class GameManger {
 
     public onWin() {
         this.isWin = true;
-        console.log("win");
+      
         if(LevelManager.getInstance().canNextoLevel())
         {
             this.nextLevel();
             return;
         }
-        console.log("next level");
+      
         this.nextMapInLevel();
         
         //call event when win game
     }
     public onLose() {
         this.isLose = true;
-        console.log("lose");
+      
         //call event when lose game
     }
-    public onStartGame() {
-        //implement logic when start game
+
+    public setUpBegin()
+    {
         this.reset();
         EventManager.emit(SafeKeyEvent.SetWaitingBlade);
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmItemHelper);
-        
+    }
 
+    
+    public onStartGame() {
+            EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
+    }
+
+
+    public gameSetUp()
+    {
+        this.reset();
+        EventManager.emit(SafeKeyEvent.SetWaitingBlade);
+        EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
+        EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
+        EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
+        EventManager.emit(SafeKeyEvent.SpawmItemHelper);
         setTimeout(() => {
             EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
         }, 1000);
@@ -55,12 +70,12 @@ export class GameManger {
 
     public nextMapInLevel() {
         LevelManager.getInstance().nextMap();
-        this.onStartGame();
+        this.gameSetUp();
     }
     public nextLevel() {
         // implement logic when get next level
         LevelManager.getInstance().nextLevel();
-        this.onStartGame();
+        this.gameSetUp();
         
     }
 

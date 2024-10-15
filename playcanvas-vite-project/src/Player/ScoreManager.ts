@@ -1,3 +1,6 @@
+import { SafeKeyEvent } from "../Helper/SafeKeyEvent";
+import { EventManager } from "../Utils/Observer";
+
 export class ScoreManager
 {
     private score :number = 0;
@@ -13,9 +16,14 @@ export class ScoreManager
         return ScoreManager.instance;
     }
 
-    public AddScore(score : number)
+    public addScore(score : number)
     {
         this.score += score;
+        EventManager.emit(SafeKeyEvent.OnChangeScore, this.score);
+    }
+    public getSCore()
+    {
+        return this.score;
     }
 
 }

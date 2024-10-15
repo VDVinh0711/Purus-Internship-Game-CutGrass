@@ -1,38 +1,34 @@
 import * as pc from 'playcanvas'
+import { AssetManager } from '../../Utils/AssetManager';
+import { LevelManager } from '../../Level/LevelManager';
 
-export class TextLevelMainMenu extends pc.Entity
-{
-
-    private font !: pc.Asset;
-    constructor()
-    {
+export class TextLevelMainMenu extends pc.Entity {
+    constructor() {
         super();
-        this.init();
         this.setElement();
+        this.init();
     }
 
-    private init()
+    public init()
     {
-        this.font = new pc.Asset('font', 'font', {url: '../../Asset/Fonts/arial.json'});
-        pc.Application.getApplication()?.assets.add(this.font);
-        pc.Application.getApplication()?.assets.load(this.font);
+        this.setTextLevel(LevelManager.getInstance().getCurrentLevel());
     }
-    private setElement()
-    {
-        this.font.ready(() =>
-        {
-            this.addComponent('element', {
-                pivot: new pc.Vec2(0.5, 0.5),
-                anchor: new pc.Vec4(0.5, 0.5, 0.5, 0.5),
-                fontAsset: this.font.id,
-                fontSize: 42,
-                text: '8',
-                type: pc.ELEMENTTYPE_TEXT
-            });
+   
 
-            this.setLocalPosition(100, 100, 0); 
+    private setElement() {
+        this.addComponent('element', {
+            pivot: new pc.Vec2(0.5, 0.5),
+            anchor: new pc.Vec4(0.5, 0.5, 0.5, 0.5),
+            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
+            fontSize: 42,
+            text: '0',
+            type: pc.ELEMENTTYPE_TEXT
         });
+    }
 
-        
+    private setTextLevel(level : number)
+    {
+        if(this.element == null) return;
+        this.element.text = "Level :  " + level;
     }
 }

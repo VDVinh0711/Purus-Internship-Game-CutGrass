@@ -30,4 +30,17 @@ export class SafeKeyEvent
     public static readonly UnsetMovingCamera : string = 'UnsetMovingCamenra';
     //Set camera in game scene
     public static readonly SetMovingCamera : string = 'SetCameraMoving';
+    //Call when change Level
+    public static readonly OnChangeLevel : string = "OnChangeLevel";
+    //Call When Change Score
+    public static readonly OnChangeScore : string = "OnChangeScore";
+    //Call When Change index Map
+    public static readonly OnChangeMap : string = "OnChangeMap";
+    //Open UI MainMenu
+    public static readonly OpenUIMainMenu : string = "OpenUIMainMenu";
+    //Open UI Ingame
+    public static readonly OpenUIInGame : string  = "OpenUIInGame";
+
+
+
 }
