@@ -24,7 +24,9 @@ export class ItemHelperManager extends pc.Entity
     private spawmItemHeplerCurMap()
     {
         let pos =  LevelManager.getInstance().getPosSpawmMaps();
-       this.spawmItemHelper(pos[4]);
+        let indexRandom = Math.floor(Math.random()* pos.length-1);
+        console.log(indexRandom);
+       this.spawmItemHelper(pos[indexRandom]);
        
     }
     private spawmItemHelper(posSpawm : pc.Vec3)

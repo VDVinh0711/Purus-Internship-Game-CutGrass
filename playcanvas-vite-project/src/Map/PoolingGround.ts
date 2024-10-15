@@ -33,20 +33,10 @@ export class PoolingGround {
             console.log("Spawm from pool");
         }
         ground.enabled = true;
-      //  ground.init(); // Re-initialize the ground
         return ground;
     }
 
     public deSpawmGround(ground: Ground) {
-      
-        // grass.removeComponent('render');
-        // grass.removeComponent('rigidbody');
-        // grass.removeComponent('collision');
-
-       // grass.setLocalPosition(0, 0, 0);
-       // grass.setLocalRotation(0, 0, 0, 1);
-      //  grass.setLocalScale(1, 1, 1);
-
         ground.enabled = false;
         this.poolHolder.push(ground);
     }

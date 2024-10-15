@@ -24,7 +24,7 @@ export class Ground extends pc.Entity {
         if (this.render == null) return;
 
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0.82, 0.71, 0.55); 
+        material.diffuse = new pc.Color(142/255, 255/255, 97/255); 
         material.metalness = 0.7;
         material.update();
 

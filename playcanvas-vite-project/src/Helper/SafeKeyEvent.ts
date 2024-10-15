@@ -26,4 +26,8 @@ export class SafeKeyEvent
     public static readonly PlayParticle : string = 'Playparticles';
     //Clear Particles
     public static readonly ClearParticles : string  = 'ClearParticles';
+    //Call set origin posCamera when back to UI or out of game scene
+    public static readonly UnsetMovingCamera : string = 'UnsetMovingCamenra';
+    //Set camera in game scene
+    public static readonly SetMovingCamera : string = 'SetCameraMoving';
 }

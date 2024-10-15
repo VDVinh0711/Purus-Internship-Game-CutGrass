@@ -1,4 +1,5 @@
 import * as pc from 'playcanvas';
+import { AssetManager } from '../Utils/AssetManager';
 
 export class Blade extends pc.Entity {
     private scaleX: number = 1;
@@ -43,7 +44,7 @@ export class Blade extends pc.Entity {
         this.addComponent('collision');
         if (this.collision) {
             this.collision.type = 'box';
-            this.collision.halfExtents = new pc.Vec3(this.scaleX / 2, this.scaleY / 2, this.scaleZ / 2);
+            this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
             this.collision.on('collisionstart', this.onColisionEnter.bind(this));
         }
     }
@@ -52,37 +53,23 @@ export class Blade extends pc.Entity {
         const app = pc.Application.getApplication();
         if (!app) return;
 
-        app.assets.loadFromUrl("../../Asset/Models/Sword2.glb", "model", (err, asset) => {
-            if (err) {
-                console.error("Error loading model:", err);
-                return;
-            }
-            this.modelChild.addComponent("model", {
-                type: "asset",
-                asset: asset,
-            });
-            this.modelChild.setLocalScale(1, 1, 1);
-            this.loadTexture();
+        this.modelChild.addComponent("model", {
+            type: "asset",
+            asset: AssetManager.getInstance().getAsset('modelBlade'),
         });
+        this.modelChild.setLocalScale(1, 1, 1);
+        
+        const material = new pc.StandardMaterial();
+        const assetTexure = AssetManager.getInstance().getAsset('textureBlade');
+        material.diffuseMap = assetTexure?.resource;
+        material.update();
+        const meshInstance = this.modelChild.model?.meshInstances[0];
+        if (meshInstance) {
+            meshInstance.material = material;
+        }
+
     }
 
-    private loadTexture() {
-        const app = pc.Application.getApplication();
-        if (!app) return;
-        app.assets.loadFromUrl("../../Asset/Texure/Albedo Sword 2.png", "texture", (err, asset) => {
-            if (err) {
-                console.error("Error loading texture:", err);
-                return;
-            }
-            const material = new pc.StandardMaterial();
-            material.diffuseMap = asset?.resource;
-            material.update();
-            const meshInstance = this.modelChild.model?.meshInstances[0];
-            if (meshInstance) {
-                meshInstance.material = material;
-            }
-        });
-    }
 
     private onColisionEnter(result: any) {
         this.fire('blade:collision', result);

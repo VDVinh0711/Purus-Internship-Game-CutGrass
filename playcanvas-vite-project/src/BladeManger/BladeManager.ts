@@ -37,8 +37,10 @@ export class BladeManager extends pc.Entity {
     }
 
     private Init() {
+
+        //Stat
         this.bladeStat = new BladeStat(this);
-      
+        this.isWaiting = true;
         // rope
         this.rope = new Rope('Rope').Init();
         this.rope.setWidthRope(this.radius);
@@ -103,7 +105,7 @@ export class BladeManager extends pc.Entity {
     //event colision
     private onBladeCollision(result: any) {
         if (this.isWaiting) return;
-  
+        
         if(result.other.name ==='grass')
         {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
@@ -133,6 +135,7 @@ export class BladeManager extends pc.Entity {
     //handle click
     private handleClick()
     {
+        if (this.isWaiting) return;
         this.reverseDirectionAndRotate();
         if(this.checkIsOnGround()) return;
         if(this.bladeStat.getIsPowering())

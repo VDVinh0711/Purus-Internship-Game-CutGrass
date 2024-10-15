@@ -13,6 +13,7 @@ export class InputSystem
         //setup for mouse
         const mouse = new pc.Mouse(document.body);
         mouse.on('mousedown', this.OnMouseDown.bind(this));
+    
     }
 
     OnMouseDown()

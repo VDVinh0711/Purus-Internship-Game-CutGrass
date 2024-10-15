@@ -6,7 +6,6 @@ export class Particle extends pc.Entity
         super();
         this.name = 'particle';
         this.settUp();
-       // this.Stop();
     }
 
 
@@ -16,33 +15,34 @@ export class Particle extends pc.Entity
 
         if(this.particlesystem != null) this.removeComponent('particlesystem');
         const localVelocityCurve = new pc.CurveSet([
-            [0, 0, 0.5,5],
-            [0, 0, 0.5, 0.2],
-            [0, 0, 0.5, 5]
+            [0, 0, 0, 0],
+            [0, 0, 0.5, 5],
+            [0, 0, 0., 0]
         ]);
         const localVelocityCurve2 = new pc.CurveSet([
-            [0, 0, 0.5, -5],
-            [0, 0, 0.5, -0.2],
-            [0, 0, 0.5, -5]
+            [0, 0, 0, 0],
+            [0, 0, 0.5, -8],
+            [0, 0, 0, 0]
         ]);
     
         // increasing gravity
         const worldVelocityCurve = new pc.CurveSet([
             [0, 0],
-            [0, 0,1, 1, 1, -1],
+            [0, 0, 0.2, 5, 1, -2],
             [0, 0]
         ]);
     
         // color changes throughout lifetime
         const colorCurve = new pc.CurveSet([
-            [0, 0.56], 
-            [0, 0.93], 
-            [0, 0.56]
+            [0, 40/255], 
+            [0, 94/255], 
+            [0, 11/255]
         ]);
-    
+
+       
 
         this.addComponent('particlesystem', {
-            numParticles: 50,
+            numParticles: 10,
             lifetime: 0.5,
             rate: 0.01,
             scaleGraph: new pc.Curve([0, 0.1, 0.1, 0.1]),
@@ -58,7 +58,6 @@ export class Particle extends pc.Entity
             halfLambert: true,
             alignToMotion: true,
             loop: false,
-            
         });
         
         

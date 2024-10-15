@@ -28,13 +28,14 @@ export class GrassManager extends pc.Entity {
     }
     private SpawmGrass(posSpawms: pc.Vec3[]) {
         posSpawms.forEach(posSpawm => {
-            this.spawmGrassInstance(posSpawm);
+            this.spawmGrassInstance(new pc.Vec3(posSpawm.x,posSpawm.y,posSpawm.z));
+            this.spawmGrassInstance(new pc.Vec3(posSpawm.x-0.2,posSpawm.y,posSpawm.z-0.2));
         });
 
     }
     private spawmGrassInstance(pos: pc.Vec3): pc.Entity {
         const grass = PoolingGrass.getInstance().spawmGrass();
-        grass.setPosition(pos.x, pos.y + 0.5, pos.z);
+        grass.setPosition(pos.x, pos.y + 1, pos.z);
         grass.rotate(0, Math.random() * 600, 0);
         grass.enabled = true;
         this.addChild(grass);
