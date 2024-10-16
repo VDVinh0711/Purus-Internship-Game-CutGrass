@@ -27,27 +27,6 @@ export class Grass extends pc.Entity {
     }
 
     private setModel() {
-        // pc.Application.getApplication()?.assets.loadFromUrl("../../Asset/Models/Grass5.glb", "model", (err, asset: pc.Asset | undefined) => {
-        //     if (err) {
-        //         console.log("erro");
-        //         console.error(err);
-        //         return;
-        //     }
-
-        //     this.addComponent("model",
-        //         {
-        //             type: "asset",
-        //             asset: asset,
-        //         }
-        //     )
-        //     this.setLocalScale(3,0.5,3);
-        //     const material = this.createMaterial();
-        //     const meshInstance = this.model?.meshInstances[0];
-
-        //     // set the material
-        //     meshInstance!.material = material;
-        // })
-
         this.addComponent("model",
             {
                 type: "asset",

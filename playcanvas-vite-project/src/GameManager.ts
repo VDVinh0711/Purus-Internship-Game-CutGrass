@@ -25,11 +25,13 @@ export class GameManger {
       
         if(LevelManager.getInstance().canNextoLevel())
         {
-            this.nextLevel();
+           // this.nextLevel();
+           EventManager.emit(SafeKeyEvent.OpenUIWinLevel);
             return;
         }
       
-        this.nextMapInLevel();
+            EventManager.emit(SafeKeyEvent.OpenUIWinMap);
+        //this.nextMapInLevel();
         
         //call event when win game
     }
@@ -87,6 +89,8 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.ClearGrasses);
         EventManager.emit(SafeKeyEvent.ClearsItemsHelper);
         EventManager.emit(SafeKeyEvent.ClearParticles); 
+        EventManager.emit(SafeKeyEvent.CloseUIWinLevel);
+        EventManager.emit(SafeKeyEvent.CloseUIWinMap);
     }
 
 }

@@ -10,6 +10,8 @@ import { ParticleSystem } from './Particle/ParticlesManager';
 import { UiManager } from './UserInterface/UIManager';
 import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
+import { EventManager } from './Utils/Observer';
+import { SafeKeyEvent } from './Helper/SafeKeyEvent';
 
 export class SceneGameManager {
     private camera!: Camera;
@@ -45,6 +47,11 @@ export class SceneGameManager {
         //input
         this.inputSystem = new InputSystem();
 
+         //UiManager
+         this.UIManager = new UiManager(this.app);
+         this.app.root.addChild(this.UIManager);
+        
+
         const assetManager = AssetManager.getInstance();
         assetManager.on('assetsLoaded', this.onAssetsLoaded, this);
         assetManager.LoadAsset(this.app);
@@ -53,6 +60,7 @@ export class SceneGameManager {
     private onAssetsLoaded = () => {
         this.setUpScene();
         this.isLoading = false;
+
     }
 
     private setUpScene() {
@@ -72,13 +80,15 @@ export class SceneGameManager {
         this.itemHelperManager = new ItemHelperManager();
         this.app.root.addChild(this.itemHelperManager);
 
-        
-
         this.particleSystem = new ParticleSystem();
         this.app.root.addChild(this.particleSystem);
 
-        this.UIManager = new UiManager(this.app);
-        this.app.root.addChild(this.UIManager);
+        // //UiManager
+        // this.UIManager = new UiManager(this.app);
+        // this.app.root.addChild(this.UIManager);
+       
+        this.UIManager.init();
+    
 
         GameManger.getInstance().setUpBegin();
 

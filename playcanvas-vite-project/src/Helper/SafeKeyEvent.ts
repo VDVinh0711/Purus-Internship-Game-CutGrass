@@ -42,5 +42,17 @@ export class SafeKeyEvent
     public static readonly OpenUIInGame : string  = "OpenUIInGame";
 
 
+    //Open Ui WinLevel
+    public static readonly OpenUIWinLevel : string = "OpenUIWinlevel";
+    //Close UI WinLevel
+    public static readonly CloseUIWinLevel : string = "CloseUiWinLevel";
+
+    //Open UI WIn Map
+    public static readonly OpenUIWinMap : string = "OpenUIWinMap";
+    //CloseUIWin Map
+    public static readonly CloseUIWinMap : string = "CloseUIWinMap"
+
+
+
 
 }

@@ -135,6 +135,7 @@ export class BladeManager extends pc.Entity {
     //handle click
     private handleClick()
     {
+        if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
         if (this.isWaiting) return;
         this.reverseDirectionAndRotate();
         if(this.checkIsOnGround()) return;

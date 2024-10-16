@@ -22,11 +22,13 @@ export class AssetManager {
 
     public LoadAsset(app: pc.Application): void {
         const listAsset = {
-            fontArial: new pc.Asset('font', 'font', { url: '../../Asset/Fonts/arial.json' }),
+            fontArial: new pc.Asset('font', 'font', { url: '../../Asset/Fonts/Cream Beige.json' }),
             modelBlade: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword2.glb" }),
             modelGrass: new pc.Asset("modelGrass", "model", { url: "../../Asset/Models/Grass5.glb" }),
             modelFlower: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flower2.glb" }),
-            textureBlade: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" })
+            textureBlade: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" }),
+            srpiteButtonPlay : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/IconPlayv2.png"}),
+            srpiteButtonSetting : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/iconSetting.png"})      
         };
 
         const AssetLoader = new pc.AssetListLoader(Object.values(listAsset), app.assets);

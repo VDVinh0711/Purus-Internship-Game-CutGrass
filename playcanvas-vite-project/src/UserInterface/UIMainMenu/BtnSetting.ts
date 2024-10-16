@@ -8,7 +8,7 @@ export class BtnSetting extends pc.Entity {
     constructor() {
         super();
         this.setElement();
-        this.setText();
+        //this.setText();
         this.setButtonOnclick();
     }
 
@@ -17,11 +17,12 @@ export class BtnSetting extends pc.Entity {
         this.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 200,
-            height: 50,
+            width: 100,
+            height: 100,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
-            color: new pc.Color(0.5, 0.5, 0.5)
+            color: new pc.Color(1, 1, 1),
+            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonSetting'),
         });
     }
 

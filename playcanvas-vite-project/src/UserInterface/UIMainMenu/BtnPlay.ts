@@ -4,59 +4,45 @@ import { AssetManager } from '../../Utils/AssetManager';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 
-export class BtnPlay extends pc.Entity
-{
+export class BtnPlay extends pc.Entity {
     private txtPlay!: pc.Entity;
-    
 
-    constructor()
-    {
+
+    constructor() {
         super();
-       
+
+        this.setButton();
         this.setElement();
-        this.setText();
-        this.setButtonOnclick();
+       
+       
     }
 
-  
 
-    private setElement()
-    {
-        this.addComponent('button');
+
+    private setElement() {
+       
         this.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 200,
-            height: 50,
+            width: 150,
+            height: 150,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
-            color: new pc.Color(0.5, 0.5, 0.5)
+            color: new pc.Color(1, 1, 1),
+            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonPlay'),
         });
     }
 
-    private setText()
+
+    private setButton()
     {
-      
-            this.txtPlay = new pc.Entity();
-            this.txtPlay.addComponent('element', {
-                anchor: [0.5, 0.5, 0.5, 0.5],
-                pivot: [0.5, 0.5],
-                width: 180,
-                height: 40,
-                color: new pc.Color(1, 1, 1),
-                fontAsset:  AssetManager.getInstance().getAsset('fontArial'),
-                fontSize: 24,
-                text: 'Play Game',
-                type: pc.ELEMENTTYPE_TEXT,
-                wrapLines: true
-            });
-            this.addChild(this.txtPlay);
-        
+        this.addComponent('button');
+        this.setButtonOnclick();
     }
 
-    private setButtonOnclick()
-    {
+    private setButtonOnclick() {
         if (this.button == null) return;
+
         this.button.on('click', function () {
             EventManager.emit(SafeKeyEvent.OpenUIInGame);
             GameManger.getInstance().onStartGame();

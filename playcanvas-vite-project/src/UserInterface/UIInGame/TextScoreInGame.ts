@@ -26,12 +26,13 @@ export class TextScoreInGame extends pc.Entity {
 
     private setElement() {
         this.addComponent('element', {
-            pivot: new pc.Vec2(0.5, 0.5),
-            anchor: new pc.Vec4(0.5, 0.5, 0.5, 0.5),
+            anchor: [0, 1, 0, 1], 
+            pivot: [0, 1],       
             fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 42,
+            fontSize: 24,
             text: '0',
-            type: pc.ELEMENTTYPE_TEXT
+            type: pc.ELEMENTTYPE_TEXT,
+           
         });
     }
 
