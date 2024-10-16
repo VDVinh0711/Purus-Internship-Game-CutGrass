@@ -1,17 +1,15 @@
 import * as pc from 'playcanvas'
-import { AssetManager } from '../../Utils/AssetManager';
 import { LevelManager } from '../../Level/LevelManager';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { BaseTextUI } from '../BaseTextUI';
 
-export class TextMapInGame extends pc.Entity {
+export class TextMapInGame extends BaseTextUI {
     constructor() {
-        super();
-        this.setElement();
+        super(24, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
         this.init();
         this.registerEvent();
     }
-
 
     private registerEvent()
     {
@@ -19,27 +17,13 @@ export class TextMapInGame extends pc.Entity {
     }
 
     public init()
-    {
-       
+    { 
         this.setTextMap(LevelManager.getInstance().getCurrentMap());
-    }
-   
-
-    private setElement() {
-        this.addComponent('element', {
-            anchor: [0, 1, 0, 1], 
-            pivot: [0, 1],         
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 24,
-            text: '0',
-            type: pc.ELEMENTTYPE_TEXT,
-            
-        });
     }
 
     private setTextMap(indexMap : number)
     {
         if(this.element == null) return;
-        this.element.text = "Map :  " + indexMap;
+        this.element.text = "Map :  " + (indexMap+1) + "/" + LevelManager.getInstance().getTotalMaps();
     }
 }

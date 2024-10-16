@@ -6,7 +6,7 @@ export class Ground extends pc.Entity {
         this.init();
     }
 
-    private init() {
+    public init() {
         this.setLocalScale(1,1,1);
         this.AddComponent();
         this.setRigidbody();
@@ -17,7 +17,7 @@ export class Ground extends pc.Entity {
     private AddComponent() {
         this.addComponent('render');
         this.addComponent('rigidbody');
-        this.addComponent('collision');
+        this.addComponent('collision'); 
     }
 
     private setRender() {

@@ -8,7 +8,7 @@ export class Grass extends pc.Entity {
         this.init();
     }
 
-    init() {
+    public init() {
         this.AddComponent();
     }
 

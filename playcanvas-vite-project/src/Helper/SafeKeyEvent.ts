@@ -40,17 +40,16 @@ export class SafeKeyEvent
     public static readonly OpenUIMainMenu : string = "OpenUIMainMenu";
     //Open UI Ingame
     public static readonly OpenUIInGame : string  = "OpenUIInGame";
-
-
     //Open Ui WinLevel
     public static readonly OpenUIWinLevel : string = "OpenUIWinlevel";
     //Close UI WinLevel
     public static readonly CloseUIWinLevel : string = "CloseUiWinLevel";
-
     //Open UI WIn Map
     public static readonly OpenUIWinMap : string = "OpenUIWinMap";
     //CloseUIWin Map
-    public static readonly CloseUIWinMap : string = "CloseUIWinMap"
+    public static readonly CloseUIWinMap : string = "CloseUIWinMap";
+    //OpenUI LoseGame
+    public static readonly OpenUILoseGame : string = "OpenUILoseGame";
 
 
 

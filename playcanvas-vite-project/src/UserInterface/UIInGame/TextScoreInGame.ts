@@ -1,17 +1,15 @@
 import * as pc from 'playcanvas'
-import { AssetManager } from '../../Utils/AssetManager';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import { ScoreManager } from '../../Player/ScoreManager';
+import { BaseTextUI } from '../BaseTextUI';
 
-export class TextScoreInGame extends pc.Entity {
+export class TextScoreInGame extends BaseTextUI {
     constructor() {
-        super();
-        this.setElement();
+        super(24, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
         this.init();
         this.registerEvent();
     }
-
 
     private registerEvent()
     {
@@ -23,19 +21,6 @@ export class TextScoreInGame extends pc.Entity {
         this.setTextScore(ScoreManager.getInstance().getSCore());
     }
    
-
-    private setElement() {
-        this.addComponent('element', {
-            anchor: [0, 1, 0, 1], 
-            pivot: [0, 1],       
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 24,
-            text: '0',
-            type: pc.ELEMENTTYPE_TEXT,
-           
-        });
-    }
-
     private setTextScore(score : number)
     {
         if(this.element == null) return;

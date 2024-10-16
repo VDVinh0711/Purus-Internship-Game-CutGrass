@@ -30,10 +30,11 @@ export class PoolingGround {
             ground = new Ground();
         } else {
             ground = this.poolHolder.pop()!;
-         
         }
-        ground.enabled = true;
-        return ground;
+         ground.enabled = true;
+        // ground = new Ground();
+        // ground.enabled = true;
+         return ground;
     }
 
     public deSpawmGround(ground: Ground) {

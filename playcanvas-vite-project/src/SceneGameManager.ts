@@ -107,7 +107,5 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
-
-       
     }
 }

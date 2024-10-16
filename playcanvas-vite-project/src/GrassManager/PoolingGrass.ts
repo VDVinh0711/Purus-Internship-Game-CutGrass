@@ -25,10 +25,21 @@ export class PoolingGrass {
     }
 
     public spawmGrass(): Grass {
-        if (this.poolHolder.length <= 0) {
-           return new Grass();
-        }
-        return this.poolHolder.pop()!
+        
+      
+        // // if (this.poolHolder.length <= 0) {
+        // //    return new Grass();
+        // // }
+        // let grass = this.poolHolder.pop();
+        // if(grass === undefined)
+        // {
+        //     grass = new Grass();
+        // }
+        
+
+        console.log(this.poolHolder.length);
+       let grass = this.poolHolder.pop();
+       return new Grass();;
 
     }
 

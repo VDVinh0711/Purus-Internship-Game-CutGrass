@@ -20,6 +20,7 @@ export class LevelManager
     private currentlevel : number = 0;
     private currentmap : number =0;
 
+
     constructor(){
         this.createData();
     }
@@ -33,15 +34,19 @@ export class LevelManager
         return LevelManager.instance;
     }
 
-    public getCurrentLevel()
+    public getCurrentLevel() : number
     {
         return this.currentlevel;
     }
-    public getCurrentMap()
+    public getCurrentMap() : number
     {
         return this.currentmap;
     }
 
+    public getTotalMaps() : number
+    {
+        return this.levels[this.currentlevel].maps.length;
+    }
 
     private createData()
     {
@@ -66,15 +71,29 @@ export class LevelManager
         }
 
 
+        
+        const pcPoints3= [];
+        for(let i = -5 ; i<= 5;i++)
+        {
+            for(let j = -5 ; j<= 5 ;j++)
+            {
+                pcPoints3.push(new pc.Vec3(i,0,j));
+            }
+        }
+
         const level1: Level = {
             maps: [
                 {
                     posSpawmBlade: new pc.Vec3(-3.5,1,-3.5),
-                    spawnPoints: pcPoints
+                    spawnPoints: pcPoints3
                 },
                 {
                     posSpawmBlade: new pc.Vec3(-2.5,1,2.5),
                     spawnPoints: pcPoints2
+                },
+                {
+                    posSpawmBlade: new pc.Vec3(-3.5,1,-3.5),
+                    spawnPoints: pcPoints
                 }
             ]
         };
@@ -94,7 +113,6 @@ export class LevelManager
     public nextMap()
     {
         this.currentmap++;
-
         EventManager.emit(SafeKeyEvent.OnChangeMap,this.currentmap);
     }
     public canNextoLevel () : boolean
@@ -103,10 +121,14 @@ export class LevelManager
     }
     public getPosSpawmMaps() : pc.Vec3[]
     {
-        return this.levels[this.currentlevel].maps[this.currentmap].spawnPoints;
+       
+        return this.levels[this.currentlevel].maps[this.currentmap].spawnPoints
+       ;
     }
     public getPosSpawmBlade() : pc.Vec3
     {
-        return this.levels[this.currentlevel].maps[this.currentmap].posSpawmBlade;
+
+        return  this.levels[this.currentlevel].maps[this.currentmap].posSpawmBlade
+       
     }
 }

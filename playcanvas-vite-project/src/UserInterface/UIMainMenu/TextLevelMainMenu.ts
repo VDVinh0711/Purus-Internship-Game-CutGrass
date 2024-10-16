@@ -1,34 +1,18 @@
-import * as pc from 'playcanvas'
-import { AssetManager } from '../../Utils/AssetManager';
 import { LevelManager } from '../../Level/LevelManager';
+import { BaseTextUI } from '../BaseTextUI';
 
-export class TextLevelMainMenu extends pc.Entity {
+
+export class TextLevelMainMenu extends BaseTextUI {
     constructor() {
         super();
-        this.setElement();
         this.init();
     }
 
-    public init()
-    {
+    public init() {
         this.setTextLevel(LevelManager.getInstance().getCurrentLevel());
     }
-   
 
-    private setElement() {
-        this.addComponent('element', {
-            pivot: new pc.Vec2(0.5, 0.5),
-            anchor: new pc.Vec4(0.5, 0.5, 0.5, 0.5),
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 42,
-            text: '0',
-            type: pc.ELEMENTTYPE_TEXT
-        });
-    }
-
-    private setTextLevel(level : number)
-    {
-        if(this.element == null) return;
-        this.element.text = "Level :  " + level;
+    private setTextLevel(level: number) {
+        this.setText(`Level: ${level + 1}`);
     }
 }

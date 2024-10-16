@@ -1,17 +1,15 @@
 import * as pc from 'playcanvas'
-import { AssetManager } from '../../Utils/AssetManager';
 import { LevelManager } from '../../Level/LevelManager';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { BaseTextUI } from '../BaseTextUI';
 
-export class TextLevelInGame extends pc.Entity {
+export class TextLevelInGame extends BaseTextUI {
     constructor() {
-        super();
-        this.setElement();
+        super(24, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
         this.init();
         this.registerEvent();
     }
-
 
     private registerEvent()
     {
@@ -23,21 +21,9 @@ export class TextLevelInGame extends pc.Entity {
         this.setTextLevel(LevelManager.getInstance().getCurrentLevel());
     }
    
-
-    private setElement() {
-        this.addComponent('element', {
-            anchor: [0, 1, 0, 1], 
-            pivot: [0, 1],         
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 24,
-            text: '0',
-            type: pc.ELEMENTTYPE_TEXT,
-        });
-    }
-
     private setTextLevel(level : number)
     {
         if(this.element == null) return;
-        this.element.text = "Level :  " + level;
+        this.element.text = "Level :  " + (level +1);
     }
 }

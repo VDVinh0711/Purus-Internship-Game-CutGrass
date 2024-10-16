@@ -15,9 +15,9 @@ export class UIInGame extends pc.Entity implements IUIController
     private txt_Level !: TextLevelInGame;
     private txt_Map !: TextMapInGame;
 
-
     private uiWinLevel !: UIWinLevel;
     private uiWinMap !: UIWinMap;
+
 
 
     constructor(app : pc.Application)
@@ -106,10 +106,7 @@ export class UIInGame extends pc.Entity implements IUIController
         this.uiWinMap.enabled = false;
     }
 
-
-
     Open(): void {
-       
         this.init();
         this.enabled = true;
     }

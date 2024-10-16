@@ -51,7 +51,6 @@ export class MapManager extends pc.Entity
     private Spawmmap(listPosSpawm : pc.Vec3[])
     {
          listPosSpawm.forEach(posSpawm => {
-         
             const groundSpawm = PoolingGround.getInstance().spawmGround();
             groundSpawm.setPosition(posSpawm);
             groundSpawm.enabled = true;

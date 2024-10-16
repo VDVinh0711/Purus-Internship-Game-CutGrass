@@ -1,48 +1,13 @@
-import * as pc from 'playcanvas'
-import { AssetManager } from '../../Utils/AssetManager';
+import { BaseButtonUI } from '../BaseButtonUI';
 
-export class BtnSetting extends pc.Entity {
-    private txtPlay!: pc.Entity;
-
-
+export class BtnSetting extends BaseButtonUI {
     constructor() {
-        super();
-        this.setElement();
-        //this.setText();
-        this.setButtonOnclick();
-    }
-
-    private setElement() {
-        this.addComponent('button');
-        this.addComponent('element', {
-            anchor: [0.5, 0.5, 0.5, 0.5],
-            pivot: [0.5, 0.5],
+        super({
             width: 100,
             height: 100,
-            type: pc.ELEMENTTYPE_IMAGE,
-            useInput: true,
-            color: new pc.Color(1, 1, 1),
-            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonSetting'),
+            textureAsset: 'srpiteButtonSetting',
         });
-    }
-
-    private setText() {
-
-        this.txtPlay = new pc.Entity();
-        this.txtPlay.addComponent('element', {
-            anchor: [0.5, 0.5, 0.5, 0.5],
-            pivot: [0.5, 0.5],
-            width: 180,
-            height: 40,
-            color: new pc.Color(1, 1, 1),
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
-            fontSize: 24,
-            text: 'Setting',
-            type: pc.ELEMENTTYPE_TEXT,
-            wrapLines: true
-        });
-        this.addChild(this.txtPlay);
-
+        this.setButtonOnclick();
     }
 
     private setButtonOnclick() {

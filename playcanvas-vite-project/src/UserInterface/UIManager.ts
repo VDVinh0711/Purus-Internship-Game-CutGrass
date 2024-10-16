@@ -5,13 +5,16 @@ import { UIInGame } from './UIInGame/UIInGame';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { UILoading } from './UILoading/UiLoading';
+import { UiLoseGame } from './UILose/UI_Lose';
 export class UiManager extends pc.Entity
 {
     private app : pc.Application;
     private uiMainMenu !: UIMainMenu;
     private uiInGame !: UIInGame;
     private uiLoanding !: UILoading;
+    private uiLose !: UiLoseGame;
     private currentUI !: IUIController;
+
     constructor( app : pc.Application)
     {
         super();
@@ -25,6 +28,7 @@ export class UiManager extends pc.Entity
     {
         EventManager.on(SafeKeyEvent.OpenUIInGame, this.OpenUIInGame.bind(this));
         EventManager.on(SafeKeyEvent.OpenUIMainMenu, this.OpenUIMainMenu.bind(this));
+        EventManager.on(SafeKeyEvent.OpenUILoseGame, this.OpenUILoseGame.bind(this));
     }
 
     private setUpBegin()
@@ -50,9 +54,12 @@ export class UiManager extends pc.Entity
         this.uiMainMenu.enabled = false;
 
         this.uiInGame = new UIInGame(this.app);
-        this.uiInGame.setLocalPosition(0,0,0);
         this.addChild(this.uiInGame);
         this.uiInGame.enabled = false;
+
+        this.uiLose = new UiLoseGame(this.app);
+        this.addChild(this.uiLose);
+        this.uiLose.enabled = false;
 
         this.OpenUIMainMenu();
        
@@ -74,6 +81,10 @@ export class UiManager extends pc.Entity
         this.heplerOpenUI(this.uiInGame)
     }
 
+    private OpenUILoseGame()
+    {
+        this.heplerOpenUI(this.uiLose);
+    }
 
     private heplerOpenUI(ui :IUIController )
     {

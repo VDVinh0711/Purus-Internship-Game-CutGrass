@@ -161,15 +161,13 @@ export class BladeManager extends pc.Entity {
     //update
     public update(dt: number) {
        
-        if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
+        if (GameManger.getInstance().isLose) return;
         this.enRoot.update(dt);
         this.enRotating.update(dt);
         this.rotateChainSaw(dt);
         this.bladeStat.update(dt);
         //update rope
         this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
-
-        //this.checkIsOnGround();
     }
 
 

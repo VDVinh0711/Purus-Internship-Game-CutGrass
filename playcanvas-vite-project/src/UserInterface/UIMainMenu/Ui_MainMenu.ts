@@ -20,7 +20,7 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.app = app;
         this.setElement();
         this.setUpBegin();
-       
+       this.init();
 
        
     }
@@ -53,8 +53,17 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.addChild(this.txt_Level);
         this.txt_Level.setLocalPosition(0,200,0);
     }
+
+
+    private init()
+    {
+        this.txt_Score.init();
+        this.txt_Level.init();
+    }
+
     Open(): void {
       
+        this.init();
         this.enabled = true;
     }
 
