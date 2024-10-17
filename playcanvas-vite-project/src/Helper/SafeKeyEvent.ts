@@ -50,7 +50,10 @@ export class SafeKeyEvent
     public static readonly CloseUIWinMap : string = "CloseUIWinMap";
     //OpenUI LoseGame
     public static readonly OpenUILoseGame : string = "OpenUILoseGame";
-
+    //OpenUI Setting 
+    public static readonly OpenUISetting : string = "OpenUISetting";
+    //Close UISetting
+    public static readonly CloseUISetting : string = "CloseUISetting";
 
 
 

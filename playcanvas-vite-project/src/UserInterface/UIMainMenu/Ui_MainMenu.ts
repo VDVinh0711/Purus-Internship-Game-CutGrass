@@ -4,6 +4,9 @@ import { BtnSetting } from './BtnSetting';
 import { TextScoreMainMenu } from './TextScoreMainMenu';
 import { TextLevelMainMenu } from './TextLevelMainMenu';
 import { IUIController } from '../IUiController';
+import { UISetting } from './UISetting/UISetting';
+import { EventManager } from '../../Utils/Observer';
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 
 export class UIMainMenu extends pc.Entity  implements IUIController
 {
@@ -13,6 +16,8 @@ export class UIMainMenu extends pc.Entity  implements IUIController
     private txt_Score !: TextScoreMainMenu;
     private txt_Level !: TextLevelMainMenu;
 
+    private uiSetting !: UISetting;
+
     constructor(app : pc.Application)
     {
         super();
@@ -21,8 +26,16 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.setElement();
         this.setUpBegin();
        this.init();
+       this.registerEvent();
 
        
+    }
+
+
+    private registerEvent()
+    {
+        EventManager.on(SafeKeyEvent.OpenUISetting, this.OpenUiSetting.bind(this));
+        EventManager.on(SafeKeyEvent.CloseUISetting, this.CloseUISetting.bind(this));
     }
 
     private setElement()
@@ -52,6 +65,11 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.txt_Level = new TextLevelMainMenu();
         this.addChild(this.txt_Level);
         this.txt_Level.setLocalPosition(0,200,0);
+
+
+        this.uiSetting = new UISetting();
+        this.addChild(this.uiSetting);
+        this.uiSetting.enabled = false;
     }
 
 
@@ -61,6 +79,16 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.txt_Level.init();
     }
 
+
+    private OpenUiSetting()
+    {
+        this.uiSetting.enabled = true;
+    }
+    private CloseUISetting()
+    {
+        this.uiSetting.enabled = false;
+    }
+
     Open(): void {
       
         this.init();
@@ -68,7 +96,6 @@ export class UIMainMenu extends pc.Entity  implements IUIController
     }
 
     Close(): void {
-       
         this.enabled = false;
     }
 }

@@ -19,7 +19,7 @@ export class UILoading extends pc.Entity implements IUIController
     private setElement()
     {
         this.addComponent('element', {
-            anchor: [0, 0, 1, 1],
+            anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
             width: this.app.graphicsDevice.width,
             height: this.app.graphicsDevice.height,

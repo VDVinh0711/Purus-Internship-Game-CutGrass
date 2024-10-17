@@ -12,11 +12,15 @@ export class InputSystem
     {
         //setup for mouse
         const mouse = new pc.Mouse(document.body);
-        mouse.on('mousedown', this.OnMouseDown.bind(this));
-    
-    }
+        mouse.on('mousedown', this.OnClick.bind(this));
 
-    OnMouseDown()
+       
+        const touch = new pc.TouchDevice(document.body);
+        touch.on('touchstart', this.OnClick.bind(this));
+    }
+     
+
+    OnClick()
     {
         EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
     }

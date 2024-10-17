@@ -64,7 +64,11 @@ export class MapManager extends pc.Entity
     private clearMap()
     {
       this.grounds.forEach(ground => {
-       PoolingGround.getInstance().deSpawmGround(ground);
+        if(ground.enabled)
+        {
+          PoolingGround.getInstance().deSpawmGround(ground);
+        }
+     
       });
     }
     update(dt:number)

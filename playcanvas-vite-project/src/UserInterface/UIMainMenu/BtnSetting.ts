@@ -1,3 +1,5 @@
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { EventManager } from '../../Utils/Observer';
 import { BaseButtonUI } from '../BaseButtonUI';
 
 export class BtnSetting extends BaseButtonUI {
@@ -14,6 +16,7 @@ export class BtnSetting extends BaseButtonUI {
         if (this.button == null) return;
         this.button.on('click', function () {
             console.log("Button clicked");
+            EventManager.emit(SafeKeyEvent.OpenUISetting);
         });
     }
 }

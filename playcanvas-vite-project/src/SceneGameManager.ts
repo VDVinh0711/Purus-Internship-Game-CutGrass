@@ -66,30 +66,31 @@ export class SceneGameManager {
     private setUpScene() {
        
 
+        //GrassManager
         this.grassManager = new GrassManager();
-        this.grassManager.rotate(0, -0.4, 0);
-        this.grassManager.setPosition(0, 0, 0);
         this.app.root.addChild(this.grassManager);
 
+        //MapManager
         this.mapManager = new MapManager();
         this.app.root.addChild(this.mapManager);
 
+        //BladeManager
         this.bladeManager = new BladeManager();
         this.app.root.addChild(this.bladeManager);
 
+        //ItemHelper
         this.itemHelperManager = new ItemHelperManager();
         this.app.root.addChild(this.itemHelperManager);
 
+        //ParticleSystem
         this.particleSystem = new ParticleSystem();
         this.app.root.addChild(this.particleSystem);
 
-        // //UiManager
-        // this.UIManager = new UiManager(this.app);
-        // this.app.root.addChild(this.UIManager);
-       
+    
+        //UI
         this.UIManager.init();
     
-
+        //Start Game
         GameManger.getInstance().setUpBegin();
 
     }
@@ -107,5 +108,6 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
+        console.log(this.app.stats.frame.fps);
     }
 }

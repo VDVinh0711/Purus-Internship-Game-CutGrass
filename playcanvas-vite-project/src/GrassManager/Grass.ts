@@ -35,8 +35,6 @@ export class Grass extends pc.Entity {
         this.setLocalScale(3, 0.5, 3);
         const material = this.createMaterial();
         const meshInstance = this.model?.meshInstances[0];
-
-        // set the material
         meshInstance!.material = material;
 
     }

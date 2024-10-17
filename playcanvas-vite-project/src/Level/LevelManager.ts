@@ -55,7 +55,7 @@ export class LevelManager
         {
             for(let j = -10 ; j<= 10 ;j++)
             {
-                if(i<j) continue;
+                // if(i<j) continue;
                 pcPoints.push(new pc.Vec3(i,0,j));
             }
         }
@@ -85,7 +85,7 @@ export class LevelManager
             maps: [
                 {
                     posSpawmBlade: new pc.Vec3(-3.5,1,-3.5),
-                    spawnPoints: pcPoints3
+                    spawnPoints: pcPoints
                 },
                 {
                     posSpawmBlade: new pc.Vec3(-2.5,1,2.5),
