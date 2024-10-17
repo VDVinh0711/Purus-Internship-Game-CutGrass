@@ -10,7 +10,7 @@ export class Camera extends pc.Entity {
     private targetPosition: pc.Vec3 = new pc.Vec3();
     private targetLookAt: pc.Vec3 = new pc.Vec3();
     private smoothFactor: number = 0.05;
-    private offset: pc.Vec3 = new pc.Vec3(0, 15, 10);
+    private offset: pc.Vec3 = new pc.Vec3(0, 20, 20);
     private isMoving : boolean = true;
 
     private readonly originPos : pc.Vec3 = new pc.Vec3(0,20,20);

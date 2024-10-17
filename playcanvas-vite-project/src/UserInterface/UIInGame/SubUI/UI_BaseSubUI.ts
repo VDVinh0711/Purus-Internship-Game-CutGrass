@@ -1,5 +1,6 @@
 import * as pc from 'playcanvas';
 import { AssetManager } from '../../../Utils/AssetManager';
+import { SafeKeyAsset } from '../../../Helper/SafeKeyAsset';
 
 export class UIBaseSubUI extends pc.Entity {
     protected app: pc.Application;
@@ -32,7 +33,7 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
+            fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Success Text',
         });
@@ -45,7 +46,7 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0, 0.5, 0],
             pivot: [0.5, 0],
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
+            fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Click To Continue'
         });

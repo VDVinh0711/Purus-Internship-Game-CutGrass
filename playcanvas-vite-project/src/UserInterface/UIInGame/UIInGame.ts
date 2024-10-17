@@ -7,6 +7,7 @@ import { UIWinLevel } from './SubUI/UI_WinLevel';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import { UIWinMap } from './SubUI/UI_Winmap';
+import { UIBladeStat } from './UIBladeStats';
 
 export class UIInGame extends pc.Entity implements IUIController
 {
@@ -17,6 +18,8 @@ export class UIInGame extends pc.Entity implements IUIController
 
     private uiWinLevel !: UIWinLevel;
     private uiWinMap !: UIWinMap;
+
+    private uiStats !: UIBladeStat;
 
 
 
@@ -37,6 +40,9 @@ export class UIInGame extends pc.Entity implements IUIController
 
         EventManager.on(SafeKeyEvent.OpenUIWinMap, this.OpenUIWinMap.bind(this));
         EventManager.on(SafeKeyEvent.CloseUIWinMap, this.CloseUiWinMap.bind(this));
+
+        EventManager.on(SafeKeyEvent.OpenUIStats, this.OpenUIStat.bind(this));
+        EventManager.on(SafeKeyEvent.CloseUIStats, this.CloseUIStat.bind(this));
     }
 
     private setElement()
@@ -75,6 +81,10 @@ export class UIInGame extends pc.Entity implements IUIController
         this.addChild(this.uiWinMap);
         this.uiWinMap.enabled = false;
 
+        this.uiStats = new UIBladeStat();
+        this.addChild(this.uiStats);
+        this.uiStats.enabled = false;
+
     }
 
 
@@ -104,6 +114,16 @@ export class UIInGame extends pc.Entity implements IUIController
     private CloseUiWinMap()
     {
         this.uiWinMap.enabled = false;
+    }
+
+
+    private OpenUIStat()
+    {
+        this.uiStats.enabled = true;
+    }
+    private CloseUIStat()
+    {
+        this.uiStats.enabled = false;
     }
 
     Open(): void {

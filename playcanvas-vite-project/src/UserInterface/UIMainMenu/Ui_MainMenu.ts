@@ -4,7 +4,7 @@ import { BtnSetting } from './BtnSetting';
 import { TextScoreMainMenu } from './TextScoreMainMenu';
 import { TextLevelMainMenu } from './TextLevelMainMenu';
 import { IUIController } from '../IUiController';
-import { UISetting } from './UISetting/UISetting';
+import { UISetting } from '../UISetting/UISetting';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 
@@ -16,7 +16,6 @@ export class UIMainMenu extends pc.Entity  implements IUIController
     private txt_Score !: TextScoreMainMenu;
     private txt_Level !: TextLevelMainMenu;
 
-    private uiSetting !: UISetting;
 
     constructor(app : pc.Application)
     {
@@ -25,18 +24,9 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.app = app;
         this.setElement();
         this.setUpBegin();
-       this.init();
-       this.registerEvent();
-
-       
+        this.init();
     }
 
-
-    private registerEvent()
-    {
-        EventManager.on(SafeKeyEvent.OpenUISetting, this.OpenUiSetting.bind(this));
-        EventManager.on(SafeKeyEvent.CloseUISetting, this.CloseUISetting.bind(this));
-    }
 
     private setElement()
     {
@@ -56,7 +46,7 @@ export class UIMainMenu extends pc.Entity  implements IUIController
 
         this.btn_Setting = new BtnSetting();
         this.addChild(this.btn_Setting);
-        this.btn_Setting.setLocalPosition(0,-100,0);
+        this.btn_Setting.setLocalPosition(0,-200,0);
         
         this.txt_Score = new TextScoreMainMenu();
         this.addChild(this.txt_Score);
@@ -65,11 +55,7 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.txt_Level = new TextLevelMainMenu();
         this.addChild(this.txt_Level);
         this.txt_Level.setLocalPosition(0,200,0);
-
-
-        this.uiSetting = new UISetting();
-        this.addChild(this.uiSetting);
-        this.uiSetting.enabled = false;
+      
     }
 
 
@@ -79,15 +65,6 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         this.txt_Level.init();
     }
 
-
-    private OpenUiSetting()
-    {
-        this.uiSetting.enabled = true;
-    }
-    private CloseUISetting()
-    {
-        this.uiSetting.enabled = false;
-    }
 
     Open(): void {
       

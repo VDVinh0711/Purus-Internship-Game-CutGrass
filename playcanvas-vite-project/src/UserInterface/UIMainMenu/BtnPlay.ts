@@ -1,5 +1,6 @@
 
 import { GameManger } from '../../GameManager';
+import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 import { BaseButtonUI } from '../BaseButtonUI';
 
 export class BtnPlay extends BaseButtonUI {
@@ -7,7 +8,7 @@ export class BtnPlay extends BaseButtonUI {
         super({
             width: 150,
             height: 150,
-            textureAsset: 'srpiteButtonPlay',
+            textureAsset: SafeKeyAsset.IMGButtonPlay,
         });
         this.setButtonOnclick();
     }

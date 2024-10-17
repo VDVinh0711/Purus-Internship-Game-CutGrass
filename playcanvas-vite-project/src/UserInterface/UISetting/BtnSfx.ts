@@ -1,5 +1,6 @@
-import * as pc from 'playcanvas'
-import { BaseButtonUI } from '../../BaseButtonUI';
+
+import { BaseButtonUI } from '../BaseButtonUI';
+import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 export class BtnSFX extends BaseButtonUI
 {
     constructor()
@@ -7,7 +8,7 @@ export class BtnSFX extends BaseButtonUI
         super({
             width: 50,
             height: 50,
-            textureAsset: 'srpiteButtonPlay',
+            textureAsset: SafeKeyAsset.IMGButtonSoundSFX,
         });
         this.setButtonOnClick();
     }

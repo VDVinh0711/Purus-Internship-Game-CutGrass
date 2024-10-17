@@ -38,7 +38,6 @@ export class PoolingGrass {
     public deSpawmGrass(grass: Grass) {
         grass.enabled = false;
         this.poolHolder.push(grass);
-        console.log(this.poolHolder.length);
     }
 
     public getCount(): number {

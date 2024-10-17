@@ -1,4 +1,5 @@
-import { BaseButtonUI } from '../../BaseButtonUI';
+import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
+import { BaseButtonUI } from '../BaseButtonUI';
 export class BtnSoundBackground extends BaseButtonUI
 {
     constructor()
@@ -6,7 +7,7 @@ export class BtnSoundBackground extends BaseButtonUI
         super({
             width: 50,
             height: 50,
-            textureAsset: 'srpiteButtonPlay',
+            textureAsset: SafeKeyAsset.IMGButtonSoundBG,
         });
 
         this.setButtonOnClick();

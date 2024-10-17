@@ -1,5 +1,6 @@
 import * as pc from 'playcanvas'
 import { AssetManager } from '../Utils/AssetManager';
+import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 export class Grass extends pc.Entity {
 
     constructor() {
@@ -14,7 +15,7 @@ export class Grass extends pc.Entity {
 
     private createMaterial(): pc.Material {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(40 / 255, 94 / 255, 11 / 255);
+        material.diffuse = new pc.Color(255 / 255, 255 / 255, 255 / 255);
         material.metalness = 0.7;
         material.update();
         return material;
@@ -30,9 +31,9 @@ export class Grass extends pc.Entity {
         this.addComponent("model",
             {
                 type: "asset",
-                asset: AssetManager.getInstance().getAsset('modelGrass'),
+                asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelGrass),
             });
-        this.setLocalScale(3, 0.5, 3);
+        this.setLocalScale(8, 30,8  );
         const material = this.createMaterial();
         const meshInstance = this.model?.meshInstances[0];
         meshInstance!.material = material;

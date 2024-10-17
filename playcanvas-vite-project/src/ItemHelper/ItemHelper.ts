@@ -1,6 +1,7 @@
 import * as pc from 'playcanvas'
 import { ItemType } from './TypeItem';
 import { AssetManager } from '../Utils/AssetManager';
+import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
 export class ItemHelper extends pc.Entity {
     public type !: ItemType;
@@ -43,7 +44,7 @@ export class ItemHelper extends pc.Entity {
         this.addComponent("model",
             {
                 type: "asset",
-                asset: AssetManager.getInstance().getAsset('modelFlower'),
+                asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelFlower),
             })
         this.setLocalScale(9, 11, 9);
         const material = this.createMaterial();

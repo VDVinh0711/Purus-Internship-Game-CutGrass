@@ -1,7 +1,8 @@
 import * as pc from 'playcanvas'
-import { BaseButtonUI } from "../../BaseButtonUI";
-import { EventManager } from '../../../Utils/Observer';
-import { SafeKeyEvent } from '../../../Helper/SafeKeyEvent';
+import { BaseButtonUI } from "../BaseButtonUI";
+import { EventManager } from '../../Utils/Observer';
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 
 
 
@@ -10,7 +11,7 @@ export class BtnExit extends BaseButtonUI {
         super({
             width: 50,
             height: 50,
-            textureAsset: 'srpiteButtonPlay',
+            textureAsset: SafeKeyAsset.IMGButtonCLose,
         });
         this.setAnchorPivot();
         this.setButtonOnclick();
@@ -27,6 +28,7 @@ export class BtnExit extends BaseButtonUI {
         this.button.on('click', () => {
             console.log("exit setting");
             EventManager.emit(SafeKeyEvent.CloseUISetting);
+            EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
         });
     }
 }

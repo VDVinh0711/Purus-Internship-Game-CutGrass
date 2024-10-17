@@ -7,7 +7,6 @@ import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 export class ItemHelperManager extends pc.Entity
 {
-    
     private items : ItemHelper[]  = [];
     constructor()
     {   

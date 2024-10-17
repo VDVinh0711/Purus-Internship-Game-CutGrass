@@ -1,5 +1,6 @@
 import * as pc from 'playcanvas';
 import { AssetManager } from '../Utils/AssetManager';
+import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
 export class Blade extends pc.Entity {
     private scaleX: number = 1;
@@ -57,12 +58,12 @@ export class Blade extends pc.Entity {
 
         this.modelChild.addComponent("model", {
             type: "asset",
-            asset: AssetManager.getInstance().getAsset('modelBlade'),
+            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade),
         });
         this.modelChild.setLocalScale(1, 1, 1);
 
         const material = new pc.StandardMaterial();
-        const assetTexure = AssetManager.getInstance().getAsset('textureBlade');
+        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade);
         material.diffuseMap = assetTexure?.resource;
         material.update();
         const meshInstance = this.modelChild.model?.meshInstances[0];

@@ -1,12 +1,12 @@
 import * as pc from 'playcanvas'
-import { Particle } from './particle'
+import { ParticleCutGrass } from './particleCutGrass'
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 
 export class ParticleSystem extends pc.Entity
 {
-    private particles : Particle[] = [];
-    private particlesActive  : Particle[] = [];
+    private particlesCutGrass : ParticleCutGrass[] = [];
+    private particlesCutGrassActive  : ParticleCutGrass[] = [];
 
     constructor()
     {
@@ -32,22 +32,22 @@ export class ParticleSystem extends pc.Entity
         }
     }
 
-    private createParticle() : Particle
+    private createParticle() : ParticleCutGrass
     {
-        const newParticle = new Particle();
+        const newParticle = new ParticleCutGrass();
         newParticle.on('particles:stop', this.deSpawmParticle, this);
         newParticle.enabled = false;
         this.addChild(newParticle);
-        this.particles.push(newParticle);
+        this.particlesCutGrass.push(newParticle);
         return newParticle;
     }
 
 
     public PlayParticles(pos : pc.Vec3)
     {
-        let particle: Particle | undefined;
-        if (this.particles.length > 0) {
-            particle = this.particles.pop();
+        let particle: ParticleCutGrass | undefined;
+        if (this.particlesCutGrass.length > 0) {
+            particle = this.particlesCutGrass.pop();
         } else {
             particle = this.createParticle();
         }
@@ -55,27 +55,27 @@ export class ParticleSystem extends pc.Entity
             particle.enabled = true;
             particle.setPosition(pos);
             particle.Play();
-            this.particlesActive.push(particle);
+            this.particlesCutGrassActive.push(particle);
         }
     }
 
 
-    private deSpawmParticle(particle : Particle)
+    private deSpawmParticle(particle : ParticleCutGrass)
     {
-        const index = this.particlesActive.indexOf(particle);
+        const index = this.particlesCutGrassActive.indexOf(particle);
         if (index == -1)  return;
         particle.enabled = false;
-        this.particlesActive.splice(index, 1);
-        this.particles.push(particle);
+        this.particlesCutGrassActive.splice(index, 1);
+        this.particlesCutGrass.push(particle);
     }
 
     private clearParticles()
     {
-        this.particlesActive.forEach(particle => {
+        this.particlesCutGrassActive.forEach(particle => {
             particle.enabled = false;
-            this.particles.push(particle);
+            this.particlesCutGrass.push(particle);
         });
-        this.particlesActive.length = 0;
+        this.particlesCutGrassActive.length = 0;
     }
 
 }

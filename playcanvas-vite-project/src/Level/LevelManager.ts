@@ -73,9 +73,9 @@ export class LevelManager
 
         
         const pcPoints3= [];
-        for(let i = -5 ; i<= 5;i++)
+        for(let i = -10 ; i<= 10;i++)
         {
-            for(let j = -5 ; j<= 5 ;j++)
+            for(let j = -10 ; j<= 10 ;j++)
             {
                 pcPoints3.push(new pc.Vec3(i,0,j));
             }

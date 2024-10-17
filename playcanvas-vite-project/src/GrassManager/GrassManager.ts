@@ -30,7 +30,7 @@ export class GrassManager extends pc.Entity {
         console.log(posSpawms.length);
         posSpawms.forEach(posSpawm => {
             this.spawmGrassInstance(new pc.Vec3(posSpawm.x,posSpawm.y,posSpawm.z));
-            //  this.spawmGrassInstance(new pc.Vec3(posSpawm.x-0.2,posSpawm.y,posSpawm.z-0.2));
+
         });
 
     }
@@ -44,11 +44,6 @@ export class GrassManager extends pc.Entity {
     }
 
     private clearGrass() {
-        // this.grasses.forEach(grass => {
-        //     PoolingGrass.getInstance().deSpawmGrass(grass);
-        // });
-        // this.grasses.length = 0;
-
         this.grasses.forEach(grass => {
             if(grass.enabled)
             {

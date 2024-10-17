@@ -2,6 +2,7 @@ import * as pc from 'playcanvas'
 import { AssetManager } from '../../../Utils/AssetManager';
 import { GameManger } from '../../../GameManager';
 import { UIBaseSubUI } from './UI_BaseSubUI';
+import { SafeKeyAsset } from '../../../Helper/SafeKeyAsset';
 
 
 export class UIWinLevel extends UIBaseSubUI {
@@ -33,12 +34,12 @@ export class UIWinLevel extends UIBaseSubUI {
         this.img_win.addComponent('element', {
             anchor: [0.5, 1, 0.5, 1],
             pivot: [0.5, 1],
-            width: 100,
+            width: 200,
             height: 100,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: false,
             color: new pc.Color(1, 1, 1),
-            textureAsset: AssetManager.getInstance().getAsset('srpiteButtonPlay'),
+            textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIconWin),
         });
         this.img_win.setLocalPosition(0, -100, 0);
     }

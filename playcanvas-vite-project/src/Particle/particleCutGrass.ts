@@ -1,6 +1,6 @@
 import * as pc from 'playcanvas'
 
-export class Particle extends pc.Entity
+export class ParticleCutGrass extends pc.Entity
 {
     constructor(){
         super();

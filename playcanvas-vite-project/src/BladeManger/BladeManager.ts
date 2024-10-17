@@ -16,7 +16,7 @@ export class BladeManager extends pc.Entity {
     private enRoot!: Blade;
     private enRotating!: Blade;
     private angle: number = 0;
-    private radius: number = 3;
+    private radius: number = 0;
     private speed: number = 4;
     private dir: number = 1;
     private rope !: Rope;
@@ -25,6 +25,8 @@ export class BladeManager extends pc.Entity {
     private grassManager !: GrassManager;
     private bladeStat !: BladeStat;
 
+
+    private radisuStart : number = 3;
 
 
 
@@ -160,7 +162,12 @@ export class BladeManager extends pc.Entity {
 
     //update
     public update(dt: number) {
-       
+        if(this.isWaiting) return;
+        if(this.radisuStart >= this.radius)
+        {
+            this.radius += dt;
+            this.rope.setWidthRope(this.radius);
+        }
         if (GameManger.getInstance().isLose) return;
         this.enRoot.update(dt);
         this.enRotating.update(dt);

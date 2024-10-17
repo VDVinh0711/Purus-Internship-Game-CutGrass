@@ -4,6 +4,7 @@ import { IUIController } from '../IUiController';
 import { GameManger } from '../../GameManager';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 
 
 export class UiLoseGame extends pc.Entity implements IUIController
@@ -19,7 +20,7 @@ export class UiLoseGame extends pc.Entity implements IUIController
         super();
         this.app = app;
         this.setElement();
-        this.setUpTitle();
+       // this.setUpTitle();
         this.setIconLose();
         this.setButtonBackMenu();
         this.setButtonPlayAgain();
@@ -47,7 +48,7 @@ export class UiLoseGame extends pc.Entity implements IUIController
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 1, 0.5, 1],
             pivot: [0.5, 1],
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
+            fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Lose',
         });
@@ -60,12 +61,12 @@ export class UiLoseGame extends pc.Entity implements IUIController
         this.icon_Lose.addComponent('element', {
             anchor: [0.5, 1, 0.5, 1],
             pivot: [0.5, 1],
-            width: 100,
+            width: 200,
             height: 100,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: false,
             color: new pc.Color(1, 1, 1),
-            textureAsset: AssetManager.getInstance().getAsset('srpiteButtonPlay'),
+            textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIConLose),
         });
         this.icon_Lose.setLocalPosition(0, -100, 0);
     }
@@ -79,12 +80,12 @@ export class UiLoseGame extends pc.Entity implements IUIController
         this.btn_BacktoMain.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 100,
-            height: 100,
+            width: 50,
+            height: 50,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
             color: new pc.Color(1, 1, 1),
-            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonPlay'),
+            textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBackToMenU),
         });
 
         this.btn_BacktoMain.setLocalPosition(-100,0,0);
@@ -106,12 +107,12 @@ export class UiLoseGame extends pc.Entity implements IUIController
         this.btn_PlayAgain.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 100,
-            height: 100,
+            width: 50,
+            height: 50,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
             color: new pc.Color(1, 1, 1),
-            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonPlay'),
+            textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBtnPlayAgain),
         });
 
         this.btn_PlayAgain.setLocalPosition(0,0,0);
@@ -132,12 +133,12 @@ export class UiLoseGame extends pc.Entity implements IUIController
         this.btn_nextWithDimons.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 100,
-            height: 100,
+            width: 50,
+            height: 50,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
             color: new pc.Color(1, 1, 1),
-            textureAsset : AssetManager.getInstance().getAsset('srpiteButtonPlay'),
+            textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGRevive),
         });
 
         this.btn_nextWithDimons.setLocalPosition(100,0,0);

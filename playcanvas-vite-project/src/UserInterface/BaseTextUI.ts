@@ -1,5 +1,6 @@
 import * as pc from 'playcanvas';
 import { AssetManager } from '../Utils/AssetManager';
+import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
  export class BaseTextUI extends pc.Entity {
     constructor(fontSize: number = 42, initialText: string = '0',  pivot: pc.Vec2 = new pc.Vec2(0.5, 0.5),anchor: pc.Vec4 = new pc.Vec4(0.5, 0.5,0.5, 0.5)) {
@@ -11,7 +12,7 @@ import { AssetManager } from '../Utils/AssetManager';
         this.addComponent('element', {
             pivot: pivot,
             anchor: anchor,
-            fontAsset: AssetManager.getInstance().getAsset('fontArial'),
+            fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: fontSize,
             text: initialText,
             type: pc.ELEMENTTYPE_TEXT

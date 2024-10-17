@@ -1,5 +1,7 @@
+import { SafeKeyEvent } from "../Helper/SafeKeyEvent";
 import { ItemHelper } from "../ItemHelper/ItemHelper";
 import { ItemType } from "../ItemHelper/TypeItem";
+import { EventManager } from "../Utils/Observer";
 import { BladeManager } from "./BladeManager";
 
 export class BladeStat {
@@ -14,7 +16,6 @@ export class BladeStat {
         this.bladeManager = bladeManager;
         this.radiusOrigin = bladeManager.getRadius();
         this.speedOrigin = bladeManager.getSpeed();
-
     }
 
 
@@ -29,12 +30,14 @@ export class BladeStat {
     }
 
     public reciveItemHelper(item: ItemHelper) {
+        console.log("recive")
         this.isPowering = true;
         this.timeCountDown = item.duration;
         switch (item.type) {
             case ItemType.powerUp:
                 {
                     this.applyPowerUpEffects();
+                    EventManager.emit(SafeKeyEvent.OpenUIStats);
                 }
         }
 
@@ -43,6 +46,7 @@ export class BladeStat {
     public update(dt: number) {
         if (!this.isPowering) return;
         this.timeCountDown -= dt;
+        EventManager.emit(SafeKeyEvent.ChangeTimeExpireItem,this.timeCountDown);
         if (this.timeCountDown > 0) return;
         this.endStats();
     }
@@ -52,6 +56,7 @@ export class BladeStat {
         this.isPowering = false;
         this.bladeManager.setRadiusBaldes(this.radiusOrigin);
         this.bladeManager.setSpeedRotate(this.speedOrigin);
+        EventManager.emit(SafeKeyEvent.CloseUIStats);
     }
 
     private applyPowerUpEffects() {

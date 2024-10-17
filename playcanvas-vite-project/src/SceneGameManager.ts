@@ -10,8 +10,6 @@ import { ParticleSystem } from './Particle/ParticlesManager';
 import { UiManager } from './UserInterface/UIManager';
 import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
-import { EventManager } from './Utils/Observer';
-import { SafeKeyEvent } from './Helper/SafeKeyEvent';
 
 export class SceneGameManager {
     private camera!: Camera;
