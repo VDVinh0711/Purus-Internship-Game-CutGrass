@@ -26,7 +26,10 @@ export class BladeManager extends pc.Entity {
     private bladeStat !: BladeStat;
 
 
-    private radisuStart : number = 3;
+    private originRadius : number = 3;
+   
+
+
 
 
 
@@ -89,6 +92,9 @@ export class BladeManager extends pc.Entity {
     public getRadius(): number {
         return this.radius;
     }
+    public getOriginRadius(): number {
+        return this.originRadius;
+    }
     public getSpeed(): number {
         return this.speed;
     }
@@ -107,7 +113,6 @@ export class BladeManager extends pc.Entity {
     //event colision
     private onBladeCollision(result: any) {
         if (this.isWaiting) return;
-        
         if(result.other.name ==='grass')
         {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
@@ -138,6 +143,7 @@ export class BladeManager extends pc.Entity {
     private handleClick()
     {
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
+        if(this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
         if (this.isWaiting) return;
         this.reverseDirectionAndRotate();
         if(this.checkIsOnGround()) return;
@@ -163,21 +169,29 @@ export class BladeManager extends pc.Entity {
     //update
     public update(dt: number) {
         if(this.isWaiting) return;
-        if(this.radisuStart >= this.radius)
-        {
-            this.radius += dt;
-            this.rope.setWidthRope(this.radius);
-        }
         if (GameManger.getInstance().isLose) return;
+        this.handelSetBeginBlade(dt);
+        //updata stat
+        this.bladeStat.update(dt);
         this.enRoot.update(dt);
         this.enRotating.update(dt);
         this.rotateChainSaw(dt);
-        this.bladeStat.update(dt);
+
+       
         //update rope
         this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
     }
 
 
+
+    private handelSetBeginBlade(dt : number)
+    {
+        if(this.radius < this.originRadius)
+        {
+            this.radius +=dt;
+            this.rope.setWidthRope(this.radius);
+        }
+    }
     //rotate blade
     private rotateChainSaw(dt: number) {
         this.angle += this.dir * (this.speed * dt);

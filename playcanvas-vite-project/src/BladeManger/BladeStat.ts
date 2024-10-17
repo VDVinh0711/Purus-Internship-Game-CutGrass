@@ -6,61 +6,110 @@ import { BladeManager } from "./BladeManager";
 
 export class BladeStat {
     private bladeManager: BladeManager;
-    private isPowering: boolean = false;
+
     private timeCountDown: number = 0;
 
+    private radiusOrigin: number;
+    private speedOrigin: number;
+    private readonly radiusPower: number = 5;
+    private readonly speedPower: number = 5;
 
-    private radiusOrigin !: number;
-    private speedOrigin !: number;
+    private isPowering: boolean = false;
+    public isLoadStat: boolean = false;
+    public isShrinking: boolean = false;
+
     constructor(bladeManager: BladeManager) {
         this.bladeManager = bladeManager;
-        this.radiusOrigin = bladeManager.getRadius();
-        this.speedOrigin = bladeManager.getSpeed();
+        this.radiusOrigin = this.bladeManager.getOriginRadius();
+        this.speedOrigin = this.bladeManager.getSpeed();
     }
-
 
     public getIsPowering() {
         return this.isPowering;
     }
+
     public setIsPowering(value: boolean) {
         this.isPowering = value;
         if (value == false) {
-            this.endStats();
+            this.startShrinking();
         }
     }
 
-    public reciveItemHelper(item: ItemHelper) {
-        console.log("recive")
-        this.isPowering = true;
-        this.timeCountDown = item.duration;
-        switch (item.type) {
-            case ItemType.powerUp:
-                {
-                    this.applyPowerUpEffects();
-                    EventManager.emit(SafeKeyEvent.OpenUIStats);
-                }
-        }
-
-    }
-
-    public update(dt: number) {
-        if (!this.isPowering) return;
-        this.timeCountDown -= dt;
-        EventManager.emit(SafeKeyEvent.ChangeTimeExpireItem,this.timeCountDown);
-        if (this.timeCountDown > 0) return;
-        this.endStats();
-    }
-
-
-    private endStats() {
+    private startShrinking() {
         this.isPowering = false;
-        this.bladeManager.setRadiusBaldes(this.radiusOrigin);
-        this.bladeManager.setSpeedRotate(this.speedOrigin);
+        this.isShrinking = true;
+        this.bladeManager.setSpeedRotate(0);
         EventManager.emit(SafeKeyEvent.CloseUIStats);
     }
 
-    private applyPowerUpEffects() {
-        this.bladeManager.setRadiusBaldes(5);
-        this.bladeManager.setSpeedRotate(5);
+    public reciveItemHelper(item: ItemHelper) {
+        if (item.type === ItemType.powerUp) {
+            this.isPowering = true;
+            this.timeCountDown = item.duration;
+            this.isLoadStat = true;
+            EventManager.emit(SafeKeyEvent.OpenUIStats);
+        }
+    }
+
+    public update(dt: number) {
+        if (this.isLoadStat) 
+        {
+            this.handlePowerUpLoading(dt);
+        }
+        else if (this.isShrinking) 
+        {
+            this.handleShrinking(dt);
+        }
+        else 
+        {
+            this.handlePowerDuration(dt);
+        }
+    }
+
+    private handlePowerUpLoading(dt: number) {
+        let currentRadius = this.bladeManager.getRadius();
+        if (currentRadius < this.radiusPower) 
+        {
+            this.bladeManager.setSpeedRotate(0);
+            let newRadius = currentRadius + dt;
+            this.bladeManager.setRadiusBaldes(Math.min(newRadius, this.radiusPower));
+        } 
+        else 
+        {
+            this.isLoadStat = false;
+            this.bladeManager.setSpeedRotate(this.speedPower);
+        }
+    }
+
+    private handleShrinking(dt: number) {
+        let currentRadius = this.bladeManager.getRadius();
+        if(currentRadius > this.radiusOrigin) 
+        {
+            let newRadius = currentRadius - dt;
+            this.bladeManager.setRadiusBaldes(Math.max(newRadius, this.radiusOrigin));
+        } 
+        else 
+        {
+            this.isShrinking = false;
+            this.bladeManager.setSpeedRotate(this.speedOrigin);
+        }
+    }
+
+    private handlePowerDuration(dt: number) {
+        this.timeCountDown -= dt;
+        EventManager.emit(SafeKeyEvent.ChangeTimeExpireItem, this.timeCountDown);
+        if (this.timeCountDown <= 0) 
+        {
+            this.startShrinking();
+        }
+    }
+
+    public reset() {
+        this.isPowering = false;
+        this.isLoadStat = false;
+        this.isShrinking = false;
+        this.timeCountDown = 0;
+        this.bladeManager.setSpeedRotate(this.speedOrigin);
+        this.bladeManager.setRadiusBaldes(this.radiusOrigin);
     }
 }

@@ -9,22 +9,18 @@ import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import { UIWinMap } from './SubUI/UI_Winmap';
 import { UIBladeStat } from './UIBladeStats';
 
-export class UIInGame extends pc.Entity implements IUIController
-{
-    private app : pc.Application;
+export class UIInGame extends pc.Entity implements IUIController {
+    private app: pc.Application;
     private txt_Score !: TextScoreInGame;
     private txt_Level !: TextLevelInGame;
     private txt_Map !: TextMapInGame;
-
     private uiWinLevel !: UIWinLevel;
     private uiWinMap !: UIWinMap;
-
     private uiStats !: UIBladeStat;
 
 
 
-    constructor(app : pc.Application)
-    {
+    constructor(app: pc.Application) {
         super();
         this.app = app;
         this.registerEvent();
@@ -33,8 +29,7 @@ export class UIInGame extends pc.Entity implements IUIController
     }
 
 
-    private registerEvent()
-    {
+    private registerEvent() {
         EventManager.on(SafeKeyEvent.OpenUIWinLevel, this.OpenUIWinLevel.bind(this));
         EventManager.on(SafeKeyEvent.CloseUIWinLevel, this.CloseUiWinLevel.bind(this));
 
@@ -45,33 +40,30 @@ export class UIInGame extends pc.Entity implements IUIController
         EventManager.on(SafeKeyEvent.CloseUIStats, this.CloseUIStat.bind(this));
     }
 
-    private setElement()
-    {
+    private setElement() {
         this.addComponent('element', {
-            anchor: [0.5, 0.5, 0.5, 0.5],  
-            pivot: [0.5, 0.5],       
-            width:this.app.graphicsDevice.width,
-            height: this.app.graphicsDevice.height,          
+            anchor: [0.5, 0.5, 0.5, 0.5],
+            pivot: [0.5, 0.5],
+            width: this.app.graphicsDevice.width,
+            height: this.app.graphicsDevice.height,
             type: pc.ELEMENTTYPE_GROUP
         });
     }
 
-    private setUpBegin()
-    {
+    private setUpBegin() {
         const margiin = 50;
-              
+
         this.txt_Score = new TextScoreInGame();
         this.addChild(this.txt_Score);
-        this.txt_Score.setLocalPosition(0,0,0);
-       
+        this.txt_Score.setLocalPosition(0, 0, 0);
+
         this.txt_Level = new TextLevelInGame();
         this.addChild(this.txt_Level);
-        this.txt_Level.setLocalPosition(0,-margiin ,0);
+        this.txt_Level.setLocalPosition(0, -margiin, 0);
 
         this.txt_Map = new TextMapInGame();
         this.addChild(this.txt_Map);
-        this.txt_Map.setLocalPosition(0,-margiin *2,0);
-
+        this.txt_Map.setLocalPosition(0, -margiin * 2, 0);
 
         this.uiWinLevel = new UIWinLevel(this.app);
         this.addChild(this.uiWinLevel);
@@ -89,8 +81,7 @@ export class UIInGame extends pc.Entity implements IUIController
 
 
 
-    private init()
-    {
+    private init() {
         this.txt_Level.init();
         this.txt_Score.init();
         this.txt_Map.init();
@@ -98,31 +89,25 @@ export class UIInGame extends pc.Entity implements IUIController
 
 
 
-    private OpenUIWinLevel()
-    {
+    private OpenUIWinLevel() {
         this.uiWinLevel.enabled = true;
     }
-    private CloseUiWinLevel()
-    {
+    private CloseUiWinLevel() {
         this.uiWinLevel.enabled = false;
     }
 
-    private OpenUIWinMap()
-    {
+    private OpenUIWinMap() {
         this.uiWinMap.enabled = true;
     }
-    private CloseUiWinMap()
-    {
+    private CloseUiWinMap() {
         this.uiWinMap.enabled = false;
     }
 
 
-    private OpenUIStat()
-    {
+    private OpenUIStat() {
         this.uiStats.enabled = true;
     }
-    private CloseUIStat()
-    {
+    private CloseUIStat() {
         this.uiStats.enabled = false;
     }
 
@@ -132,7 +117,7 @@ export class UIInGame extends pc.Entity implements IUIController
     }
 
     Close(): void {
-       
+
         this.enabled = false;
     }
 }
