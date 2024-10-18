@@ -50,13 +50,14 @@ export class LevelManager
 
     private createData()
     {
+        let spacing = 2;
         const pcPoints = [];
         for(let i = -10 ; i<= 10;i++)
         {
             for(let j = -10 ; j<= 10 ;j++)
             {
-                // if(i<j) continue;
-                pcPoints.push(new pc.Vec3(i,0,j));
+                 if(i<j) continue;
+                pcPoints.push(new pc.Vec3(i*spacing,0,j*spacing));
             }
         }
 
@@ -66,25 +67,14 @@ export class LevelManager
             for(let j = -10 ; j<= 10 ;j++)
             {
                 if(i>j) continue;
-                pcPoints2.push(new pc.Vec3(i,0,j));
-            }
-        }
-
-
-        
-        const pcPoints3= [];
-        for(let i = -10 ; i<= 10;i++)
-        {
-            for(let j = -10 ; j<= 10 ;j++)
-            {
-                pcPoints3.push(new pc.Vec3(i,0,j));
+                pcPoints2.push(new pc.Vec3(i*spacing,0,j*spacing));
             }
         }
 
         const level1: Level = {
             maps: [
                 {
-                    posSpawmBlade: new pc.Vec3(-3.5,1,-3.5),
+                    posSpawmBlade: new pc.Vec3(-0.5,1,-0.5),
                     spawnPoints: pcPoints
                 },
                 {
@@ -120,15 +110,11 @@ export class LevelManager
         return this.levels[this.currentlevel].maps.length -1  == this.currentmap;
     }
     public getPosSpawmMaps() : pc.Vec3[]
-    {
-       
-        return this.levels[this.currentlevel].maps[this.currentmap].spawnPoints
-       ;
+    { 
+        return this.levels[this.currentlevel].maps[this.currentmap].spawnPoints;
     }
     public getPosSpawmBlade() : pc.Vec3
     {
-
         return  this.levels[this.currentlevel].maps[this.currentmap].posSpawmBlade
-       
     }
 }

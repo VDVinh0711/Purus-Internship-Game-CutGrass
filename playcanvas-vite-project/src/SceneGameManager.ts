@@ -1,7 +1,7 @@
 import * as pc from 'playcanvas';
 import { BladeManager } from './BladeManger/BladeManager';
 import { GrassManager } from './GrassManager/GrassManager';
-import { MapManager } from './Map/MapManager';
+import { GroundManager } from './Map/GroundManager';
 import { Camera } from './Entity/Camera';
 import { Light } from './Entity/Light';
 import { InputSystem } from './Utils/InputSystem';
@@ -17,7 +17,7 @@ export class SceneGameManager {
     private app: pc.Application;
     private bladeManager!: BladeManager;
     private grassManager!: GrassManager;
-    private mapManager!: MapManager;
+    private mapManager!: GroundManager;
     private inputSystem!: InputSystem;
     private particleSystem!: ParticleSystem;
     private itemHelperManager!: ItemHelperManager;
@@ -46,8 +46,8 @@ export class SceneGameManager {
         this.inputSystem = new InputSystem();
 
          //UiManager
-         this.UIManager = new UiManager(this.app);
-         this.app.root.addChild(this.UIManager);
+        this.UIManager = new UiManager(this.app);
+        this.app.root.addChild(this.UIManager);
         
 
         const assetManager = AssetManager.getInstance();
@@ -69,7 +69,7 @@ export class SceneGameManager {
         this.app.root.addChild(this.grassManager);
 
         //MapManager
-        this.mapManager = new MapManager();
+        this.mapManager = new GroundManager();
         this.app.root.addChild(this.mapManager);
 
         //BladeManager

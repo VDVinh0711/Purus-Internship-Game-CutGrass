@@ -7,7 +7,7 @@ import { SafeNameEntity } from '../Helper/SafeNameEntity';
 import { LevelManager } from '../Level/LevelManager';
 import { PoolingGround } from './PoolingGround';
 
-export class MapManager extends pc.Entity
+export class GroundManager extends pc.Entity
 {
     private width : number = 10;
     private height :number = 10 ;

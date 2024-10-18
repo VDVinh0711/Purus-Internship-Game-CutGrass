@@ -33,8 +33,9 @@ export class GameManger {
     public onLose() {
         this.isLose = true;
         ScoreManager.getInstance().setScore(this.scoreBegin);
-        EventManager.emit(SafeKeyEvent.OpenUILoseGame);
-
+        setTimeout(() => {
+            EventManager.emit(SafeKeyEvent.OpenUILoseGame);
+        }, 1000);
         //call event when lose game
     }
 

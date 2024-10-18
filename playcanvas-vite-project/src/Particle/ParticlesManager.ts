@@ -2,11 +2,13 @@ import * as pc from 'playcanvas'
 import { ParticleCutGrass } from './particleCutGrass'
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
+import { ParticelBladeOutGround } from './particleBladeOutGround';
 
 export class ParticleSystem extends pc.Entity
 {
     private particlesCutGrass : ParticleCutGrass[] = [];
     private particlesCutGrassActive  : ParticleCutGrass[] = [];
+    private particlesOutGround !: ParticelBladeOutGround;
 
     constructor()
     {
@@ -21,6 +23,8 @@ export class ParticleSystem extends pc.Entity
     {
         EventManager.on(SafeKeyEvent.PlayParticle, this.PlayParticles.bind(this));
         EventManager.on(SafeKeyEvent.ClearParticles, this.clearParticles.bind(this));
+
+        EventManager.on(SafeKeyEvent.PlayParticleOutGround, this.PlayparticleOutofGround.bind(this));
     }
 
 
@@ -30,6 +34,9 @@ export class ParticleSystem extends pc.Entity
         {
           this.createParticle();
         }
+        this.particlesOutGround = new ParticelBladeOutGround();
+        this.addChild(this.particlesOutGround);
+        this.particlesOutGround.enabled = false;
     }
 
     private createParticle() : ParticleCutGrass
@@ -76,6 +83,13 @@ export class ParticleSystem extends pc.Entity
             this.particlesCutGrass.push(particle);
         });
         this.particlesCutGrassActive.length = 0;
+    }
+
+    private PlayparticleOutofGround(pos : pc.Vec3)
+    {
+        this.particlesOutGround.setPosition(pos);
+        this.particlesOutGround.enabled =true;
+        this.particlesOutGround.Play();
     }
 
 }

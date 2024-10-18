@@ -15,7 +15,7 @@ export class Grass extends pc.Entity {
 
     private createMaterial(): pc.Material {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(255 / 255, 255 / 255, 255 / 255);
+        material.diffuse = new pc.Color(172 / 255, 246 / 255, 152 / 255);
         material.metalness = 0.7;
         material.update();
         return material;
@@ -33,7 +33,7 @@ export class Grass extends pc.Entity {
                 type: "asset",
                 asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelGrass),
             });
-        this.setLocalScale(8, 30,8  );
+        this.setLocalScale(8, 20,8 );
         const material = this.createMaterial();
         const meshInstance = this.model?.meshInstances[0];
         meshInstance!.material = material;

@@ -45,7 +45,6 @@ export class Blade extends pc.Entity {
         this.addComponent('collision');
         if (this.collision == null) return
         this.collision.type = 'cylinder'
-        // this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
         this.collision.radius = 1;
         this.collision.height = 0.5
         this.collision.on('collisionstart', this.onColisionEnter.bind(this));

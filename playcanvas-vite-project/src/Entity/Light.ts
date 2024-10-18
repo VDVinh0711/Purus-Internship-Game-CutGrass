@@ -16,7 +16,7 @@ export class Light extends pc.Entity
             type: 'directional',
             color: new pc.Color(1, 1, 1),
             castShadows: false,
-            intensity: 2,
+            intensity: 2.1,
             shadowBias: 0.2,
             shadowDistance: 16,
             normalOffsetBias: 0.05,

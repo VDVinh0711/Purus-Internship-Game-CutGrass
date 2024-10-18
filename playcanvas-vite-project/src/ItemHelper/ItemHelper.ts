@@ -46,24 +46,22 @@ export class ItemHelper extends pc.Entity {
                 type: "asset",
                 asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelFlower),
             })
-        this.setLocalScale(9, 11, 9);
-        const material = this.createMaterial();
-        const meshInstance = this.model?.meshInstances[0];
+        this.setLocalScale(12, 20, 12);
 
-        // set the material
-        meshInstance!.material = material;
-
-    }
-
-
-
-    private createMaterial(): pc.Material {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0.56, 0.93, 0.56);
-        material.metalness = 0.7;
+        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.IMGFlowerTexure);
+        material.diffuseMap = assetTexure?.resource;
         material.update();
-        return material;
+        const meshInstance = this.model?.meshInstances[0];
+        if (meshInstance) {
+            meshInstance.material = material;
+        }
+
     }
+
+
+
+  
 
 
 

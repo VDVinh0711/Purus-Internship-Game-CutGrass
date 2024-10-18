@@ -26,8 +26,8 @@ export class BladeManager extends pc.Entity {
     private bladeStat !: BladeStat;
 
 
-    private originRadius : number = 3;
-   
+    private originRadius: number = 2;
+
 
 
 
@@ -98,25 +98,25 @@ export class BladeManager extends pc.Entity {
     public getSpeed(): number {
         return this.speed;
     }
-    public getPosRootBlade() : pc.Vec3
-    {
-       return  this.enRoot.getPosition();
+    public getPosRootBlade(): pc.Vec3 {
+        return this.enRoot.getPosition();
     }
 
 
-    
+
     public setPosCurrentMap() {
         const posSet = LevelManager.getInstance().getPosSpawmBlade()
         this.setPosition(posSet);
         this.enRoot.setPosition(posSet);
+        this.enRotating.setPosition(posSet);
+        this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
     }
     //event colision
     private onBladeCollision(result: any) {
         if (this.isWaiting) return;
-        if(result.other.name ==='grass')
-        {
+        if (result.other.name === 'grass') {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
-            let scoreAdd  = this.bladeStat.getIsPowering() ? 2 : 1;
+            let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().addScore(scoreAdd);
             EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
             //check win 
@@ -124,8 +124,7 @@ export class BladeManager extends pc.Entity {
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
             GameManger.getInstance().onWin();
         }
-        if(result.other.name === 'itemhelper')
-        {
+        if (result.other.name === 'itemhelper') {
             this.bladeStat.reciveItemHelper(result.other);
             result.other.destroy();
         }
@@ -134,28 +133,31 @@ export class BladeManager extends pc.Entity {
     //reset Blade
     private reset() {
         this.isWaiting = true;
+        this.enRoot.enabled = true; 
+        this.radius = 0;
         this.countGrassCutted = 0;
         this.bladeStat.setIsPowering(false);
     }
 
 
     //handle click
-    private handleClick()
-    {
+    private handleClick() {
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
-        if(this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
+        if (this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
         if (this.isWaiting) return;
+
+        //Rever
         this.reverseDirectionAndRotate();
-        if(this.checkIsOnGround()) return;
-        if(this.bladeStat.getIsPowering())
-        {
+        if (this.checkIsOnGround()) return;
+        if (this.bladeStat.getIsPowering()) {
             this.reverseDirectionAndRotate();
             this.bladeStat.setIsPowering(false);
         }
-        else
-        {
+        else {
+            EventManager.emit(SafeKeyEvent.PlayParticleOutGround, this.enRoot.getPosition());
+            this.enRoot.enabled = false;
             GameManger.getInstance().onLose();
-        } 
+        }
     }
 
     //change root rotate and dir
@@ -163,35 +165,30 @@ export class BladeManager extends pc.Entity {
         this.dir *= -1;
         this.angle += Math.PI;
         [this.enRoot, this.enRotating] = [this.enRotating, this.enRoot];
-        
+
     }
 
     //update
     public update(dt: number) {
-        if(this.isWaiting) return;
-        if (GameManger.getInstance().isLose) return;
+        if (this.isWaiting ||GameManger.getInstance().isLose ) return;
         this.handelSetBeginBlade(dt);
-        //updata stat
         this.bladeStat.update(dt);
         this.enRoot.update(dt);
         this.enRotating.update(dt);
         this.rotateChainSaw(dt);
-
-       
         //update rope
         this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
     }
 
 
 
-    private handelSetBeginBlade(dt : number)
-    {
-        if(this.radius < this.originRadius)
-        {
-            this.radius +=dt;
+    private handelSetBeginBlade(dt: number) {
+        if (this.radius < this.originRadius) {
+            this.radius += dt;
             this.rope.setWidthRope(this.radius);
         }
     }
+
     //rotate blade
     private rotateChainSaw(dt: number) {
         this.angle += this.dir * (this.speed * dt);
@@ -201,15 +198,12 @@ export class BladeManager extends pc.Entity {
         this.enRotating.setPosition(rootPos.x + x, rootPos.y, rootPos.z + z);
     }
 
-
-
-    private checkIsOnGround() : boolean
-    {
+    private checkIsOnGround(): boolean {
         if (this.isWaiting) return false;
         const posStart = this.enRoot.getPosition().clone();
         const posEnd = new pc.Vec3(posStart.x, posStart.y - 10, posStart.z);
-        pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
+       // pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart, posEnd);
-        return resultRay!=null;
+        return resultRay != null;
     }
 }

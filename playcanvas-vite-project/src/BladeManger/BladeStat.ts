@@ -8,7 +8,7 @@ export class BladeStat {
     private bladeManager: BladeManager;
 
     private timeCountDown: number = 0;
-
+    private speedScaling : number =6;
     private radiusOrigin: number;
     private speedOrigin: number;
     private readonly radiusPower: number = 5;
@@ -47,6 +47,7 @@ export class BladeStat {
             this.isPowering = true;
             this.timeCountDown = item.duration;
             this.isLoadStat = true;
+            EventManager.emit(SafeKeyEvent.ChangeTimeExpireItem,this.timeCountDown);
             EventManager.emit(SafeKeyEvent.OpenUIStats);
         }
     }
@@ -60,7 +61,7 @@ export class BladeStat {
         {
             this.handleShrinking(dt);
         }
-        else 
+        else if(this.isPowering) 
         {
             this.handlePowerDuration(dt);
         }
@@ -71,7 +72,7 @@ export class BladeStat {
         if (currentRadius < this.radiusPower) 
         {
             this.bladeManager.setSpeedRotate(0);
-            let newRadius = currentRadius + dt;
+            let newRadius = currentRadius + (this.speedScaling * dt);
             this.bladeManager.setRadiusBaldes(Math.min(newRadius, this.radiusPower));
         } 
         else 
@@ -85,7 +86,7 @@ export class BladeStat {
         let currentRadius = this.bladeManager.getRadius();
         if(currentRadius > this.radiusOrigin) 
         {
-            let newRadius = currentRadius - dt;
+            let newRadius = currentRadius - ( this.speedScaling * dt);
             this.bladeManager.setRadiusBaldes(Math.max(newRadius, this.radiusOrigin));
         } 
         else 

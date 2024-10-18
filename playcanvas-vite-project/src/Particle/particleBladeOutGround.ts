@@ -1,50 +1,49 @@
 import * as pc from 'playcanvas'
 import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
-export class ParticleCutGrass extends pc.Entity {
+export class ParticelBladeOutGround extends pc.Entity {
     constructor() {
         super();
-        this.name = 'particleCutGrass';
-        this.settUp();
+        this.name = 'particleBladeOutGroudn';
+        this.setUpBegin();
     }
 
-    public settUp() {
+    private setUpBegin() {
         const localVelocityCurve = new pc.CurveSet([
-            [0, 0, 0, 0],
-            [0, 0, 0.5, 5],
-            [0, 0, 0., 0]
+            [0, 0, 0.5, 10],
+            [0, 0, 0.5, 10],
+            [0, 0, 0.5, 10]
         ]);
         const localVelocityCurve2 = new pc.CurveSet([
-            [0, 0, 0, 0],
             [0, 0, 0.5, -8],
-            [0, 0, 0, 0]
+            [0, 0, 0.5, -8],
+            [0, 0, 0.5, -8]
         ]);
 
         // increasing gravity
         const worldVelocityCurve = new pc.CurveSet([
             [0, 0],
-            [0, 0, 0.2, 5, 1, -2],
+            [0, 0, 0.2, 12, 1, -2],
             [0, 0]
         ]);
 
         // color changes throughout lifetime
         const colorCurve = new pc.CurveSet([
-            [0, 8 / 255],
-            [0, 120 / 255],
-            [0, 13 / 255]
+            [0, 0 / 255],
+            [0, 138 / 255],
+            [0, 255 / 255]
         ]);
-
         this.addComponent('particlesystem', {
-            numParticles: 10,
-            lifetime: 0.5,
+            numParticles: 30,
+            lifetime: 1,
             rate: 0.01,
-            scaleGraph: new pc.Curve([0, 1]),
+            scaleGraph: new pc.Curve([0, 0.5]),
             velocityGraph: worldVelocityCurve,
             localVelocityGraph: localVelocityCurve,
             localVelocityGraph2: localVelocityCurve2,
             colorGraph: colorCurve,
             emitterShape: pc.EMITTERSHAPE_SPHERE,
-            emitterRadius: 1.5,
+            emitterRadius: 0,
             blendType: pc.BLEND_NONE,
             depthWrite: true,
             lighting: true,
@@ -52,23 +51,13 @@ export class ParticleCutGrass extends pc.Entity {
             alignToMotion: true,
             loop: false,
         });
-        
-        this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleGrass)?.resource.meshInstances[0].mesh;
+        this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelStar)?.resource.meshInstances[0].mesh;
     }
+
 
     public Play() {
         if (this.particlesystem == null) return;
         this.particlesystem.reset();
         this.particlesystem.play();
-        setTimeout(() => {
-            this.Stop();
-        }, 800);
-
-    }
-
-    public Stop() {
-        if (this.particlesystem == null) return;
-        this.particlesystem.stop();
-        this.fire('particles:stop', this);
     }
 }

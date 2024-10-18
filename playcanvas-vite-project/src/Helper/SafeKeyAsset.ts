@@ -7,7 +7,6 @@ export enum SafeKeyAsset
     TexureBlade = "TexureBlade",
     IMGButtonPlay = "IMGButtonPlay",
     IMGBUttonSetting = "IMGButtonSetting",
-
     IMGBackGroundSetting = "BackgroundSetting",
     IMGButtonCLose = "IMGButtonCLose",
     IMGButtonSoundBG = "IMGButtonSoundBG",
@@ -18,4 +17,10 @@ export enum SafeKeyAsset
     IMGBtnPlayAgain = "IMGBtnPlayAgain",
     IMGBackToMenU = "IMGBackToMenU",
     IMGRevive = "IMGRevive",
+    IMGBtnCloseSoundBG = "IMGBtnCloseSoundBG",
+    IMGBtnCloseSoundSFX = "IMGBtnCloseSoundSFX",
+    ModelStar = "ModelStar",
+    IMGIconPowerUp = "IMGIconPowerUp",
+    IMGFlowerTexure = "IMGFlowerTexure",
+    ModelParticleGrass = "ModelParticleGrass",
 }

@@ -26,7 +26,7 @@ export class AssetManager {
             [SafeKeyAsset.FontCreanBeige]: new pc.Asset('font', 'font', { url: '../../Asset/Fonts/Cream Beige.json' }),
             [SafeKeyAsset.ModelBlade]: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword2.glb" }),
             [SafeKeyAsset.ModelGrass]: new pc.Asset("modelGrass", "model", { url: "../../Asset/Models/Grass Patch 01.glb" }),
-            [SafeKeyAsset.ModelFlower]: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flower2.glb" }),
+            [SafeKeyAsset.ModelFlower]: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flowers.glb" }),
             [SafeKeyAsset.TexureBlade]: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" }),
             [SafeKeyAsset.IMGButtonPlay] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/play.png"}),
             [SafeKeyAsset.IMGBUttonSetting] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/settings.png"})  ,
@@ -40,7 +40,12 @@ export class AssetManager {
             [SafeKeyAsset.IMGBtnPlayAgain] : new pc.Asset("IMGBtnPlayAgain","texture",{url:"../../Asset/ICON/btn/restart.png"}),
             [SafeKeyAsset.IMGBackToMenU] : new pc.Asset("IMGBackToMenU","texture",{url:"../../Asset/ICON/btn/leader.png"}),
             [SafeKeyAsset.IMGRevive] : new pc.Asset("IMGRevive","texture",{url:"../../Asset/ICON/btn/faq.png"}),
-
+            [SafeKeyAsset.IMGBtnCloseSoundBG] : new pc.Asset("IMGBtnCloseSoundBG", "texture",{url:"../../Asset/ICON/btn/sound_off.png"}),
+            [SafeKeyAsset.IMGBtnCloseSoundSFX] : new pc.Asset("IMGBtnCloseSoundSFX", "texture",{url:"../../Asset/ICON/btn/music_off.png"}),
+            [SafeKeyAsset.ModelStar] : new pc.Asset("ModelStar", "model",{url:"../../Asset/Models/Star.glb"}),
+            [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/menu/ico1.png"}),
+            [SafeKeyAsset.IMGFlowerTexure] : new pc.Asset("IMGFlowerTexure","texture",{url:"../../Asset/Texure/flowerTexure.png"}), 
+            [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/grass blades.glb" }),
 
         };
 

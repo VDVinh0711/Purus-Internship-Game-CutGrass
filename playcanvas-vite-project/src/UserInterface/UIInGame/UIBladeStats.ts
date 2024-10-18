@@ -20,7 +20,7 @@ export class UIBladeStat extends pc.Entity
 
     private registerEvent()
     {
-        EventManager.on(SafeKeyEvent.ChangeTimeExpireItem,this.OnChangeTextTimeExpire.bind(this));
+        EventManager.on(SafeKeyEvent.ChangeTimeExpireItem,this.SetTextTimeExpire.bind(this));
     }
 
 
@@ -29,8 +29,8 @@ export class UIBladeStat extends pc.Entity
         this.addComponent('element',{
             anchor: [0.5, 1, 0.5, 1],  
             pivot: [0.5, 1],       
-            width:300,
-            height: 200,          
+            width:100,
+            height: 100,          
             type: pc.ELEMENTTYPE_GROUP
         });
     }
@@ -42,11 +42,11 @@ export class UIBladeStat extends pc.Entity
         this.iconItem.addComponent('element',{
             type : pc.ELEMENTTYPE_IMAGE,
             anchor :[0,0.5,0,0.5],
-            pivot : [0,0.5],
-            width : 32,
-            height: 32,
+            pivot : [0.5,0.5],
+            width : 50,
+            height: 50,
             color : new pc.Color(1,1,1),
-            textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGButtonPlay),
+            textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIconPowerUp),
         })
     }
 
@@ -57,7 +57,7 @@ export class UIBladeStat extends pc.Entity
         this.txt_expired.addComponent('element',{
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [1, 0.5, 1, 0.5],
-            pivot: [1, 0.5],
+            pivot: [0.5, 0.5],
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 32,
             text: '0',
@@ -65,11 +65,9 @@ export class UIBladeStat extends pc.Entity
     }
 
 
-    private OnChangeTextTimeExpire(time: number)
+    private SetTextTimeExpire(time: number)
     {
-       
         if(this.txt_expired.element == null) return;
         this.txt_expired.element.text = time.toFixed(2) +"";
-
     }
 }

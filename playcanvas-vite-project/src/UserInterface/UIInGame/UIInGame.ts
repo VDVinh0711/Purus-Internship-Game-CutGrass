@@ -117,7 +117,7 @@ export class UIInGame extends pc.Entity implements IUIController {
     }
 
     Close(): void {
-
         this.enabled = false;
     }
+
 }
