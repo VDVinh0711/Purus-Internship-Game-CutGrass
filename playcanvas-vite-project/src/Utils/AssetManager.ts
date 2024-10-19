@@ -46,6 +46,9 @@ export class AssetManager {
             [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/menu/ico1.png"}),
             [SafeKeyAsset.IMGFlowerTexure] : new pc.Asset("IMGFlowerTexure","texture",{url:"../../Asset/Texure/flowerTexure.png"}), 
             [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/grass blades.glb" }),
+            [SafeKeyAsset.TextureBackgroundWate] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
+            [SafeKeyAsset.ModelParticleLose] : new pc.Asset("ModelParticleLose", "model",{url:"../../Asset/Models/Skullv3.glb"}),
+
 
         };
 

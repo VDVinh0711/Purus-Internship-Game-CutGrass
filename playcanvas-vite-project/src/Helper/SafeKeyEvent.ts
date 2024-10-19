@@ -61,4 +61,6 @@ export enum SafeKeyEvent {
     CloseUIStats = "CloseUIStats",
     //PLayparticle Lose
     PlayParticleOutGround = "PlayParticleOutGround",
+    //Playparticle WIn
+    PlayParticleWIn = "PlayParticleWIn"
 }

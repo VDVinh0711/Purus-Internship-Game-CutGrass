@@ -11,12 +11,12 @@ export class ParticleCutGrass extends pc.Entity {
     public settUp() {
         const localVelocityCurve = new pc.CurveSet([
             [0, 0, 0, 0],
-            [0, 0, 0.5, 5],
+            [0, 0, 0.5, 3,0.7,0],
             [0, 0, 0., 0]
         ]);
         const localVelocityCurve2 = new pc.CurveSet([
             [0, 0, 0, 0],
-            [0, 0, 0.5, -8],
+            [0, 0, 0.5, -8,0.7,0],
             [0, 0, 0, 0]
         ]);
 
@@ -29,22 +29,23 @@ export class ParticleCutGrass extends pc.Entity {
 
         // color changes throughout lifetime
         const colorCurve = new pc.CurveSet([
-            [0, 8 / 255],
-            [0, 120 / 255],
-            [0, 13 / 255]
+            [0, 63 / 255],
+            [0, 91 / 255],
+            [0, 56 / 255]
         ]);
 
+        
         this.addComponent('particlesystem', {
-            numParticles: 10,
-            lifetime: 0.5,
+            numParticles: 5,
+            lifetime: 1,
             rate: 0.01,
-            scaleGraph: new pc.Curve([0, 1]),
+            scaleGraph: new pc.Curve([0, 0.1]),
             velocityGraph: worldVelocityCurve,
             localVelocityGraph: localVelocityCurve,
             localVelocityGraph2: localVelocityCurve2,
             colorGraph: colorCurve,
             emitterShape: pc.EMITTERSHAPE_SPHERE,
-            emitterRadius: 1.5,
+            emitterRadius: 1,
             blendType: pc.BLEND_NONE,
             depthWrite: true,
             lighting: true,
@@ -53,7 +54,7 @@ export class ParticleCutGrass extends pc.Entity {
             loop: false,
         });
         
-        this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleGrass)?.resource.meshInstances[0].mesh;
+      //  this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleGrass)?.resource.meshInstances[0].mesh;
     }
 
     public Play() {

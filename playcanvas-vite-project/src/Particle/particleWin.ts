@@ -1,10 +1,12 @@
-import * as pc from 'playcanvas'
-import { AssetManager } from '../Utils/AssetManager';
-import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
-export class ParticelBladeOutGround extends pc.Entity {
+import { SafeKeyAsset } from "../Helper/SafeKeyAsset";
+import { AssetManager } from "../Utils/AssetManager";
+import * as pc from "playcanvas";
+
+
+export class ParticleWin extends pc.Entity
+{
     constructor() {
         super();
-        this.name = 'particleBladeOutGroudn';
         this.setUpBegin();
     }
 
@@ -29,15 +31,15 @@ export class ParticelBladeOutGround extends pc.Entity {
 
         // color changes throughout lifetime
         const colorCurve = new pc.CurveSet([
-            [0, 0 / 255],
-            [0, 138 / 255],
-            [0, 255 / 255]
+            [0, 255 / 255],
+            [0, 255 / 255],
+            [0, 27 / 255]
         ]);
         this.addComponent('particlesystem', {
             numParticles: 40,
             lifetime: 1,
             rate: 0.01,
-            scaleGraph: new pc.Curve([0, 50]),
+            scaleGraph: new pc.Curve([0, 0.5]),
             velocityGraph: worldVelocityCurve,
             localVelocityGraph: localVelocityCurve,
             localVelocityGraph2: localVelocityCurve2,
@@ -51,9 +53,9 @@ export class ParticelBladeOutGround extends pc.Entity {
             alignToMotion: true,
             loop: false,
         });
-        this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleLose)?.resource.meshInstances[0].mesh;
-    }
 
+        this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelStar)?.resource.meshInstances[0].mesh;
+    }
 
     public Play() {
         if (this.particlesystem == null) return;

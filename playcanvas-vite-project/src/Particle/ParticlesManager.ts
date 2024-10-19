@@ -3,12 +3,14 @@ import { ParticleCutGrass } from './particleCutGrass'
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { ParticelBladeOutGround } from './particleBladeOutGround';
+import { ParticleWin } from './particleWin';
 
 export class ParticleSystem extends pc.Entity
 {
     private particlesCutGrass : ParticleCutGrass[] = [];
     private particlesCutGrassActive  : ParticleCutGrass[] = [];
     private particlesOutGround !: ParticelBladeOutGround;
+    private particleWin !: ParticleWin;
 
     constructor()
     {
@@ -21,10 +23,11 @@ export class ParticleSystem extends pc.Entity
 
     private registerEvent()
     {
-        EventManager.on(SafeKeyEvent.PlayParticle, this.PlayParticles.bind(this));
+        EventManager.on(SafeKeyEvent.PlayParticle, this.PlayParticlesCutGrass.bind(this));
         EventManager.on(SafeKeyEvent.ClearParticles, this.clearParticles.bind(this));
 
         EventManager.on(SafeKeyEvent.PlayParticleOutGround, this.PlayparticleOutofGround.bind(this));
+        EventManager.on(SafeKeyEvent.PlayParticleWIn, this.PlayparticleWinMap.bind(this));
     }
 
 
@@ -32,14 +35,19 @@ export class ParticleSystem extends pc.Entity
     {
         for(let i = 0 ; i<20 ;i++)
         {
-          this.createParticle();
+          this.createParticleCutGrass();
         }
         this.particlesOutGround = new ParticelBladeOutGround();
         this.addChild(this.particlesOutGround);
         this.particlesOutGround.enabled = false;
+
+
+        this.particleWin = new ParticleWin();
+        this.addChild(this.particleWin);
+        this.particleWin.enabled = false;
     }
 
-    private createParticle() : ParticleCutGrass
+    private createParticleCutGrass() : ParticleCutGrass
     {
         const newParticle = new ParticleCutGrass();
         newParticle.on('particles:stop', this.deSpawmParticle, this);
@@ -50,13 +58,13 @@ export class ParticleSystem extends pc.Entity
     }
 
 
-    public PlayParticles(pos : pc.Vec3)
+    public PlayParticlesCutGrass(pos : pc.Vec3)
     {
         let particle: ParticleCutGrass | undefined;
         if (this.particlesCutGrass.length > 0) {
             particle = this.particlesCutGrass.pop();
         } else {
-            particle = this.createParticle();
+            particle = this.createParticleCutGrass();
         }
         if (particle) {
             particle.enabled = true;
@@ -90,6 +98,13 @@ export class ParticleSystem extends pc.Entity
         this.particlesOutGround.setPosition(pos);
         this.particlesOutGround.enabled =true;
         this.particlesOutGround.Play();
+    }
+
+    private PlayparticleWinMap(pos : pc.Vec3)
+    {
+        this.particleWin.setPosition(pos);
+        this.particleWin.enabled =true;
+        this.particleWin.Play();
     }
 
 }

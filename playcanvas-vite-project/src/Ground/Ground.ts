@@ -29,6 +29,7 @@ export class Ground extends pc.Entity {
         material.update();
         this.render.type = 'box';
         this.render.material = material;
+        this.render.castShadows = false;
     }
     private setCollision() {
         if (this.collision == null) return;

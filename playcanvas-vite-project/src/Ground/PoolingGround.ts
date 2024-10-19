@@ -1,5 +1,5 @@
 
-import { Ground } from '../Map/Ground';
+import { Ground } from './Ground';
 
 export class PoolingGround {
     private poolHolder: Ground[] = [];

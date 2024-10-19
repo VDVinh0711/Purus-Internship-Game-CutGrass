@@ -1,7 +1,7 @@
 import * as pc from 'playcanvas';
 import { BladeManager } from './BladeManger/BladeManager';
 import { GrassManager } from './GrassManager/GrassManager';
-import { GroundManager } from './Map/GroundManager';
+import { GroundManager } from './Ground/GroundManager';
 import { Camera } from './Entity/Camera';
 import { Light } from './Entity/Light';
 import { InputSystem } from './Utils/InputSystem';
@@ -10,6 +10,7 @@ import { ParticleSystem } from './Particle/ParticlesManager';
 import { UiManager } from './UserInterface/UIManager';
 import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
+import { Background } from './Entity/Background';
 
 export class SceneGameManager {
     private camera!: Camera;
@@ -23,6 +24,7 @@ export class SceneGameManager {
     private itemHelperManager!: ItemHelperManager;
     private UIManager!: UiManager;
     private isLoading : boolean = true;
+    private backGround !: pc.Entity ;
 
     constructor(app: pc.Application) {
         this.app = app;
@@ -62,6 +64,11 @@ export class SceneGameManager {
     }
 
     private setUpScene() {
+       
+
+        //
+        this.backGround = new Background();
+        this.app.root.addChild(this.backGround);
        
 
         //GrassManager
@@ -106,6 +113,7 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
-        console.log(this.app.stats.frame.fps);
+        console.log("FPS : " + this.app.stats.frame.fps + "  Draw Call :  " + this.app.stats.drawCalls.immediate);
+       
     }
 }

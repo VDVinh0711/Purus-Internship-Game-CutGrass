@@ -23,4 +23,6 @@ export enum SafeKeyAsset
     IMGIconPowerUp = "IMGIconPowerUp",
     IMGFlowerTexure = "IMGFlowerTexure",
     ModelParticleGrass = "ModelParticleGrass",
+    TextureBackgroundWate = "TextureBackgroundWate",
+    ModelParticleLose = "ModelParticleLose",
 }

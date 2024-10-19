@@ -123,6 +123,7 @@ export class BladeManager extends pc.Entity {
             this.countGrassCutted++;
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
             GameManger.getInstance().onWin();
+            EventManager.emit(SafeKeyEvent.PlayParticleWIn, this.enRoot.getPosition());
         }
         if (result.other.name === 'itemhelper') {
             this.bladeStat.reciveItemHelper(result.other);
