@@ -30,7 +30,7 @@ export class AssetManager {
             [SafeKeyAsset.TexureBlade]: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" }),
             [SafeKeyAsset.IMGButtonPlay] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/play.png"}),
             [SafeKeyAsset.IMGBUttonSetting] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/settings.png"})  ,
-            [SafeKeyAsset.IMGBackGroundSetting] : new pc.Asset("BackgroundSetting","texture",{url:"../../Asset/ICON/settings/table.png"}),
+            [SafeKeyAsset.IMGBackGroundPaper] : new pc.Asset("BackgroundSetting","texture",{url:"../../Asset/ICON/settings/table.png"}),
             [SafeKeyAsset.IMGButtonCLose] : new pc.Asset("IMGButtonCLose","texture",{url:"../../Asset/ICON/btn/close_2.png"}),
             [SafeKeyAsset.IMGButtonSoundBG] : new pc.Asset("IMGButtonSoundBG","texture",{url:"../../Asset/ICON/btn/sound.png"}),
             [SafeKeyAsset.IMGButtonSoundSFX] : new pc.Asset("IMGButtonSoundSFX","texture",{url:"../../Asset/ICON/btn/misic.png"}),
@@ -48,7 +48,10 @@ export class AssetManager {
             [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/grass blades.glb" }),
             [SafeKeyAsset.TextureBackgroundWate] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
             [SafeKeyAsset.ModelParticleLose] : new pc.Asset("ModelParticleLose", "model",{url:"../../Asset/Models/Skullv3.glb"}),
-
+            [SafeKeyAsset.BackGroundWood] : new pc.Asset("BackgroundLose","texture",{url:"../../Asset/ICON/you_lose/bg.png"}),
+            [SafeKeyAsset.ICONScore] : new pc.Asset("ICONScore","texture",{url:"../../Asset/ICON/star_1.png"}),
+            [SafeKeyAsset.IMGTilePauseGame] : new pc.Asset("IMGTilePauseGame","texture",{url:"../../Asset/ICON/btn/titlepause.png"}),
+            [SafeKeyAsset.IMGIconPause] : new pc.Asset("IMGIconPause","texture",{url:"../../Asset/ICON/btn/pause.png"}),
 
         };
 

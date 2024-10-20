@@ -6,11 +6,22 @@ import { BaseTextUI } from '../BaseTextUI';
 
 export class TextScoreInGame extends BaseTextUI {
     constructor() {
-        super(24, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
+        super(30, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
+      
         this.init();
+        this.setColorText();
         this.registerEvent();
     }
 
+
+
+    private setColorText()
+    {
+        if(this.element)
+        {
+            this.element.color = new pc.Color(211/255,111/255,12/255);
+        }
+    }
     private registerEvent()
     {
         EventManager.on(SafeKeyEvent.OnChangeScore, this.setTextScore.bind(this));

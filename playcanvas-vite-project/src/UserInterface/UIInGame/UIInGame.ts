@@ -8,6 +8,8 @@ import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import { UIWinMap } from './SubUI/UI_Winmap';
 import { UIBladeStat } from './UIBladeStats';
+import { UIShowScoreInGame } from './UIShowScoreInGame';
+import { BtnPauseGame } from './BtnPauseGame';
 
 export class UIInGame extends pc.Entity implements IUIController {
     private app: pc.Application;
@@ -17,7 +19,9 @@ export class UIInGame extends pc.Entity implements IUIController {
     private uiWinLevel !: UIWinLevel;
     private uiWinMap !: UIWinMap;
     private uiStats !: UIBladeStat;
+    private btnPauseGame !: BtnPauseGame;
 
+    private uiShowScoreinGame !: UIShowScoreInGame;
 
 
     constructor(app: pc.Application) {
@@ -51,7 +55,7 @@ export class UIInGame extends pc.Entity implements IUIController {
     }
 
     private setUpBegin() {
-        const margiin = 50;
+        const margiin = 60;
 
         this.txt_Score = new TextScoreInGame();
         this.addChild(this.txt_Score);
@@ -76,6 +80,9 @@ export class UIInGame extends pc.Entity implements IUIController {
         this.uiStats = new UIBladeStat();
         this.addChild(this.uiStats);
         this.uiStats.enabled = false;
+
+        this.btnPauseGame = new BtnPauseGame();
+        this.addChild(this.btnPauseGame);
 
     }
 

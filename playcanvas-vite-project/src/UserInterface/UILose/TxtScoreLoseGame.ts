@@ -1,11 +1,11 @@
 
 import { ScoreManager } from '../../Player/ScoreManager';
 import { BaseTextUI } from '../BaseTextUI';
+import * as pc from 'playcanvas'
 
-
-export class TextScoreMainMenu extends BaseTextUI {
+export class TxtScoreLoseGame extends BaseTextUI {
     constructor() {
-        super(42, '10000000');
+        super(30, '0',new pc.Vec2(0.5,0.5),new pc.Vec4(0.5,0.5,0.5,0.5));
         this.init();
     }
 

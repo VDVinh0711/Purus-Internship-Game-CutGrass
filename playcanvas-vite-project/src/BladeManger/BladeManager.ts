@@ -21,7 +21,7 @@ export class BladeManager extends pc.Entity {
     private dir: number = 1;
     private rope !: Rope;
     private countGrassCutted: number = 0;
-    public isWaiting: boolean = true;
+    public isPause: boolean = true;
     private grassManager !: GrassManager;
     private bladeStat !: BladeStat;
 
@@ -45,7 +45,7 @@ export class BladeManager extends pc.Entity {
 
         //Stat
         this.bladeStat = new BladeStat(this);
-        this.isWaiting = true;
+        this.isPause = true;
         // rope
         this.rope = new Rope('Rope').Init();
         this.rope.setWidthRope(this.radius);
@@ -71,16 +71,16 @@ export class BladeManager extends pc.Entity {
     private registerEvent() {
         EventManager.on(SafeKeyEvent.ResetBladeManager, this.reset.bind(this));
         EventManager.on(SafeKeyEvent.SetPosBladeFromCurMap, this.setPosCurrentMap.bind(this));
-        EventManager.on(SafeKeyEvent.SetWaitingBlade, this.setWaiting.bind(this));
-        EventManager.on(SafeKeyEvent.UnSetWatingBlade, this.unSetWaiting.bind(this));
+        EventManager.on(SafeKeyEvent.SetPauseBlade, this.setWaiting.bind(this));
+        EventManager.on(SafeKeyEvent.UnSetPauseBlade, this.unSetWaiting.bind(this));
         EventManager.on(SafeKeyEvent.ClickIntoScreen, this.handleClick.bind(this));
     }
 
     private setWaiting() {
-        this.isWaiting = true;
+        this.isPause = true;
     }
     private unSetWaiting() {
-        this.isWaiting = false;
+        this.isPause = false;
     }
     public setSpeedRotate(speed: number) {
         this.speed = speed;
@@ -113,7 +113,7 @@ export class BladeManager extends pc.Entity {
     }
     //event colision
     private onBladeCollision(result: any) {
-        if (this.isWaiting) return;
+        if (this.isPause) return;
         if (result.other.name === 'grass') {
             PoolingGrass.getInstance().deSpawmGrass(result.other);
             let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
@@ -133,7 +133,7 @@ export class BladeManager extends pc.Entity {
 
     //reset Blade
     private reset() {
-        this.isWaiting = true;
+        this.isPause = true;
         this.enRoot.enabled = true; 
         this.radius = 0;
         this.countGrassCutted = 0;
@@ -145,7 +145,7 @@ export class BladeManager extends pc.Entity {
     private handleClick() {
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
         if (this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
-        if (this.isWaiting) return;
+        if (this.isPause) return;
 
         //Rever
         this.reverseDirectionAndRotate();
@@ -171,7 +171,7 @@ export class BladeManager extends pc.Entity {
 
     //update
     public update(dt: number) {
-        if (this.isWaiting ||GameManger.getInstance().isLose ) return;
+        if (this.isPause ||GameManger.getInstance().isLose ) return;
         this.handelSetBeginBlade(dt);
         this.bladeStat.update(dt);
         this.enRoot.update(dt);
@@ -200,7 +200,7 @@ export class BladeManager extends pc.Entity {
     }
 
     private checkIsOnGround(): boolean {
-        if (this.isWaiting) return false;
+        if (this.isPause) return false;
         const posStart = this.enRoot.getPosition().clone();
         const posEnd = new pc.Vec3(posStart.x, posStart.y - 10, posStart.z);
        // pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));

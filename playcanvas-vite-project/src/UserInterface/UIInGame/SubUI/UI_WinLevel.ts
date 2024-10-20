@@ -34,8 +34,8 @@ export class UIWinLevel extends UIBaseSubUI {
         this.img_win.addComponent('element', {
             anchor: [0.5, 1, 0.5, 1],
             pivot: [0.5, 1],
-            width: 200,
-            height: 100,
+            width: 300,
+            height: 150,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: false,
             color: new pc.Color(1, 1, 1),

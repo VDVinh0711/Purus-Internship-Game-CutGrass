@@ -87,7 +87,7 @@ export class UISetting extends pc.Entity implements IUIController
             width : 300,
             height : 300,
             color : new pc.Color(1,1,1),
-            textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBackGroundSetting)
+            textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBackGroundPaper)
         })
     }
 

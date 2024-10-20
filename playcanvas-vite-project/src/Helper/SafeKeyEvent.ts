@@ -12,9 +12,9 @@ export enum SafeKeyEvent {
     //Call event set pos to spawm Ground from current map
     SpawmGroundFromCurMap = 'SpawmGroundFromCurMap',
     //Call event set state waiting of blade is true
-    SetWaitingBlade = 'SetWaitingBlade',
+    SetPauseBlade = 'SetPauseBlade',
     //Call event set state waiting of blade is false
-    UnSetWatingBlade = 'UnsetWaitintBlade',
+    UnSetPauseBlade = 'UnsetPauseBlade',
     //call event when user click into screen
     ClickIntoScreen = 'ClickIntoScreen',
     //call event when spawm Itemhelper
@@ -62,5 +62,7 @@ export enum SafeKeyEvent {
     //PLayparticle Lose
     PlayParticleOutGround = "PlayParticleOutGround",
     //Playparticle WIn
-    PlayParticleWIn = "PlayParticleWIn"
+    PlayParticleWIn = "PlayParticleWIn",
+    //OpenUIPauseGame
+    OPenUIPauseGame = "OpenUIPauseGame"
 }

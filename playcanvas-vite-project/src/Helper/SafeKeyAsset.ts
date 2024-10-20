@@ -7,7 +7,7 @@ export enum SafeKeyAsset
     TexureBlade = "TexureBlade",
     IMGButtonPlay = "IMGButtonPlay",
     IMGBUttonSetting = "IMGButtonSetting",
-    IMGBackGroundSetting = "BackgroundSetting",
+    IMGBackGroundPaper = "IMGBackGroundPaper",
     IMGButtonCLose = "IMGButtonCLose",
     IMGButtonSoundBG = "IMGButtonSoundBG",
     IMGButtonSoundSFX = "IMGButtonSoundSFX",
@@ -25,4 +25,8 @@ export enum SafeKeyAsset
     ModelParticleGrass = "ModelParticleGrass",
     TextureBackgroundWate = "TextureBackgroundWate",
     ModelParticleLose = "ModelParticleLose",
-}
+    BackGroundWood = "BackGroundWood",
+    ICONScore = "ICONScore",
+    IMGTilePauseGame = "IMGTilePauseGame",
+    IMGIconPause = "IMGIconPause",
+}   

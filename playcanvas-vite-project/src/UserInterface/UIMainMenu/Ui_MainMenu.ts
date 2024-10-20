@@ -7,6 +7,7 @@ import { IUIController } from '../IUiController';
 import { UISetting } from '../UISetting/UISetting';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { UIShowTextScoreMainMenu } from './UITextScoreMainMenu';
 
 export class UIMainMenu extends pc.Entity  implements IUIController
 {
@@ -15,6 +16,8 @@ export class UIMainMenu extends pc.Entity  implements IUIController
     private btn_Setting !: BtnSetting;
     private txt_Score !: TextScoreMainMenu;
     private txt_Level !: TextLevelMainMenu;
+
+    private showTextScore !: UIShowTextScoreMainMenu;
 
 
     constructor(app : pc.Application)
@@ -50,7 +53,10 @@ export class UIMainMenu extends pc.Entity  implements IUIController
         
         this.txt_Score = new TextScoreMainMenu();
         this.addChild(this.txt_Score);
-        this.txt_Score.setLocalPosition(0,100,0);
+        this.txt_Score.setLocalPosition(0,150,0);
+        // this.showTextScore = new UIShowTextScoreMainMenu()
+        // this.addChild(this.showTextScore);
+        // this.showTextScore.setLocalPosition(0,150,0);
 
         this.txt_Level = new TextLevelMainMenu();
         this.addChild(this.txt_Level);
@@ -63,6 +69,7 @@ export class UIMainMenu extends pc.Entity  implements IUIController
     {
         this.txt_Score.init();
         this.txt_Level.init();
+       // this.showTextScore.init();
     }
 
 

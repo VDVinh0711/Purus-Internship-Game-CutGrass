@@ -41,7 +41,7 @@ export class GameManger {
 
     public setUpBegin() {
         this.reset();
-        EventManager.emit(SafeKeyEvent.SetWaitingBlade);
+        EventManager.emit(SafeKeyEvent.SetPauseBlade);
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
@@ -50,7 +50,7 @@ export class GameManger {
 
 
     public onStartGame() {
-        EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
+        EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
         EventManager.emit(SafeKeyEvent.OpenUIInGame);
     }
 
@@ -58,14 +58,14 @@ export class GameManger {
     public gameSetUp() {
         this.reset();
         this.scoreBegin = ScoreManager.getInstance().getSCore();
-        EventManager.emit(SafeKeyEvent.SetWaitingBlade);
+        EventManager.emit(SafeKeyEvent.SetPauseBlade);
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmItemHelper);
         EventManager.emit(SafeKeyEvent.OpenUIInGame);
         setTimeout(() => {
-            EventManager.emit(SafeKeyEvent.UnSetWatingBlade);
+            EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
         }, 1000);
     }
 

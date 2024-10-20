@@ -113,7 +113,7 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
-        console.log("FPS : " + this.app.stats.frame.fps + "  Draw Call :  " + this.app.stats.drawCalls.immediate);
+      //  console.log("FPS : " + this.app.stats.frame.fps + "  Draw Call :  " + this.app.stats.drawCalls.immediate);
        
     }
 }
