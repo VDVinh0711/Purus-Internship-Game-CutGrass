@@ -2,6 +2,7 @@
 
 import * as pc from 'playcanvas';
 import { SceneGameManager } from './SceneGameManager';
+import { LevelManager } from './Level/LevelManager';
 
 
 
@@ -32,7 +33,6 @@ async function main() {
         keyboard: new pc.Keyboard(window),
         elementInput: new pc.ElementInput(canvas)
     });
-   
    
 
     new SceneGameManager(app);

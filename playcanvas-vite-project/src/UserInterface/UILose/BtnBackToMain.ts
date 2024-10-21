@@ -1,7 +1,5 @@
 import { GameManger } from '../../GameManager';
 import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
-import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
-import { EventManager } from '../../Utils/Observer';
 import { BaseButtonUI } from '../BaseButtonUI';
 
 export class BtnBackMainMenu extends BaseButtonUI {
@@ -17,8 +15,8 @@ export class BtnBackMainMenu extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', function () {
-            EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
             GameManger.getInstance().setUpBegin();
+            GameManger.getInstance().exitGame();
         });
     }
 }

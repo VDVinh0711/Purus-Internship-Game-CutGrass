@@ -10,15 +10,17 @@ export class Camera extends pc.Entity {
     private targetPosition: pc.Vec3 = new pc.Vec3();
     private targetLookAt: pc.Vec3 = new pc.Vec3();
     private smoothFactor: number = 0.01;
-    private offset: pc.Vec3 = new pc.Vec3(0, 20 , 15);
-    private isMoving : boolean = true;
+    private offset: pc.Vec3;
 
-    private readonly originPos : pc.Vec3 = new pc.Vec3(0,20,20);
+    private readonly offsetoutGame : pc.Vec3 = new pc.Vec3(0,40,20);
+    private readonly offsetintGame : pc.Vec3 = new pc.Vec3(0,15,10);
 
     constructor() {
         super();
         this.init();
+        this.offset  =this.offsetoutGame;
         this.registerEvent();
+       
     }
 
     private init() {
@@ -26,28 +28,31 @@ export class Camera extends pc.Entity {
         this.addComponent('camera', {
             clearColor: this.colorBackground
         });
-        this.setPosition(this.originPos);
+        this.setPosition(this.offsetoutGame);
     }
 
 
     private registerEvent()
     {
-        EventManager.on(SafeKeyEvent.SetMovingCamera, this.setMoving.bind(this));
-        EventManager.on(SafeKeyEvent.UnsetMovingCamera, this.unSetMoving.bind(this));
+        EventManager.on(SafeKeyEvent.SetCameraOutGame, this.setCameraOutGame.bind(this));
+        EventManager.on(SafeKeyEvent.SetCameraInGame, this.setCameraInGame.bind(this));
     }
 
-    private setMoving()
+
+
+    private setCameraOutGame()
     {
-        this.isMoving = true;
+        this.offset  =this.offsetoutGame;
     }
-    private unSetMoving()
+    private setCameraInGame()
     {
-        this.isMoving = false;
-        this.setPosition(this.originPos);
+        this.offset  =this.offsetintGame;
     }
+
+   
 
     public update(dt: number) {
-        if(!this.isMoving) return;
+       
         const bladeManager = EntityManager.getInstance().getEntity(SafeNameEntity.BladeManager) as BladeManager;
         if (!bladeManager) return;
 

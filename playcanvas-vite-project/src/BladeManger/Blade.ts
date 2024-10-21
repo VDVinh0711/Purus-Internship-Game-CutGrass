@@ -3,10 +3,13 @@ import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
 export class Blade extends pc.Entity {
-    private scaleX: number = 1;
-    private scaleY: number = 0.5;
-    private scaleZ: number = 1;
     private modelChild!: pc.Entity;
+
+
+    private readonly speedRotate : number = 1000;
+    private readonly scaleModel : pc.Vec3 = new pc.Vec3(1,1,1.5);
+    private readonly radiusColision : number = 1;
+    private readonly heightColision : number = 0.5;
 
     constructor(name: string) {
         super();
@@ -45,8 +48,8 @@ export class Blade extends pc.Entity {
         this.addComponent('collision');
         if (this.collision == null) return
         this.collision.type = 'cylinder'
-        this.collision.radius = 1;
-        this.collision.height = 0.5
+        this.collision.radius = this.radiusColision;
+        this.collision.height = this.heightColision;
         this.collision.on('collisionstart', this.onColisionEnter.bind(this));
 
     }
@@ -59,7 +62,7 @@ export class Blade extends pc.Entity {
             type: "asset",
             asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade),
         });
-        this.modelChild.setLocalScale(1, 1, 1);
+        this.modelChild.setLocalScale(this.scaleModel);
 
         const material = new pc.StandardMaterial();
         const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade);
@@ -78,6 +81,6 @@ export class Blade extends pc.Entity {
     }
 
     public update(dt: number) {
-        this.rotate(0, 1000 * dt, 0);
+        this.rotate(0, this.speedRotate * dt, 0);
     }
 }

@@ -11,6 +11,7 @@ import { UiManager } from './UserInterface/UIManager';
 import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
 import { Background } from './Entity/Background';
+import { LevelManager } from './Level/LevelManager';
 
 export class SceneGameManager {
     private camera!: Camera;
@@ -34,7 +35,7 @@ export class SceneGameManager {
         this.initializeGame();
     }
 
-    private initializeGame() {
+    private async initializeGame() {
 
         //camera
         this.camera = new Camera();
@@ -51,6 +52,9 @@ export class SceneGameManager {
         this.UIManager = new UiManager(this.app);
         this.app.root.addChild(this.UIManager);
         
+
+        await LevelManager.getInstance().loadData();
+
 
         const assetManager = AssetManager.getInstance();
         assetManager.on('assetsLoaded', this.onAssetsLoaded, this);
@@ -113,7 +117,7 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
-      //  console.log("FPS : " + this.app.stats.frame.fps + "  Draw Call :  " + this.app.stats.drawCalls.immediate);
+        console.log("FPS : " + this.app.stats.frame.fps + "  Draw Call :  " + this.app.stats.drawCalls.immediate);
        
     }
 }

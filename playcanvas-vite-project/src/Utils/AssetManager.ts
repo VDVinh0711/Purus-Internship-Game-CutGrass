@@ -24,7 +24,7 @@ export class AssetManager {
     public LoadAsset(app: pc.Application): void {
         const listAsset = {
             [SafeKeyAsset.FontCreanBeige]: new pc.Asset('font', 'font', { url: '../../Asset/Fonts/Cream Beige.json' }),
-            [SafeKeyAsset.ModelBlade]: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword2.glb" }),
+            [SafeKeyAsset.ModelBlade]: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword/Sword3.glb" }),
             [SafeKeyAsset.ModelGrass]: new pc.Asset("modelGrass", "model", { url: "../../Asset/Models/Grass Patch 01.glb" }),
             [SafeKeyAsset.ModelFlower]: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flowers.glb" }),
             [SafeKeyAsset.TexureBlade]: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" }),
@@ -45,7 +45,7 @@ export class AssetManager {
             [SafeKeyAsset.ModelStar] : new pc.Asset("ModelStar", "model",{url:"../../Asset/Models/Star.glb"}),
             [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/menu/ico1.png"}),
             [SafeKeyAsset.IMGFlowerTexure] : new pc.Asset("IMGFlowerTexure","texture",{url:"../../Asset/Texure/flowerTexure.png"}), 
-            [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/grass blades.glb" }),
+            [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/Stone Block.glb" }),
             [SafeKeyAsset.TextureBackgroundWate] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
             [SafeKeyAsset.ModelParticleLose] : new pc.Asset("ModelParticleLose", "model",{url:"../../Asset/Models/Skullv3.glb"}),
             [SafeKeyAsset.BackGroundWood] : new pc.Asset("BackgroundLose","texture",{url:"../../Asset/ICON/you_lose/bg.png"}),

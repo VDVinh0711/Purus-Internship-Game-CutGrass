@@ -23,6 +23,7 @@ export class GameManger {
 
     public onWin() {
         this.isWin = true;
+        EventManager.emit(SafeKeyEvent.SetCameraOutGame);
         if (LevelManager.getInstance().canNextoLevel()) {
             EventManager.emit(SafeKeyEvent.OpenUIWinLevel);
             return;
@@ -49,9 +50,10 @@ export class GameManger {
     }
 
 
-    public onStartGame() {
+    public playGame() {
         EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
         EventManager.emit(SafeKeyEvent.OpenUIInGame);
+        EventManager.emit(SafeKeyEvent.SetCameraInGame);
     }
 
 
@@ -62,29 +64,34 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.SpawmGroundFromCurMap);
         EventManager.emit(SafeKeyEvent.SetPosBladeFromCurMap);
         EventManager.emit(SafeKeyEvent.SpawmGrassFromCurMap);
-        EventManager.emit(SafeKeyEvent.SpawmItemHelper);
-        EventManager.emit(SafeKeyEvent.OpenUIInGame);
-        setTimeout(() => {
-            EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
-        }, 1000);
+        EventManager.emit(SafeKeyEvent.SpawmItemHelper); 
     }
 
     public nextMapInLevel() {
         LevelManager.getInstance().nextMap();
         this.gameSetUp();
+        this.playGame();
     }
     public nextLevel() {
         LevelManager.getInstance().nextLevel();
         this.gameSetUp();
-    }
+        this.playGame();
+    }   
 
     public reload() {
-       
+        ScoreManager.getInstance().setScore(this.scoreBegin);
         this.gameSetUp();
-
+        this.playGame();
     }
 
-    public reset() {
+    public exitGame()
+    {
+        ScoreManager.getInstance().setScore(this.scoreBegin);
+        EventManager.emit(SafeKeyEvent.SetCameraOutGame);
+        EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
+    }
+
+    private reset() {
         this.isLose = false;
         this.isWin = false;
         EventManager.emit(SafeKeyEvent.ResetBladeManager);

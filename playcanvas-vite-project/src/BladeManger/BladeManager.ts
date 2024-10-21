@@ -105,7 +105,8 @@ export class BladeManager extends pc.Entity {
 
 
     public setPosCurrentMap() {
-        const posSet = LevelManager.getInstance().getPosSpawmBlade()
+        const posSet = LevelManager.getInstance().getPosSpawmBlade();
+        console.log(posSet);
         this.setPosition(posSet);
         this.enRoot.setPosition(posSet);
         this.enRotating.setPosition(posSet);

@@ -44,7 +44,7 @@ export class BtnPlay extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', () => {
-            GameManger.getInstance().onStartGame();
+            GameManger.getInstance().playGame();
         });
     }
 }

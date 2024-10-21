@@ -11,19 +11,19 @@ export class ParticleCutGrass extends pc.Entity {
     public settUp() {
         const localVelocityCurve = new pc.CurveSet([
             [0, 0, 0, 0],
-            [0, 0, 0.5, 3,0.7,0],
+            [0, 0, 0.5, 1,0.7,-1],
             [0, 0, 0., 0]
         ]);
         const localVelocityCurve2 = new pc.CurveSet([
             [0, 0, 0, 0],
-            [0, 0, 0.5, -8,0.7,0],
+            [0, 0, 0.5, -8,0.7,-1],
             [0, 0, 0, 0]
         ]);
 
         // increasing gravity
         const worldVelocityCurve = new pc.CurveSet([
             [0, 0],
-            [0, 0, 0.2, 5, 1, -2],
+            [0, 0, 0.2, 2, 0.7, -1],
             [0, 0]
         ]);
 
@@ -36,8 +36,8 @@ export class ParticleCutGrass extends pc.Entity {
 
         
         this.addComponent('particlesystem', {
-            numParticles: 5,
-            lifetime: 1,
+            numParticles: 6,
+            lifetime: 1.5,
             rate: 0.01,
             scaleGraph: new pc.Curve([0, 0.1]),
             velocityGraph: worldVelocityCurve,
@@ -54,7 +54,7 @@ export class ParticleCutGrass extends pc.Entity {
             loop: false,
         });
         
-      //  this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleGrass)?.resource.meshInstances[0].mesh;
+        //this.particlesystem!.mesh = AssetManager.getInstance().getAsset(SafeKeyAsset.ModelParticleGrass)?.resource.meshInstances[0].mesh;
     }
 
     public Play() {

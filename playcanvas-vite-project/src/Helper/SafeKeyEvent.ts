@@ -25,10 +25,10 @@ export enum SafeKeyEvent {
     PlayParticle = 'Playparticles',
     //Clear Particles
     ClearParticles = 'ClearParticles',
-    //Call set origin posCamera when back to UI or out of game scene
-    UnsetMovingCamera = 'UnsetMovingCamenra',
     //Set camera in game scene
-    SetMovingCamera = 'SetCameraMoving',
+    SetCameraInGame = 'SetCameraInGame',
+    //Call set origin posCamera when back to UI or out of game scene
+    SetCameraOutGame = 'SetCameraOutGame',
     //Call when change Level
     OnChangeLevel = 'OnChangeLevel',
     //Call When Change Score
