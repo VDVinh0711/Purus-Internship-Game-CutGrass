@@ -1,6 +1,7 @@
 import * as pc from 'playcanvas'
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
+
 export class AssetManager {
     private static instance: AssetManager;
     private holderAsset: Map<string, pc.Asset> = new Map<string, pc.Asset>();
@@ -52,7 +53,7 @@ export class AssetManager {
             [SafeKeyAsset.ICONScore] : new pc.Asset("ICONScore","texture",{url:"../../Asset/ICON/star_1.png"}),
             [SafeKeyAsset.IMGTilePauseGame] : new pc.Asset("IMGTilePauseGame","texture",{url:"../../Asset/ICON/btn/titlepause.png"}),
             [SafeKeyAsset.IMGIconPause] : new pc.Asset("IMGIconPause","texture",{url:"../../Asset/ICON/btn/pause.png"}),
-
+            //[SafeKeyAsset.SCRIPTTween] : new pc.Asset('script' , 'script' , {url : "../Tween/tween.ts"}),
         };
 
         const AssetLoader = new pc.AssetListLoader(Object.values(listAsset), app.assets);

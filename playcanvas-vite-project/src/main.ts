@@ -2,15 +2,8 @@
 
 import * as pc from 'playcanvas';
 import { SceneGameManager } from './SceneGameManager';
-import { LevelManager } from './Level/LevelManager';
 
 
-
-//Asset Load
-const assets = 
-{
-    fontArial : new pc.Asset('font', 'font', {url: '../../Asset/Fonts/arial.json'})
-}
 // Configure and load Ammo.js
 pc.WasmModule.setConfig('Ammo', {
   glueUrl: '/Physics/ammo.js',
@@ -22,6 +15,8 @@ async function main() {
     await new Promise<void>((resolve) => {
         pc.WasmModule.getInstance('Ammo', () => resolve());
     });
+  
+
 
     const canvas = document.createElement('canvas');
     canvas.width = window.innerWidth;
@@ -33,7 +28,7 @@ async function main() {
         keyboard: new pc.Keyboard(window),
         elementInput: new pc.ElementInput(canvas)
     });
-   
+
 
     new SceneGameManager(app);
 }

@@ -29,4 +29,5 @@ export enum SafeKeyAsset
     ICONScore = "ICONScore",
     IMGTilePauseGame = "IMGTilePauseGame",
     IMGIconPause = "IMGIconPause",
+    SCRIPTTween = "ScriptTween",
 }   

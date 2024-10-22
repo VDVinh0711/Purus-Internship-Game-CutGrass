@@ -64,5 +64,7 @@ export enum SafeKeyEvent {
     //Playparticle WIn
     PlayParticleWIn = "PlayParticleWIn",
     //OpenUIPauseGame
-    OPenUIPauseGame = "OpenUIPauseGame"
+    OPenUIPauseGame = "OpenUIPauseGame",
+    //Spawm SCoreUI
+    SpawmScoreUI = "SpawmScoreUI",
 }

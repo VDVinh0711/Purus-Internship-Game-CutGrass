@@ -8,6 +8,7 @@ import { UILoading } from './UILoading/UiLoading';
 import { UiLoseGame } from './UILose/UI_Lose';
 import { UISetting } from './UISetting/UISetting';
 import { UIPauseGame } from './UIPauseGame/UIPauseGame';
+import { ScoreUiManager } from './ScoreUI/UIScoreManager';
 export class UiManager extends pc.Entity
 {
     private app : pc.Application;
@@ -19,6 +20,7 @@ export class UiManager extends pc.Entity
     private uiSetting !:UISetting;
     private uiPauseGame !:UIPauseGame;
 
+    private scoreUIManager !: ScoreUiManager
     constructor( app : pc.Application)
     {
         super();
@@ -42,7 +44,7 @@ export class UiManager extends pc.Entity
         this.addComponent('screen', {
             referenceResolution: new pc.Vec2(this.app.graphicsDevice.width, this.app.graphicsDevice.height),
             scaleBlend: 0,
-            scaleMode: pc.SCALEMODE_BLEND,
+            scaleMode: pc.SCALEMODE_NONE,
             screenSpace: true
         });
 
@@ -75,7 +77,14 @@ export class UiManager extends pc.Entity
         this.addChild(this.uiPauseGame);
         this.uiPauseGame.enabled = false;
 
+        this.scoreUIManager = new ScoreUiManager(this);
+        this.addChild(this.scoreUIManager);
+
+        this.scoreUIManager.spawmScoreUI(new pc.Vec3(-0,0,0),10);
+
         this.OpenUIMainMenu();
+
+        //this.currentUI.Close();
        
     }
 

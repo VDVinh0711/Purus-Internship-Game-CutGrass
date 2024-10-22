@@ -9,20 +9,27 @@ export class Camera extends pc.Entity {
     private colorBackground: pc.Color = new pc.Color(0.5, 0.6, 0.9);
     private targetPosition: pc.Vec3 = new pc.Vec3();
     private targetLookAt: pc.Vec3 = new pc.Vec3();
-    private smoothFactor: number = 0.01;
-    private offset: pc.Vec3;
+    private smoothFactor: number = 0.1;
+    private offset !: pc.Vec3;
 
     private readonly offsetoutGame : pc.Vec3 = new pc.Vec3(0,40,20);
     private readonly offsetintGame : pc.Vec3 = new pc.Vec3(0,15,10);
 
     constructor() {
         super();
-        this.init();
-        this.offset  =this.offsetoutGame;
-        this.registerEvent();
+    
+        this.name = SafeNameEntity.Camera;
+        EntityManager.getInstance().registerEntity(SafeNameEntity.Camera, this);
+        this.setUpBegin();
        
     }
 
+    private setUpBegin()
+    {
+        this.init();
+        this.offset  =this.offsetoutGame;
+        this.registerEvent();
+    }
     private init() {
         this.name = 'camera';
         this.addComponent('camera', {

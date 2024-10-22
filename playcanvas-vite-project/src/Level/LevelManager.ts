@@ -4,6 +4,7 @@ import * as pc from 'playcanvas'
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 
+
 import levelData from './level.json';
 interface Map {
     posSpawmBlade : pc.Vec3;

@@ -106,7 +106,6 @@ export class BladeManager extends pc.Entity {
 
     public setPosCurrentMap() {
         const posSet = LevelManager.getInstance().getPosSpawmBlade();
-        console.log(posSet);
         this.setPosition(posSet);
         this.enRoot.setPosition(posSet);
         this.enRotating.setPosition(posSet);
@@ -120,6 +119,7 @@ export class BladeManager extends pc.Entity {
             let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().addScore(scoreAdd);
             EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
+            EventManager.emit(SafeKeyEvent.SpawmScoreUI,result.other.getPosition(),scoreAdd)
             //check win 
             this.countGrassCutted++;
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;

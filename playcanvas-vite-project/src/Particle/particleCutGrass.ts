@@ -36,8 +36,8 @@ export class ParticleCutGrass extends pc.Entity {
 
         
         this.addComponent('particlesystem', {
-            numParticles: 6,
-            lifetime: 1.5,
+            numParticles: 20,
+            lifetime: 1,
             rate: 0.01,
             scaleGraph: new pc.Curve([0, 0.1]),
             velocityGraph: worldVelocityCurve,
