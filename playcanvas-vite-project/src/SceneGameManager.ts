@@ -10,7 +10,7 @@ import { ParticleSystem } from './Particle/ParticlesManager';
 import { UiManager } from './UserInterface/UIManager';
 import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
-import { Background } from './Entity/Background';
+import { Plane } from './Entity/Plane';
 import { LevelManager } from './Level/LevelManager';
 
 export class SceneGameManager {
@@ -26,6 +26,7 @@ export class SceneGameManager {
     private UIManager!: UiManager;
     private isLoading : boolean = true;
     private backGround !: pc.Entity ;
+   
 
     constructor(app: pc.Application) {
         this.app = app;
@@ -71,7 +72,7 @@ export class SceneGameManager {
        
 
         //
-        this.backGround = new Background();
+        this.backGround = new Plane();
         this.app.root.addChild(this.backGround);
        
 
@@ -95,6 +96,7 @@ export class SceneGameManager {
         this.particleSystem = new ParticleSystem();
         this.app.root.addChild(this.particleSystem);
 
+      
     
         //UI
         this.UIManager.init();
@@ -117,6 +119,6 @@ export class SceneGameManager {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
         this.camera.update(dt);
-        console.log(`FPS : ${this.app.stats.frame.fps}`);
+        //console.log(`FPS : ${this.app.stats.frame.fps}`);
     }
 }

@@ -1,13 +1,15 @@
 
 import * as pc from 'playcanvas';
-import { ItemHelper } from './ItemHelper';
-import { ItemType } from './TypeItem';
+import { PowerUpItem } from './PowerUpItem';
 import { LevelManager } from '../Level/LevelManager';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
+import { ChestReward } from './ChestReward';
+import { ItemHelper } from './ItemHelper';
 export class ItemHelperManager extends pc.Entity
 {
     private items : ItemHelper[]  = [];
+    
     constructor()
     {   
         super();
@@ -23,22 +25,42 @@ export class ItemHelperManager extends pc.Entity
     private spawmItemHeplerCurMap()
     {
         let pos =  LevelManager.getInstance().getPosSpawmMaps();
-        let indexRandom = Math.floor(Math.random()* pos.length-1);
-      
-       this.spawmItemHelper(pos[indexRandom]);
+        let indexSpawmPoweUp = this.randomIndex(pos.length-1);
+        this.spawmItemPowerUp(pos[indexSpawmPoweUp]);
+
+
+        let indexSpawmChest = this.randomIndex(pos.length-1);
+        this.spawmChestReward(pos[indexSpawmChest]);
        
     }
-    private spawmItemHelper(posSpawm : pc.Vec3)
+
+    private randomIndex(  end : number) : number
     {
-        const itemSpawm = new ItemHelper(ItemType.powerUp);
+       return  Math.floor(Math.random()* end);
+    }
+
+    private spawmItemPowerUp(posSpawm : pc.Vec3)
+    {
+        const itemSpawm = new PowerUpItem();
         itemSpawm.setPosition(posSpawm);
         this.items.push(itemSpawm);
         this.addChild(itemSpawm);
+        
+    }
+
+    private spawmChestReward(posSpawm : pc.Vec3)
+    {
+        const chessReward = new ChestReward();
+        this.addChild(chessReward);
+        this.items.push();
+        chessReward.setPosition(posSpawm);
+
     }
 
     private clearItemsHepler()
     {
         this.items.forEach(item => {
+            
             item.destroy();
         });
         this.items.length = 0;

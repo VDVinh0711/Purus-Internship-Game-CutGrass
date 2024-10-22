@@ -21,8 +21,7 @@ export class UIInGame extends pc.Entity implements IUIController {
     private uiStats !: UIBladeStat;
     private btnPauseGame !: BtnPauseGame;
 
-    private uiShowScoreinGame !: UIShowScoreInGame;
-
+   
 
     constructor(app: pc.Application) {
         super();
@@ -97,17 +96,21 @@ export class UIInGame extends pc.Entity implements IUIController {
 
 
     private OpenUIWinLevel() {
+        this.btnPauseGame.enabled =false;
         this.uiWinLevel.enabled = true;
     }
     private CloseUiWinLevel() {
         this.uiWinLevel.enabled = false;
+        this.btnPauseGame.enabled =true;
     }
 
     private OpenUIWinMap() {
+        this.btnPauseGame.enabled =false;
         this.uiWinMap.enabled = true;
     }
     private CloseUiWinMap() {
         this.uiWinMap.enabled = false;
+        this.btnPauseGame.enabled =true;
     }
 
 

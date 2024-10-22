@@ -22,7 +22,7 @@ export class ScoreUiManager extends pc.Entity {
         this.uiManger = uiManager;
         this.mainCamera = EntityManager.getInstance().getEntity(SafeNameEntity.Camera) as Camera;
         this.registerEvent();
-        //this.createScoreUI();
+       
 
     }
 
@@ -39,7 +39,6 @@ export class ScoreUiManager extends pc.Entity {
         if(this.poolScoreUIs.length >0)
         {
             scoreSpawm = this.poolScoreUIs.pop();
-            console.log("Spawm in pool Score UI");
         }
         else
         {

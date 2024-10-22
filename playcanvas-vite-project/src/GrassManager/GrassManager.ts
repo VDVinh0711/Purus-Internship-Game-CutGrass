@@ -32,7 +32,6 @@ export class GrassManager extends pc.Entity {
             this.spawmGrassInstance(new pc.Vec3(posSpawm.x+0.5,posSpawm.y,posSpawm.z-0.5));
             this.spawmGrassInstance(new pc.Vec3(posSpawm.x-0.5,posSpawm.y,posSpawm.z-0.5));
             this.spawmGrassInstance(new pc.Vec3(posSpawm.x-0.5,posSpawm.y,posSpawm.z+0.5));
-
         });
 
     }

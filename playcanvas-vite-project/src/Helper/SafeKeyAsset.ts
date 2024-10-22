@@ -1,7 +1,8 @@
 export enum SafeKeyAsset
 {
     FontCreanBeige  = "FontCreanBeige",
-    ModelBlade = "ModelBlade",
+    ModelBlade1 = "ModelBlade1",
+    ModelBlade2 = "ModelBlade2",
     ModelGrass = "ModelGrass",
     ModelFlower = "ModelFlower",
     TexureBlade = "TexureBlade",
@@ -30,4 +31,5 @@ export enum SafeKeyAsset
     IMGTilePauseGame = "IMGTilePauseGame",
     IMGIconPause = "IMGIconPause",
     SCRIPTTween = "ScriptTween",
+    ModelChest = "ModelChest",
 }   

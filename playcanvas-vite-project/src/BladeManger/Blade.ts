@@ -1,6 +1,7 @@
 import * as pc from 'playcanvas';
 import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
+import { ImodelChaiSaw } from '../Interface/Imodeltexure';
 
 export class Blade extends pc.Entity {
     private modelChild!: pc.Entity;
@@ -27,7 +28,7 @@ export class Blade extends pc.Entity {
         this.modelChild = new pc.Entity('model');
         this.modelChild.rotate(90, 0, 0);
         this.addChild(this.modelChild);
-        this.setModelChild();
+        this.setUpModelChild();
     }
 
     private AddComponent() {
@@ -54,18 +55,34 @@ export class Blade extends pc.Entity {
 
     }
 
-    private setModelChild() {
+    private setUpModelChild() {
         const app = pc.Application.getApplication();
         if (!app) return;
 
         this.modelChild.addComponent("model", {
             type: "asset",
-            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade),
+            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade1),
         });
         this.modelChild.setLocalScale(this.scaleModel);
 
         const material = new pc.StandardMaterial();
         const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade);
+        material.diffuseMap = assetTexure?.resource;
+        material.update();
+        const meshInstance = this.modelChild.model?.meshInstances[0];
+        if (meshInstance) {
+            meshInstance.material = material;
+        }
+    }
+
+
+    public setModelBlade(data : ImodelChaiSaw)
+    {
+        if(this.modelChild.model == null) return;
+        this.modelChild.model.asset = data.model;
+
+        const material = new pc.StandardMaterial();
+        const assetTexure =data.texure;
         material.diffuseMap = assetTexure?.resource;
         material.update();
         const meshInstance = this.modelChild.model?.meshInstances[0];

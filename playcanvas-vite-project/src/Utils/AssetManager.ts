@@ -25,9 +25,9 @@ export class AssetManager {
     public LoadAsset(app: pc.Application): void {
         const listAsset = {
             [SafeKeyAsset.FontCreanBeige]: new pc.Asset('font', 'font', { url: '../../Asset/Fonts/Cream Beige.json' }),
-            [SafeKeyAsset.ModelBlade]: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword/Sword3.glb" }),
+            [SafeKeyAsset.ModelBlade1]: new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword/Sword3.glb" }),
             [SafeKeyAsset.ModelGrass]: new pc.Asset("modelGrass", "model", { url: "../../Asset/Models/Grass Patch 01.glb" }),
-            [SafeKeyAsset.ModelFlower]: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flowers.glb" }),
+            [SafeKeyAsset.ModelFlower]: new pc.Asset("modelFlower", "model", { url: "../../Asset/Models/Flower.glb" }),
             [SafeKeyAsset.TexureBlade]: new pc.Asset("textureBlade", "texture", { url: "../../Asset/Texure/Albedo Sword 2.png" }),
             [SafeKeyAsset.IMGButtonPlay] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/play.png"}),
             [SafeKeyAsset.IMGBUttonSetting] : new pc.Asset("srpiteButtonPlay","texture", {url:"../../Asset/ICON/btn/settings.png"})  ,
@@ -53,7 +53,8 @@ export class AssetManager {
             [SafeKeyAsset.ICONScore] : new pc.Asset("ICONScore","texture",{url:"../../Asset/ICON/star_1.png"}),
             [SafeKeyAsset.IMGTilePauseGame] : new pc.Asset("IMGTilePauseGame","texture",{url:"../../Asset/ICON/btn/titlepause.png"}),
             [SafeKeyAsset.IMGIconPause] : new pc.Asset("IMGIconPause","texture",{url:"../../Asset/ICON/btn/pause.png"}),
-            //[SafeKeyAsset.SCRIPTTween] : new pc.Asset('script' , 'script' , {url : "../Tween/tween.ts"}),
+            [SafeKeyAsset.ModelBlade2] :new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword/Sword2.glb" }),
+            [SafeKeyAsset.ModelChest] : new pc.Asset('ModelChest' , 'model' , {url : "../../Asset/Models/Chest.glb"}),
         };
 
         const AssetLoader = new pc.AssetListLoader(Object.values(listAsset), app.assets);

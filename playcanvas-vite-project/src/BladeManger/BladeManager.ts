@@ -11,6 +11,10 @@ import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { LevelManager } from '../Level/LevelManager';
 import { ScoreManager } from '../Player/ScoreManager';
 import { BladeStat } from './BladeStat';
+import { AssetManager } from '../Utils/AssetManager';
+import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
+import { ImodelChaiSaw } from '../Interface/Imodeltexure';
+import { ItemHelper } from '../ItemHelper/ItemHelper';
 export class BladeManager extends pc.Entity {
 
     private enRoot!: Blade;
@@ -23,7 +27,7 @@ export class BladeManager extends pc.Entity {
     private countGrassCutted: number = 0;
     public isPause: boolean = true;
     private grassManager !: GrassManager;
-    private bladeStat !: BladeStat;
+    public bladeStat !: BladeStat;
 
 
     private originRadius: number = 2;
@@ -39,6 +43,17 @@ export class BladeManager extends pc.Entity {
         this.registerEventCollisionHandler();
         this.registerEvent();
         EntityManager.getInstance().registerEntity(SafeNameEntity.BladeManager, this);
+
+
+        //test change modle
+
+        const datamodel : ImodelChaiSaw = 
+        {
+           model : AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade2)!,
+           texure : AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade)!
+
+        }
+        this.enRotating.setModelBlade(datamodel);
     }
 
     private Init() {
@@ -126,9 +141,10 @@ export class BladeManager extends pc.Entity {
             GameManger.getInstance().onWin();
             EventManager.emit(SafeKeyEvent.PlayParticleWIn, this.enRoot.getPosition());
         }
-        if (result.other.name === 'itemhelper') {
-            this.bladeStat.reciveItemHelper(result.other);
-            result.other.destroy();
+        else
+
+        if (result.other instanceof  ItemHelper ) {
+            result.other.onColisionEnter(this);
         }
     }
 
@@ -164,10 +180,19 @@ export class BladeManager extends pc.Entity {
 
     //change root rotate and dir
     private reverseDirectionAndRotate() {
-        this.dir *= -1;
+       
+        this.ChangeRotationDirection();
         this.angle += Math.PI;
         [this.enRoot, this.enRotating] = [this.enRotating, this.enRoot];
 
+    }
+
+
+
+    public ChangeRotationDirection()
+    {
+        this.dir *= -1;
+        
     }
 
     //update
