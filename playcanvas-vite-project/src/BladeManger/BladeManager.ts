@@ -14,7 +14,7 @@ import { BladeStat } from './BladeStat';
 import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 import { ImodelChaiSaw } from '../Interface/Imodeltexure';
-import { ItemHelper } from '../ItemHelper/ItemHelper';
+import { ItemHelper } from '../ItemHelper/itemhelper';
 export class BladeManager extends pc.Entity {
 
     private enRoot!: Blade;
@@ -144,7 +144,7 @@ export class BladeManager extends pc.Entity {
         else
 
         if (result.other instanceof  ItemHelper ) {
-            result.other.onColisionEnter(this);
+            result.other.onCollision(this);
         }
     }
 

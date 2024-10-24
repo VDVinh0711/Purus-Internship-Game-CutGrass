@@ -1,6 +1,4 @@
 import * as pc from 'playcanvas'
-import { AssetManager } from '../Utils/AssetManager';
-import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 export class ParticleCutGrass extends pc.Entity {
     constructor() {
         super();
@@ -8,7 +6,7 @@ export class ParticleCutGrass extends pc.Entity {
         this.settUp();
     }
 
-    public settUp() {
+    private settUp() {
         const localVelocityCurve = new pc.CurveSet([
             [0, 0, 0, 0],
             [0, 0, 0.5, 1,0.7,-1],

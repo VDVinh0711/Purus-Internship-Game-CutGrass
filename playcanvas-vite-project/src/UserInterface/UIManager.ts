@@ -9,6 +9,9 @@ import { UiLoseGame } from './UILose/UI_Lose';
 import { UISetting } from './UISetting/UISetting';
 import { UIPauseGame } from './UIPauseGame/UIPauseGame';
 import { ScoreUiManager } from './ScoreUI/UIScoreManager';
+import { UINotifyManager } from './UINotifycation/UINotifyManager';
+import { UIShop } from './UIShop/UIShop';
+import { OverLayUIInput } from './OverLayUI';
 export class UiManager extends pc.Entity
 {
     private app : pc.Application;
@@ -19,6 +22,10 @@ export class UiManager extends pc.Entity
     private currentUI !: IUIController;
     private uiSetting !:UISetting;
     private uiPauseGame !:UIPauseGame;
+    private uiShop !: UIShop;
+    private uiOverlayInPut !: OverLayUIInput;
+
+    private uiNotifycation !: UINotifyManager
 
     private scoreUIManager !: ScoreUiManager
     constructor( app : pc.Application)
@@ -57,6 +64,10 @@ export class UiManager extends pc.Entity
     }
     public init()
     {
+
+        this.uiOverlayInPut = new OverLayUIInput(this.app);
+        this.addChild(this.uiOverlayInPut);
+
         this.uiMainMenu = new UIMainMenu(this.app);
         this.addChild(this.uiMainMenu);
         this.uiMainMenu.enabled = false;
@@ -80,11 +91,17 @@ export class UiManager extends pc.Entity
         this.scoreUIManager = new ScoreUiManager(this);
         this.addChild(this.scoreUIManager);
 
-        this.scoreUIManager.spawmScoreUI(new pc.Vec3(-0,0,0),10);
+        this.uiShop = new UIShop(this.app);
+        this.addChild(this.uiShop);
+        this.uiShop.enabled = false;
+
+
+        this.uiNotifycation = new UINotifyManager(this.app);
+        this.addChild(this.uiNotifycation);
 
         this.OpenUIMainMenu();
 
-        //this.currentUI.Close();
+       
        
     }
 
@@ -113,16 +130,27 @@ export class UiManager extends pc.Entity
         this.heplerOpenUI(this.uiSetting);
     }
 
-
     private OpenUiPauseGame()
     {
         this.heplerOpenUI(this.uiPauseGame);
     }
+
+    private OpenUIShop()
+    {
+        this.heplerOpenUI(this.uiShop);
+    }
+
     private heplerOpenUI(ui :IUIController )
     {
         if(this.currentUI != null) this.currentUI.Close();
         this.currentUI = ui;
         this.currentUI.Open();
+    }
+
+
+    public upDate(dt : number)
+    {
+      this.uiMainMenu.upDate(dt);
     }
     
     private CloseUI()

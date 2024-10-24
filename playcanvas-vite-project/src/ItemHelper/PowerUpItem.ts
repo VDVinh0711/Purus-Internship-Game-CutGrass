@@ -1,9 +1,12 @@
 import { ItemType } from './TypeItem';
 import * as pc from 'playcanvas'
-import { ItemHelper } from './ItemHelper';
+
 import { BladeManager } from '../BladeManger/BladeManager';
 import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
+import { ItemHelper } from './itemhelper';
+import { EventManager } from '../Utils/Observer';
+import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 
 export class PowerUpItem extends ItemHelper {
     public duration: number = 4;
@@ -57,13 +60,13 @@ export class PowerUpItem extends ItemHelper {
         }
     }
 
-    public onColisionEnter(result: any): void {
-        if (!(result instanceof BladeManager)) return;
-        result.bladeStat.reciveItemPowerUp(this);
+    public onCollision(bladeManager: BladeManager): void {
+       EventManager.emit(SafeKeyEvent.PlayParticleCutItem, this.getPosition());
+        bladeManager.bladeStat.reciveItemPowerUp(this);
         this.destroy();
     }
 
-
+   
 
 
 

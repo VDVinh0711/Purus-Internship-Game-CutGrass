@@ -5,7 +5,7 @@ import { LevelManager } from '../Level/LevelManager';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { ChestReward } from './ChestReward';
-import { ItemHelper } from './ItemHelper';
+import { ItemHelper } from './itemhelper';
 export class ItemHelperManager extends pc.Entity
 {
     private items : ItemHelper[]  = [];
@@ -25,6 +25,7 @@ export class ItemHelperManager extends pc.Entity
     private spawmItemHeplerCurMap()
     {
         let pos =  LevelManager.getInstance().getPosSpawmMaps();
+
         let indexSpawmPoweUp = this.randomIndex(pos.length-1);
         this.spawmItemPowerUp(pos[indexSpawmPoweUp]);
 
@@ -53,7 +54,7 @@ export class ItemHelperManager extends pc.Entity
         const chessReward = new ChestReward();
         this.addChild(chessReward);
         this.items.push();
-        chessReward.setPosition(posSpawm);
+        chessReward.setPosition(new pc.Vec3(posSpawm.x,posSpawm.y+1, posSpawm.z));
 
     }
 

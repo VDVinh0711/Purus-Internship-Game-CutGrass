@@ -1,5 +1,3 @@
-
-
 import * as pc from 'playcanvas';
 import { SceneGameManager } from './SceneGameManager';
 
@@ -24,9 +22,9 @@ async function main() {
     document.body.appendChild(canvas);
 
     let app = new pc.Application(canvas, {
+        elementInput: new pc.ElementInput(canvas),
         mouse: new pc.Mouse(document.body),
         keyboard: new pc.Keyboard(window),
-        elementInput: new pc.ElementInput(canvas)
     });
 
 

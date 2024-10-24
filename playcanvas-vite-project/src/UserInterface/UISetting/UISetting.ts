@@ -38,7 +38,7 @@ export class UISetting extends pc.Entity implements IUIController
             pivot : [0.5,0.5],
             width : 300,
             height : 300,
-        })
+        });
     }
 
     private setUpBegin()

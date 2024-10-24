@@ -27,6 +27,7 @@ export class DimondManager
     public addDimond(count : number) 
     {
         this.countDimond += count;
+        console.log(`Dimond ${this.countDimond}`);
     }
     
     public canReduceDimond(count : number) : boolean

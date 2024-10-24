@@ -49,7 +49,8 @@ export class UIInGame extends pc.Entity implements IUIController {
             pivot: [0.5, 0.5],
             width: this.app.graphicsDevice.width,
             height: this.app.graphicsDevice.height,
-            type: pc.ELEMENTTYPE_GROUP
+            type: pc.ELEMENTTYPE_GROUP,
+            useInput : false,
         });
     }
 

@@ -4,6 +4,7 @@ import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { ParticelBladeOutGround } from './particleBladeOutGround';
 import { ParticleWin } from './particleWin';
+import { ParticleCutItem } from './particleCutItem';
 
 export class ParticleSystem extends pc.Entity
 {
@@ -11,6 +12,7 @@ export class ParticleSystem extends pc.Entity
     private particlesCutGrassActive  : ParticleCutGrass[] = [];
     private particlesOutGround !: ParticelBladeOutGround;
     private particleWin !: ParticleWin;
+    private particleCutItem !: ParticleCutItem;
 
     constructor()
     {
@@ -24,10 +26,14 @@ export class ParticleSystem extends pc.Entity
     private registerEvent()
     {
         EventManager.on(SafeKeyEvent.PlayParticle, this.PlayParticlesCutGrass.bind(this));
+
         EventManager.on(SafeKeyEvent.ClearParticles, this.clearParticles.bind(this));
 
         EventManager.on(SafeKeyEvent.PlayParticleOutGround, this.PlayparticleOutofGround.bind(this));
+
         EventManager.on(SafeKeyEvent.PlayParticleWIn, this.PlayparticleWinMap.bind(this));
+
+        EventManager.on(SafeKeyEvent.PlayParticleCutItem, this.PlayParticleCutItem.bind(this));
     }
 
 
@@ -37,26 +43,33 @@ export class ParticleSystem extends pc.Entity
         {
           this.createParticleCutGrass();
         }
+
+
         this.particlesOutGround = new ParticelBladeOutGround();
         this.addChild(this.particlesOutGround);
         this.particlesOutGround.enabled = false;
 
-
         this.particleWin = new ParticleWin();
         this.addChild(this.particleWin);
         this.particleWin.enabled = false;
+
+        this.particleCutItem = new ParticleCutItem();
+        this.addChild(this.particleCutItem);
+        this.particleCutItem.enabled = false;
+
+
+
     }
 
     private createParticleCutGrass() : ParticleCutGrass
     {
         const newParticle = new ParticleCutGrass();
-        newParticle.on('particles:stop', this.deSpawmParticle, this);
+        newParticle.on('particles:stop', this.deSpawmParticleCutGrass, this);
         newParticle.enabled = false;
         this.addChild(newParticle);
         this.particlesCutGrass.push(newParticle);
         return newParticle;
     }
-
 
     public PlayParticlesCutGrass(pos : pc.Vec3)
     {
@@ -74,8 +87,7 @@ export class ParticleSystem extends pc.Entity
         }
     }
 
-
-    private deSpawmParticle(particle : ParticleCutGrass)
+    private deSpawmParticleCutGrass(particle : ParticleCutGrass)
     {
         const index = this.particlesCutGrassActive.indexOf(particle);
         if (index == -1)  return;
@@ -91,7 +103,11 @@ export class ParticleSystem extends pc.Entity
             this.particlesCutGrass.push(particle);
         });
         this.particlesCutGrassActive.length = 0;
+
+        this.particlesOutGround.enabled = false;
+        this.particleWin.enabled = false;
     }
+
 
     private PlayparticleOutofGround(pos : pc.Vec3)
     {
@@ -105,6 +121,13 @@ export class ParticleSystem extends pc.Entity
         this.particleWin.setPosition(pos);
         this.particleWin.enabled =true;
         this.particleWin.Play();
+    }
+
+    private PlayParticleCutItem(pos : pc.Vec3)
+    {
+        this.particleCutItem.setPosition(pos);
+        this.particleCutItem.enabled = true;
+        this.particleCutItem.Play();
     }
 
 }

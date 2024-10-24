@@ -55,6 +55,8 @@ export class AssetManager {
             [SafeKeyAsset.IMGIconPause] : new pc.Asset("IMGIconPause","texture",{url:"../../Asset/ICON/btn/pause.png"}),
             [SafeKeyAsset.ModelBlade2] :new pc.Asset("modelBlade", "model", { url: "../../Asset/Models/Sword/Sword2.glb" }),
             [SafeKeyAsset.ModelChest] : new pc.Asset('ModelChest' , 'model' , {url : "../../Asset/Models/Chest.glb"}),
+            [SafeKeyAsset.IMGButtonOK] : new pc.Asset('IMGButtonOK' , 'texture' , {url : "../../Asset/ICON/btn/ok.png"}),
+            [SafeKeyAsset.IMGTitleNotification] : new pc.Asset('IMGTitleNotification' , 'texture' , {url : "../../Asset/ICON/titleNotification.png"}),
         };
 
         const AssetLoader = new pc.AssetListLoader(Object.values(listAsset), app.assets);

@@ -27,6 +27,7 @@ export class BtnPauseGame extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', (event: pc.ElementInputEvent) => {
+            console.log("btn click");
             event.stopPropagation();
             EventManager.emit(SafeKeyEvent.SetPauseBlade);
             EventManager.emit(SafeKeyEvent.OPenUIPauseGame);

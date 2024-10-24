@@ -32,4 +32,6 @@ export enum SafeKeyAsset
     IMGIconPause = "IMGIconPause",
     SCRIPTTween = "ScriptTween",
     ModelChest = "ModelChest",
+    IMGButtonOK = "IMGButtonOK",
+    IMGTitleNotification = "IMGTitleNotification",
 }   
