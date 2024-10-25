@@ -119,22 +119,26 @@ export class BladeManager extends pc.Entity {
 
 
 
-    public setPosCurrentMap() {
+    private setPosCurrentMap() {
         const posSet = LevelManager.getInstance().getPosSpawmBlade();
         this.setPosition(posSet);
         this.enRoot.setPosition(posSet);
         this.enRotating.setPosition(posSet);
-        this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
+        this.rope.updateRope(this.enRoot.getPosition(), this.enRoot.getPosition());
     }
     //event colision
     private onBladeCollision(result: any) {
         if (this.isPause) return;
         if (result.other.name === 'grass') {
+
             PoolingGrass.getInstance().deSpawmGrass(result.other);
+
             let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().addScore(scoreAdd);
+            EventManager.emit(SafeKeyEvent.SpawmScoreUI,result.other.getPosition(),scoreAdd);
+
             EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
-            EventManager.emit(SafeKeyEvent.SpawmScoreUI,result.other.getPosition(),scoreAdd)
+            
             //check win 
             this.countGrassCutted++;
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
@@ -187,12 +191,9 @@ export class BladeManager extends pc.Entity {
 
     }
 
-
-
     public ChangeRotationDirection()
     {
         this.dir *= -1;
-        
     }
 
     //update

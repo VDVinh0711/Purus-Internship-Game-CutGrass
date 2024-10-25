@@ -86,9 +86,12 @@ export class GameManger {
 
     public exitGame()
     {
+        this.reset();
+        this.gameSetUp();
         ScoreManager.getInstance().setScore(this.scoreBegin);
         EventManager.emit(SafeKeyEvent.SetCameraOutGame);
         EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
+       
     }
 
     private reset() {

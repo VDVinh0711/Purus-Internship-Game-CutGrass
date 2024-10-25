@@ -24,7 +24,7 @@ export class UITextScore extends pc.Entity
 
     public init()
     {
-        //this.setTextScore(ScoreManager.getInstance().getSCore());
+        this.setTextScore(ScoreManager.getInstance().getSCore());
     }
     private setElement()
     {
@@ -76,7 +76,7 @@ export class UITextScore extends pc.Entity
         this.txt_Score.setLocalPosition(0,0,0);
     }
 
-   public setTextScore(score : number)
+   private setTextScore(score : number)
    {
         if(this.txt_Score.element == null) return;
         this.txt_Score.element.text = score+"";

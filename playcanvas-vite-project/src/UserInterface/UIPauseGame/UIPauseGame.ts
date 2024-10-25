@@ -7,6 +7,7 @@ import { BtnBackGame } from "./BtnBackGame";
 import { IUIController } from "../IUiController";
 import { EventManager } from "../../Utils/Observer";
 import { SafeKeyEvent } from "../../Helper/SafeKeyEvent";
+import * as TWEEN from '@tweenjs/tween.js'
 
 export class UIPauseGame extends pc.Entity implements IUIController {
     private app: pc.Application;
@@ -16,9 +17,14 @@ export class UIPauseGame extends pc.Entity implements IUIController {
     private background!: pc.Entity;
     private btnBackGame!: BtnBackGame;
     private titlePauseGame!: pc.Entity;
-
-
     private overlay!: pc.Entity;
+    //Tween
+
+    private tweenIn !: TWEEN.Tween;
+    private tweenOut !: TWEEN.Tween;
+
+
+
 
 
     private widthContainer : number = 400;
@@ -31,6 +37,8 @@ export class UIPauseGame extends pc.Entity implements IUIController {
         this.setUpOverlay();
         this.setElementContainer();
         this.setUpContainer();
+        this.setUpTweenIn();
+        this.setUpTweenOut();
     }
 
     private setUpElement() {
@@ -42,10 +50,6 @@ export class UIPauseGame extends pc.Entity implements IUIController {
             type: pc.ELEMENTTYPE_GROUP,
             useInput : true,
         });
-        
-        // this.element?.on('click', () => {
-        //     console.log("click something");
-        // });
     }
 
     private setElementContainer() {
@@ -58,10 +62,6 @@ export class UIPauseGame extends pc.Entity implements IUIController {
             height: this.heightContainer,
             type: pc.ELEMENTTYPE_GROUP,
             useInput : true,
-        });
-
-        this.container.element?.on('click', () => {
-            console.log("click something");
         });
     }
 
@@ -133,11 +133,63 @@ export class UIPauseGame extends pc.Entity implements IUIController {
         });
     }
 
+
+
+    private setUpTweenIn()
+    {
+        const optionStart = {x : 0, y:1000, z:0};
+        const optionEnd  = {x: 0, y:0 , z:0};
+        
+        this.tweenIn = new TWEEN.Tween(optionStart)
+        .to(optionEnd,500)
+        .easing(TWEEN.Easing.Bounce.Out)
+        .onUpdate(()=>
+        {
+            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
+        })
+        .yoyo(false)
+    }
+
+    private setUpTweenOut()
+    {
+       
+        const optionStart = {x :0, y: 0, z: 0};
+        const optionEnd  = {x: 0, y:-1000, z:0};
+        
+        this.tweenOut = new TWEEN.Tween(optionStart)
+        .to(optionEnd,300)
+        .easing(TWEEN.Easing.Linear.None)
+        .onComplete(()=>
+        {
+            this.enabled = false;
+        })
+        .onUpdate(()=>
+        {
+            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
+        })
+        .yoyo(false)
+    }
+
+
+    public update()
+    {
+        if(!this.enabled) return
+        if(this.tweenIn.isPlaying())
+        {
+            this.tweenIn.update();
+        }
+        if(this.tweenOut.isPlaying())
+        {
+            this.tweenOut.update();
+        }
+    }
+
     Open(): void {
         this.enabled = true;
+        this.tweenIn.start();
     }
 
     Close(): void {
-        this.enabled = false;
+       this.tweenOut.start();
     }
 }

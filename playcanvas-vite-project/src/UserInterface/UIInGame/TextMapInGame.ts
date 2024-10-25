@@ -6,7 +6,7 @@ import { BaseTextUI } from '../BaseTextUI';
 
 export class TextMapInGame extends BaseTextUI {
     constructor() {
-        super(30, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
+        super(35, '0',new pc.Vec2(0,1), new pc.Vec4(0,1,0,1));
         this.init();
         this.setColorText();
         this.registerEvent();

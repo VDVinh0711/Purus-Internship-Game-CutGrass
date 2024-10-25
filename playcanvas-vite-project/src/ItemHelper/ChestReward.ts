@@ -40,7 +40,7 @@ export class ChestReward extends ItemHelper {
         this.addComponent('collision');
         if (this.collision == null) return;
         this.collision.type = 'box';
-        this.collision.halfExtents = new pc.Vec3(this.scale.x / 2, this.scale.y / 2, this.scale.z / 2);
+        this.collision.halfExtents = new pc.Vec3(1,1,1  );
 
     }
     private setRigidbody() {

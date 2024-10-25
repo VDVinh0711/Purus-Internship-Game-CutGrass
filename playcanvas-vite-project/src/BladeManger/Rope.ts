@@ -36,7 +36,7 @@ export class Rope extends pc.Entity {
         this.scaleZ = scaleZ;
         this.setLocalScale(this.scaleX, this.scaleY, this.scaleZ);
         if (this.collision == null) return;
-        this.collision.halfExtents = new pc.Vec3(this.scaleX / 2, this.scaleY / 2.1, this.scaleZ / 2);
+        this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
     }
 
     private setRigidbody() {

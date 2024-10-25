@@ -31,6 +31,15 @@ export class ScoreUiManager extends pc.Entity {
     }
 
 
+
+    private createScoreUI() : ScoreUI
+    {
+        const scoreUI = new ScoreUI();
+        this.addChild(scoreUI);
+        scoreUI.on('scoreUI:tweenDone', this.deSpawScoreUI, this);
+        return scoreUI;
+    }
+
     public spawmScoreUI(pos: pc.Vec3, score : number) {
         
         if (this.mainCamera.camera == null) return;
@@ -42,8 +51,7 @@ export class ScoreUiManager extends pc.Entity {
         }
         else
         {
-            scoreSpawm = new ScoreUI();
-            this.addChild(scoreSpawm);
+            scoreSpawm = this.createScoreUI();
         }
 
         if(scoreSpawm)
@@ -52,17 +60,26 @@ export class ScoreUiManager extends pc.Entity {
             scoreSpawm.enabled = true
             this.scoreUIActive.push(scoreSpawm);
             scoreSpawm.setLocalPosition(screenPos);
-            scoreSpawm.setTextScore(score);
+            
+            scoreSpawm.init(score);
 
-
-            setTimeout(() => {
-                this.deSpawScoreUI(scoreSpawm);
-            }, 1000);
+            // setTimeout(() => {
+            //     this.deSpawScoreUI(scoreSpawm);
+            // }, 1000);
         }
-       
-
-
     } 
+
+
+    public update(dt : number)
+    {
+        if(!this.enabled) return;
+        this.scoreUIActive.forEach(scoreUI => {
+            if(scoreUI.enabled)
+            {
+                scoreUI.update();
+            }
+        });
+    }
 
 
     private deSpawScoreUI(scoreUI : ScoreUI)

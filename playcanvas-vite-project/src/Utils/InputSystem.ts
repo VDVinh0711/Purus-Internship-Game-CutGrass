@@ -22,7 +22,6 @@ export class InputSystem
 
     OnClick()
     {
-        console.log("mouse click");
         EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
     }
 }

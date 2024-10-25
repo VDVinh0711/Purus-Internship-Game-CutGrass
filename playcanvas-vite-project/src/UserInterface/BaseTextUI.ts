@@ -15,6 +15,8 @@ import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: fontSize,
             text: initialText,
+            outlineColor: new pc.Color(0,0,0) ,
+            outlineThickness : 0.5,
             type: pc.ELEMENTTYPE_TEXT
         });
     }

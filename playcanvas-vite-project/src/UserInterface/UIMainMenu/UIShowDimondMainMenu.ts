@@ -57,7 +57,6 @@ export class UIShowDimond extends pc.Entity
                 textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.ICONScore) 
             }
         );
-        // Dịch chuyển icon sang phải một nửa chiều rộng của text
         this.iconDimond.setLocalPosition(10, 0, 0);
     }
 
@@ -70,14 +69,17 @@ export class UIShowDimond extends pc.Entity
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [1, 0.5],
             width: this.width - this.height,
+            color :  new pc.Color(255/255,167/255,38/255),
             autoWidth: false,
             autoFitWidth: false,
             alignment: new pc.Vec2(1, 0.5),
+            outlineColor: new pc.Color(0,0,0) ,
+            outlineThickness : 0.5,
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: '0',
         });
-        // Dịch chuyển text sang trái một chút để tạo khoảng cách với icon
+        
         this.txtDimond.setLocalPosition(-10, 0, 0);
     }
 

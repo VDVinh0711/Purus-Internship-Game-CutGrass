@@ -7,6 +7,7 @@ import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 import { IUIController } from '../IUiController';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import * as TWEEN from '@tweenjs/tween.js'
 
 export class UISetting extends pc.Entity implements IUIController
 {
@@ -15,6 +16,11 @@ export class UISetting extends pc.Entity implements IUIController
     private btnSFX !: BtnSFX;
     private btnSoundBK !: BtnSoundBackground;
     private btnExit !: BtnExit;
+
+
+    private tweenIn !: TWEEN.Tween;
+    private tweenOut !: TWEEN.Tween;
+
     constructor()
     {
         super();
@@ -58,6 +64,9 @@ export class UISetting extends pc.Entity implements IUIController
         this.btnExit = new BtnExit();
         this.addChild(this.btnExit);
 
+        this.setUpTweenIn();
+        this.setUpTweenOut();
+
     }
 
 
@@ -91,11 +100,64 @@ export class UISetting extends pc.Entity implements IUIController
         })
     }
 
+
+
+    private setUpTweenIn()
+    {
+        const optionStart = {x : 0, y:1000, z:0};
+        const optionEnd  = {x: 0, y:0 , z:0};
+        
+        this.tweenIn = new TWEEN.Tween(optionStart)
+        .to(optionEnd,300)
+        .easing(TWEEN.Easing.Linear.None)
+        .onUpdate(()=>
+        {
+            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
+        })
+        .yoyo(false)
+    }
+
+    private setUpTweenOut()
+    {
+       
+        const optionStart = {x :0, y: 0, z: 0};
+        const optionEnd  = {x: 0, y:-1000, z:0};
+        
+        this.tweenOut = new TWEEN.Tween(optionStart)
+        .to(optionEnd,300)
+        .easing(TWEEN.Easing.Linear.None)
+        .onComplete(()=>
+        {
+            this.enabled = false;
+        })
+        .onUpdate(()=>
+        {
+            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
+        })
+        .yoyo(false)
+    }
+
+
+    public update()
+    {
+        if(!this.enabled) return
+        if(this.tweenIn.isPlaying())
+        {
+            this.tweenIn.update();
+        }
+        if(this.tweenOut.isPlaying())
+        {
+            this.tweenOut.update();
+        }
+    }
+
     Open(): void {
         this.enabled = true;
+        this.tweenIn.start();
     }
     Close(): void {
-        this.enabled = false;
+        this.tweenOut.start();
+
     }
     
 }

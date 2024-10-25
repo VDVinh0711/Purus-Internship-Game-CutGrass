@@ -15,7 +15,6 @@ export class UIBladeStat extends pc.Entity
         this.setElemet();
         this.setIconItem();
         this.setTextTimeExpire();
-
     }
 
     private registerEvent()
@@ -23,31 +22,31 @@ export class UIBladeStat extends pc.Entity
         EventManager.on(SafeKeyEvent.ChangeTimeExpireItem,this.SetTextTimeExpire.bind(this));
     }
 
-
     private setElemet()
     {
         this.addComponent('element',{
             anchor: [0.5, 1, 0.5, 1],  
             pivot: [0.5, 1],       
-            width:100,
+            width:300,
             height: 100,          
             type: pc.ELEMENTTYPE_GROUP
         });
     }
 
-    private setIconItem()
+    private setIconItem()  
     {
         this.iconItem = new pc.Entity("ICon");
         this.addChild(this.iconItem);
         this.iconItem.addComponent('element',{
             type : pc.ELEMENTTYPE_IMAGE,
             anchor :[0,0.5,0,0.5],
-            pivot : [0.5,0.5],
-            width : 50,
-            height: 50,
+            pivot : [0,0.5],
+            width : 100,
+            height: 100,
             color : new pc.Color(1,1,1),
             textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIconPowerUp),
         })
+      
     }
 
     private setTextTimeExpire()
@@ -56,12 +55,17 @@ export class UIBladeStat extends pc.Entity
         this.addChild(this.txt_expired);
         this.txt_expired.addComponent('element',{
             type: pc.ELEMENTTYPE_TEXT,
-            anchor: [1, 0.5, 1, 0.5],
-            pivot: [0.5, 0.5],
+            anchor: [1,0.5,1,0.5],
+            pivot: [1, 0.5],
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
-            fontSize: 32,
+            fontSize: 40,
+            outlineColor: new pc.Color(0,0,0) ,
+            outlineThickness : 0.5,
+            alignment : new pc.Vec2(0.5,0.5),
             text: '0',
         });
+        this.txt_expired.setLocalPosition(0,-10,0);
+       
     }
 
 

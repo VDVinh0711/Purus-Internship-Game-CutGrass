@@ -53,7 +53,7 @@ export class ItemHelperManager extends pc.Entity
     {
         const chessReward = new ChestReward();
         this.addChild(chessReward);
-        this.items.push();
+        this.items.push(chessReward);
         chessReward.setPosition(new pc.Vec3(posSpawm.x,posSpawm.y+1, posSpawm.z));
 
     }

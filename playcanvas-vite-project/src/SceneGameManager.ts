@@ -12,7 +12,7 @@ import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
 import { Plane } from './Entity/Plane';
 import { LevelManager } from './Level/LevelManager';
-import { update as tweenUpdate } from '@tweenjs/tween.js';
+import * as TWEEN from '@tweenjs/tween.js'
 
 
 
@@ -121,7 +121,6 @@ export class SceneGameManager {
 
     private update(dt: number) {
         if(this.isLoading) return;
-        tweenUpdate();;
         this.bladeManager.update(dt);
         this.camera.update(dt);
         this.UIManager.upDate(dt);

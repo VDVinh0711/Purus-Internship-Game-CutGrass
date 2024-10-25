@@ -50,6 +50,14 @@ export class UINotifyManager extends pc.Entity
     private OpenUINotifyDimondReward(dimondCount : number)
     {
         this.dimondReward.OpenUI(dimondCount);
+        
+    }
+
+
+    public update()
+    {
+        
+        this.dimondReward.update();
     }
 
     

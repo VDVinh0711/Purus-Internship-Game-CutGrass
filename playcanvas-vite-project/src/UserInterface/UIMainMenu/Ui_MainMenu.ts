@@ -6,7 +6,7 @@ import { TextLevelMainMenu } from './TextLevelMainMenu';
 import { IUIController } from '../IUiController';
 import { UIShowDimond } from './UIShowDimondMainMenu';
 
-import { Tween, Easing } from '@tweenjs/tween.js'
+import * as TWEEN from '@tweenjs/tween.js'
 
 export class UIMainMenu extends pc.Entity implements IUIController {
     private app: pc.Application;
@@ -18,8 +18,8 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     private paddingBottom: number = 100;
     private posStart: number = 300;
 
-    private btnPlayScale: { scale: number } = { scale: 1 };
-    private scaleTween!: Tween<{ scale: number }>;
+
+   
 
     constructor(app: pc.Application) {
         super();
@@ -64,44 +64,16 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         this.uiShowDimond.setLocalPosition(0, 200, 0);
     }
 
-    private setupButtonAnimation() {
-        // Dừng tween cũ nếu đang chạy
-        if (this.scaleTween) {
-            this.scaleTween.stop();
-        }
-        
-        
-        this.btnPlayScale.scale = 1;
-        this.btn_Play.setLocalScale(1, 1, 1);
-    
-       
-        this.scaleTween = new Tween(this.btnPlayScale)
-            .to({ scale: 1.1 }, 1000) 
-            .onUpdate(() => {
-                this.btn_Play.setLocalScale(
-                    this.btnPlayScale.scale,
-                    this.btnPlayScale.scale,
-                    1
-                );
-            }) 
-            .yoyo(true)
-            .repeat(Infinity)
-            .start();
+    public update(dt : number)
+    {
+        this.btn_Play.update(dt);
     }
 
-
-
-    public upDate(dt: number) {
-        if (this.scaleTween) {
-            this.scaleTween.update();
-        }
-    }
 
     private init() {
         this.txt_Score.init();
         this.txt_Level.init();
         this.uiShowDimond.init();
-        this.setupButtonAnimation();
     }
 
     Open(): void {
@@ -110,9 +82,7 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     }
 
     Close(): void {
-        if (this.scaleTween) {
-            this.scaleTween.stop();
-        }
+        
         this.enabled = false;
     }
 }

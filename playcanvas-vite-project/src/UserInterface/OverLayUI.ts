@@ -28,6 +28,7 @@ export class OverLayUIInput extends pc.Entity
 
         if(this.element == null) return;
         this.element?.on('click', () => {
+            console.log("click");
            // EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
         });
     }

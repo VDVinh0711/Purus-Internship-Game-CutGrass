@@ -65,40 +65,52 @@ export class UiManager extends pc.Entity
     public init()
     {
 
+        
+        //UI Input
         this.uiOverlayInPut = new OverLayUIInput(this.app);
         this.addChild(this.uiOverlayInPut);
 
+        
+        //Main Menu
         this.uiMainMenu = new UIMainMenu(this.app);
         this.addChild(this.uiMainMenu);
         this.uiMainMenu.enabled = false;
 
-        this.uiInGame = new UIInGame(this.app);
-        this.addChild(this.uiInGame);
-        this.uiInGame.enabled = false;
-
-        this.uiLose = new UiLoseGame(this.app);
-        this.addChild(this.uiLose);
-        this.uiLose.enabled = false;
-
+        //Setting
         this.uiSetting = new UISetting();
         this.addChild(this.uiSetting);
         this.uiSetting.enabled = false;
 
-        this.uiPauseGame = new UIPauseGame(this.app);
-        this.addChild(this.uiPauseGame);
-        this.uiPauseGame.enabled = false;
-
-        this.scoreUIManager = new ScoreUiManager(this);
-        this.addChild(this.scoreUIManager);
-
+        //Shop
         this.uiShop = new UIShop(this.app);
         this.addChild(this.uiShop);
         this.uiShop.enabled = false;
 
+        //In Game
+        this.uiInGame = new UIInGame(this.app);
+        this.addChild(this.uiInGame);
+        this.uiInGame.enabled = false;
 
+        //Lose
+        this.uiLose = new UiLoseGame(this.app);
+        this.addChild(this.uiLose);
+        this.uiLose.enabled = false;
+
+        //Pause Game
+        this.uiPauseGame = new UIPauseGame(this.app);
+        this.addChild(this.uiPauseGame);
+        this.uiPauseGame.enabled = false;
+
+        //Score
+        this.scoreUIManager = new ScoreUiManager(this);
+        this.addChild(this.scoreUIManager);
+
+        //Notify
         this.uiNotifycation = new UINotifyManager(this.app);
         this.addChild(this.uiNotifycation);
 
+
+        //OpenUI MainMenu
         this.OpenUIMainMenu();
 
        
@@ -150,7 +162,12 @@ export class UiManager extends pc.Entity
 
     public upDate(dt : number)
     {
-      this.uiMainMenu.upDate(dt);
+      this.uiMainMenu.update(dt);
+      this.scoreUIManager.update(dt);
+      this.uiNotifycation.update();
+      this.uiPauseGame.update();
+      this.uiSetting.update();
+      this.uiLose.update();
     }
     
     private CloseUI()

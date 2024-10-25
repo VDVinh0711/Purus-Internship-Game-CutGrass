@@ -44,7 +44,7 @@ export class AssetManager {
             [SafeKeyAsset.IMGBtnCloseSoundBG] : new pc.Asset("IMGBtnCloseSoundBG", "texture",{url:"../../Asset/ICON/btn/sound_off.png"}),
             [SafeKeyAsset.IMGBtnCloseSoundSFX] : new pc.Asset("IMGBtnCloseSoundSFX", "texture",{url:"../../Asset/ICON/btn/music_off.png"}),
             [SafeKeyAsset.ModelStar] : new pc.Asset("ModelStar", "model",{url:"../../Asset/Models/Star.glb"}),
-            [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/menu/ico1.png"}),
+            [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/power-up.png"}),
             [SafeKeyAsset.IMGFlowerTexure] : new pc.Asset("IMGFlowerTexure","texture",{url:"../../Asset/Texure/flowerTexure.png"}), 
             [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/Stone Block.glb" }),
             [SafeKeyAsset.TextureBackgroundWate] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
