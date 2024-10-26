@@ -82,8 +82,9 @@ export class UiManager extends pc.Entity
         this.uiSetting.enabled = false;
 
         //Shop
-        this.uiShop = new UIShop(this.app);
+        this.uiShop = new UIShop();
         this.addChild(this.uiShop);
+        this.uiShop.setLocalPosition(0,0,0);
         this.uiShop.enabled = false;
 
         //In Game
@@ -111,7 +112,7 @@ export class UiManager extends pc.Entity
 
 
         //OpenUI MainMenu
-        this.OpenUIMainMenu();
+        this.OpenUIShop();
 
        
        

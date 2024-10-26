@@ -51,7 +51,7 @@ export class Rope extends pc.Entity {
         this.addComponent('render');
         if (this.render == null) return;
         this.render.type = 'box';
-        this.render.material = this.createMaterial();
+        this.render.material = this.createMaterial( new pc.Color(0.8, 0.14, 0.49));
     }
 
 
@@ -67,13 +67,22 @@ export class Rope extends pc.Entity {
     }
 
 
-    private createMaterial() : pc.Material
+    private createMaterial(color : pc.Color) : pc.Material
     {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0.8, 0.14, 0.49);
+        material.diffuse = color;
         material.metalness = 0.7;
         material.update();
         return material;
+
+       
+    }
+
+    public changeRopeColor(color : pc.Color)
+    {
+        if(this.render == null) return;
+        const material = this.createMaterial(color);
+        this.render.material = material;
     }
 
 }

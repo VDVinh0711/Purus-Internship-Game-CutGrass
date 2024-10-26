@@ -40,6 +40,8 @@ export enum SafeKeyEvent {
     ChangeTimeExpireItem = "ChangeTimeExpireItem",
     //Call When Change index Map
     OnChangeMap = 'OnChangeMap',
+    //Change ModelBlade
+    OnChangeModelBlade = "OnChangeModelBlade",
 
 
     //================UI=======================
@@ -108,6 +110,7 @@ export enum SafeKeyEvent {
     PLaySoundSFXLoseGame = "PLaySoundSFXLoseGame",
     //PlaySFX Win Map
     PlaySoundSFXWinMap = "PlaySoundSFXWinMap",
+
 
     
 

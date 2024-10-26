@@ -45,15 +45,7 @@ export class BladeManager extends pc.Entity {
         EntityManager.getInstance().registerEntity(SafeNameEntity.BladeManager, this);
 
 
-        //test change modle
-
-        const datamodel : ImodelChaiSaw = 
-        {
-           model : AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade2)!,
-           texure : AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade)!
-
-        }
-        this.enRotating.setModelBlade(datamodel);
+      
     }
 
     private Init() {
@@ -89,6 +81,7 @@ export class BladeManager extends pc.Entity {
         EventManager.on(SafeKeyEvent.SetPauseBlade, this.setWaiting.bind(this));
         EventManager.on(SafeKeyEvent.UnSetPauseBlade, this.unSetWaiting.bind(this));
         EventManager.on(SafeKeyEvent.ClickIntoScreen, this.handleClick.bind(this));
+        EventManager.on(SafeKeyEvent.OnChangeModelBlade, this.changeModelBlade.bind(this));
     }
 
     private setWaiting() {
@@ -116,6 +109,8 @@ export class BladeManager extends pc.Entity {
     public getPosRootBlade(): pc.Vec3 {
         return this.enRoot.getPosition();
     }
+
+
 
 
 
@@ -166,7 +161,6 @@ export class BladeManager extends pc.Entity {
     //handle click
     private handleClick() {
 
-       
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
         if (this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
         if (this.isPause) return;
@@ -211,8 +205,6 @@ export class BladeManager extends pc.Entity {
         this.rope.updateRope(this.enRoot.getPosition(), this.enRotating.getPosition());
     }
 
-
-
     private handelSetBeginBlade(dt: number) {
         if (this.radius < this.originRadius) {
             this.radius += dt;
@@ -236,5 +228,15 @@ export class BladeManager extends pc.Entity {
        // pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart, posEnd);
         return resultRay != null;
+    }
+
+
+    //ChangeModelBlade
+
+    private changeModelBlade(dataModel : ImodelChaiSaw) 
+    {
+        this.enRoot.setModelBlade(dataModel);
+        this.enRotating.setModelBlade(dataModel);
+        this.rope.changeRopeColor(dataModel.colorRope);
     }
 }

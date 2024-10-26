@@ -79,10 +79,10 @@ export class Blade extends pc.Entity {
     public setModelBlade(data : ImodelChaiSaw)
     {
         if(this.modelChild.model == null) return;
-        this.modelChild.model.asset = data.model;
+        this.modelChild.model.asset = AssetManager.getInstance().getAsset(data.model)!;
 
         const material = new pc.StandardMaterial();
-        const assetTexure =data.texure;
+        const assetTexure =AssetManager.getInstance().getAsset(data.texure);
         material.diffuseMap = assetTexure?.resource;
         material.update();
         const meshInstance = this.modelChild.model?.meshInstances[0];
