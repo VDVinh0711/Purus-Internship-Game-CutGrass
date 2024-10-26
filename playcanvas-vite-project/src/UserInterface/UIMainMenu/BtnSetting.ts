@@ -16,7 +16,7 @@ export class BtnSetting extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', function () {
-            console.log("Button clicked");
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
             EventManager.emit(SafeKeyEvent.OpenUISetting);
         });
     }

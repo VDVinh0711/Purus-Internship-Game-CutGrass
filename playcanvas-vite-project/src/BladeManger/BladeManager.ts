@@ -126,6 +126,7 @@ export class BladeManager extends pc.Entity {
         this.enRotating.setPosition(posSet);
         this.rope.updateRope(this.enRoot.getPosition(), this.enRoot.getPosition());
     }
+
     //event colision
     private onBladeCollision(result: any) {
         if (this.isPause) return;
@@ -164,10 +165,12 @@ export class BladeManager extends pc.Entity {
 
     //handle click
     private handleClick() {
+
+       
         if (GameManger.getInstance().isLose || GameManger.getInstance().isWin) return;
         if (this.bladeStat.isLoadStat || this.bladeStat.isShrinking) return;
         if (this.isPause) return;
-
+        EventManager.emit(SafeKeyEvent.PlaySoundSFXTouch);
         //Rever
         this.reverseDirectionAndRotate();
         if (this.checkIsOnGround()) return;

@@ -99,17 +99,19 @@ export class ChestReward extends ItemHelper {
         this.currentHP--;
         this.setHitEffect();
         bladeManager.ChangeRotationDirection();
-        if (this.currentHP > 0) return
+        EventManager.emit(SafeKeyEvent.PlaySoundSFXWoodBreak);
+
+
+        if (this.currentHP > 0) return;
+        EventManager.emit(SafeKeyEvent.PlaySoundSFXCutItem);
+
         let dimondAdd = this.getRewardDimond();
         DimondManager.getInstace().addDimond(dimondAdd);
         EventManager.emit(SafeKeyEvent.PlayParticleCutItem, this.getPosition());
         //call UI show UI
         
         EventManager.emit(SafeKeyEvent.SetPauseBlade);
-        setTimeout(() => {
-            EventManager.emit(SafeKeyEvent.OpenUiDimondReward, dimondAdd);
-        }, 500);
-       
+        EventManager.emit(SafeKeyEvent.OpenUiDimondReward, dimondAdd);
         this.destroy();
 
     }

@@ -26,7 +26,7 @@ export class BtnExit extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', () => {
-            console.log("exit setting");
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
             EventManager.emit(SafeKeyEvent.CloseUISetting);
             EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
         });

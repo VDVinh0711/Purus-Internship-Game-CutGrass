@@ -22,6 +22,7 @@ export class InputSystem
 
     OnClick()
     {
-        EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
+        EventManager.emit(SafeKeyEvent.ClickIntoScreen);  
+      
     }
 }

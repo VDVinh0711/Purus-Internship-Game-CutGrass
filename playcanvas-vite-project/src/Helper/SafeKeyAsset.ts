@@ -1,10 +1,21 @@
 export enum SafeKeyAsset
 {
+
+    //==========FONT TEXT
     FontCreanBeige  = "FontCreanBeige",
+
+    //===========MODEL===============
     ModelBlade1 = "ModelBlade1",
     ModelBlade2 = "ModelBlade2",
     ModelGrass = "ModelGrass",
     ModelFlower = "ModelFlower",
+    ModelParticleGrass = "ModelParticleGrass",
+    ModelParticleLose = "ModelParticleLose",
+    ModelStar = "ModelStar",
+    ModelChest = "ModelChest",
+   
+
+    // =========IMAGE TEXURE=========
     TexureBlade = "TexureBlade",
     IMGButtonPlay = "IMGButtonPlay",
     IMGBUttonSetting = "IMGButtonSetting",
@@ -20,18 +31,24 @@ export enum SafeKeyAsset
     IMGRevive = "IMGRevive",
     IMGBtnCloseSoundBG = "IMGBtnCloseSoundBG",
     IMGBtnCloseSoundSFX = "IMGBtnCloseSoundSFX",
-    ModelStar = "ModelStar",
-    IMGIconPowerUp = "IMGIconPowerUp",
-    IMGFlowerTexure = "IMGFlowerTexure",
-    ModelParticleGrass = "ModelParticleGrass",
-    TextureBackgroundWate = "TextureBackgroundWate",
-    ModelParticleLose = "ModelParticleLose",
-    BackGroundWood = "BackGroundWood",
-    ICONScore = "ICONScore",
-    IMGTilePauseGame = "IMGTilePauseGame",
-    IMGIconPause = "IMGIconPause",
-    SCRIPTTween = "ScriptTween",
-    ModelChest = "ModelChest",
     IMGButtonOK = "IMGButtonOK",
     IMGTitleNotification = "IMGTitleNotification",
+    IMGIconPowerUp = "IMGIconPowerUp",
+    IMGFlowerTexure = "IMGFlowerTexure",
+    IMGTilePauseGame = "IMGTilePauseGame",
+    IMGIconPause = "IMGIconPause",
+    BackGroundWood = "BackGroundWood",
+    TextureBackgroundWater = "TextureBackgroundWate",
+    ICONScore = "ICONScore",
+
+    
+    //===========Sound ========================
+    SoundBackground = "SoundBackground",
+    SoundTouchClick = "SoundTouchClick",
+    SoundButtonClick = "SoundButtonClick",
+    SoundWinMap = "SoundWinMap",
+    SoundWinLevel = "SoundWinLevel",
+    SoundCutItem = "SoundCutLevel",
+    SoundLoseGame = "SoundLoseGame",
+    SoundWoodBreak = "SoundWoodBreak",
 }   

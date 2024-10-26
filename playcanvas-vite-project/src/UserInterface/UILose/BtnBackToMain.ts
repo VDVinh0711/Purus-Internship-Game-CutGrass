@@ -17,7 +17,7 @@ export class BtnBackMainMenu extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', function () {
-            // GameManger.getInstance().setUpBegin();
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
              GameManger.getInstance().exitGame();
            
         });

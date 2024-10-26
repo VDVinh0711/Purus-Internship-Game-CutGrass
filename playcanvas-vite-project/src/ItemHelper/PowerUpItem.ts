@@ -62,6 +62,7 @@ export class PowerUpItem extends ItemHelper {
 
     public onCollision(bladeManager: BladeManager): void {
        EventManager.emit(SafeKeyEvent.PlayParticleCutItem, this.getPosition());
+       EventManager.emit(SafeKeyEvent.PlaySoundSFXCutItem);
         bladeManager.bladeStat.reciveItemPowerUp(this);
         this.destroy();
     }

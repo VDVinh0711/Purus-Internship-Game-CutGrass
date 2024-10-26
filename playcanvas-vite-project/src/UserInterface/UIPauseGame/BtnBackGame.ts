@@ -18,6 +18,7 @@ export class BtnBackGame extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', () => {
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
             EventManager.emit(SafeKeyEvent.OpenUIInGame);
             EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
         });

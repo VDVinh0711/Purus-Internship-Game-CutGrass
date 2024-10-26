@@ -9,6 +9,7 @@ import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import * as TWEEN from '@tweenjs/tween.js'
 
+
 export class UISetting extends pc.Entity implements IUIController
 {
     private background !: pc.Entity;
@@ -17,6 +18,7 @@ export class UISetting extends pc.Entity implements IUIController
     private btnSoundBK !: BtnSoundBackground;
     private btnExit !: BtnExit;
 
+ 
 
     private tweenIn !: TWEEN.Tween;
     private tweenOut !: TWEEN.Tween;

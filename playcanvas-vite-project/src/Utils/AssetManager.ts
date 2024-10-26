@@ -47,7 +47,7 @@ export class AssetManager {
             [SafeKeyAsset.IMGIconPowerUp] : new pc.Asset("IMGIconPowerUp","texture",{url:"../../Asset/ICON/power-up.png"}),
             [SafeKeyAsset.IMGFlowerTexure] : new pc.Asset("IMGFlowerTexure","texture",{url:"../../Asset/Texure/flowerTexure.png"}), 
             [SafeKeyAsset.ModelParticleGrass] : new pc.Asset("ModelParticleGrass", "model", { url: "../../Asset/Models/Stone Block.glb" }),
-            [SafeKeyAsset.TextureBackgroundWate] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
+            [SafeKeyAsset.TextureBackgroundWater] : new pc.Asset("TextureBackgroundWate", "texture", { url: "../../Asset/Texure/bgWater.png" }),
             [SafeKeyAsset.ModelParticleLose] : new pc.Asset("ModelParticleLose", "model",{url:"../../Asset/Models/Skullv3.glb"}),
             [SafeKeyAsset.BackGroundWood] : new pc.Asset("BackgroundLose","texture",{url:"../../Asset/ICON/you_lose/bg.png"}),
             [SafeKeyAsset.ICONScore] : new pc.Asset("ICONScore","texture",{url:"../../Asset/ICON/star_1.png"}),
@@ -57,6 +57,19 @@ export class AssetManager {
             [SafeKeyAsset.ModelChest] : new pc.Asset('ModelChest' , 'model' , {url : "../../Asset/Models/Chest.glb"}),
             [SafeKeyAsset.IMGButtonOK] : new pc.Asset('IMGButtonOK' , 'texture' , {url : "../../Asset/ICON/btn/ok.png"}),
             [SafeKeyAsset.IMGTitleNotification] : new pc.Asset('IMGTitleNotification' , 'texture' , {url : "../../Asset/ICON/titleNotification.png"}),
+
+            [SafeKeyAsset.SoundBackground] : new pc.Asset ('soundBK', 'audio' , {url : '../../Asset/Music/soudBackground.mp3'}),
+            [SafeKeyAsset.SoundTouchClick] : new pc.Asset ('SoundTouchClick', 'audio' , {url : '../../Asset/Music/touch.mp3'}),
+            [SafeKeyAsset.SoundButtonClick] : new pc.Asset ('SoundTouchClick', 'audio' , {url : '../../Asset/Music/btnClick.mp3'}), 
+            [SafeKeyAsset.SoundLoseGame] : new pc.Asset ('SoundLoseGame', 'audio' , {url : '../../Asset/Music/loseGame.mp3'}),
+            [SafeKeyAsset.SoundWinLevel] : new pc.Asset ('SoundWinLevel', 'audio' , {url : '../../Asset/Music/winlevel.mp3'}),
+            [SafeKeyAsset.SoundCutItem] : new pc.Asset ('SoundCutItem', 'audio' , {url : '../../Asset/Music/cutItem.mp3'}),
+            [SafeKeyAsset.SoundWoodBreak] : new pc.Asset ('SoundWoodBreak', 'audio' , {url : '../../Asset/Music/woodBreak.mp3'}),
+            [SafeKeyAsset.SoundWinMap] : new pc.Asset ('SoundWinMap', 'audio' , {url : '../../Asset/Music/winmap.mp3'}),
+            
+
+
+
         };
 
         const AssetLoader = new pc.AssetListLoader(Object.values(listAsset), app.assets);

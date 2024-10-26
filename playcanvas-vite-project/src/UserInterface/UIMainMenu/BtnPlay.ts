@@ -1,6 +1,8 @@
 
 import { GameManger } from '../../GameManager';
 import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { EventManager } from '../../Utils/Observer';
 import { BaseButtonUI } from '../BaseButtonUI';
 import * as TWEEN from '@tweenjs/tween.js'
 export class BtnPlay extends BaseButtonUI {
@@ -18,6 +20,7 @@ export class BtnPlay extends BaseButtonUI {
     private setButtonOnclick() {
         if (this.button == null) return;
         this.button.on('click', () => {
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
             GameManger.getInstance().playGame();
         });
     }

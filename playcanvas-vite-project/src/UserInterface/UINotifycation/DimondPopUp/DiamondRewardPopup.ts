@@ -76,7 +76,11 @@ export class DimondRewardPopUp extends pc.Entity {
         });
 
         if (this.btnClose.button) {
-            this.btnClose.button.on('click', () => this.CloseUI());
+            this.btnClose.button.on('click', () => 
+                {
+                    EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
+                    this.CloseUI()
+                });
         }
     }
 

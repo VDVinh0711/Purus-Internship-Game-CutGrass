@@ -11,5 +11,6 @@ export enum SafeNameEntity
     GrassManager = 'GrassManager',
     MapManager = "MapManager",
     BladeManager = "BladeManager",
-    Camera  = "Camera,"
+    Camera  = "Camera",
+    SoundManager = "SoundManager"
 }

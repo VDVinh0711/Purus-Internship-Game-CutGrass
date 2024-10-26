@@ -13,6 +13,7 @@ import { GameManger } from './GameManager';
 import { Plane } from './Entity/Plane';
 import { LevelManager } from './Level/LevelManager';
 import * as TWEEN from '@tweenjs/tween.js'
+import { SoundManager } from './SoundManager/SoundManager';
 
 
 
@@ -29,6 +30,7 @@ export class SceneGameManager {
     private UIManager!: UiManager;
     private isLoading : boolean = true;
     private backGround !: pc.Entity ;
+    private soundManager !: SoundManager;
    
 
     constructor(app: pc.Application) {
@@ -75,10 +77,13 @@ export class SceneGameManager {
     private setUpScene() {
        
 
-        //
+        //background
         this.backGround = new Plane();
         this.app.root.addChild(this.backGround);
        
+        //Sound
+        this.soundManager = new SoundManager();
+        this.app.root.addChild(this.soundManager);
 
         //GrassManager
         this.grassManager = new GrassManager();

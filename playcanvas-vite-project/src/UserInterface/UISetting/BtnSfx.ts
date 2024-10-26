@@ -1,10 +1,13 @@
 
 import { BaseButtonUI } from '../BaseButtonUI';
 import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
-import * as pc from 'playcanvas'
 import { AssetManager } from '../../Utils/AssetManager';
+import { EventManager } from '../../Utils/Observer';
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 export class BtnSFX extends BaseButtonUI
 {
+    
+    
     constructor()
     {
         super({
@@ -13,20 +16,27 @@ export class BtnSFX extends BaseButtonUI
             textureAsset: SafeKeyAsset.IMGButtonSoundSFX,
         });
         this.setButtonOnClick();
-      //  this.setIcon();
+        EventManager.on(SafeKeyEvent.OnChangeVolumeSoundSFX,this.changeIConSFX.bind(this));
+      
     }
 
 
-    private setIcon()
+
+    private changeIConSFX(volume : number)
     {
         if(this.element == null) return;
-        this.element.textureAsset = AssetManager.getInstance().getAsset(SafeKeyAsset.IMGButtonSoundSFX)?.resource.renderAsset;
+        if(this.element == null) return;
+        const texureIMG = volume == 1 ? AssetManager.getInstance().getAsset(SafeKeyAsset.IMGButtonSoundSFX)?.id!
+                            : AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBtnCloseSoundSFX)?.id!
+        this.element.textureAsset = texureIMG;
     }
+   
     private setButtonOnClick()
     {
         if (this.button == null) return;
         this.button.on('click', () => {
-           console.log("sfx button Click")
+           EventManager.emit(SafeKeyEvent.PlaySoundSFXBTN);
+           EventManager.emit(SafeKeyEvent.OnTogleSoundSFX);
         });
     }
 }

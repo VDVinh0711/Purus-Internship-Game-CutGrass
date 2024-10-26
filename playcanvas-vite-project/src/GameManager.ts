@@ -25,19 +25,21 @@ export class GameManger {
         this.isWin = true;
         EventManager.emit(SafeKeyEvent.SetCameraOutGame);
         if (LevelManager.getInstance().canNextoLevel()) {
+            EventManager.emit(SafeKeyEvent.PlaySoundSFXWinLevel);
             EventManager.emit(SafeKeyEvent.OpenUIWinLevel);
             return;
         }
+        EventManager.emit(SafeKeyEvent.PlaySoundSFXWinMap);
         EventManager.emit(SafeKeyEvent.OpenUIWinMap);
 
     }
     public onLose() {
         this.isLose = true;
         ScoreManager.getInstance().setScore(this.scoreBegin);
+        EventManager.emit(SafeKeyEvent.PLaySoundSFXLoseGame);
         setTimeout(() => {
             EventManager.emit(SafeKeyEvent.OpenUILoseGame);
         }, 1000);
-        //call event when lose game
     }
 
     public setUpBegin() {

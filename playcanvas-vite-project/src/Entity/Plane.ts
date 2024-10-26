@@ -25,7 +25,7 @@ export class Plane extends pc.Entity
         this.addComponent('render');
         if(this.render == null) return;
         const material = new pc.StandardMaterial();
-        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TextureBackgroundWate);
+        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TextureBackgroundWater);
         material.diffuseMap = assetTexure?.resource;
         material.update();
         this.render.type = 'plane';
