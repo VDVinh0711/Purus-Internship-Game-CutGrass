@@ -12,6 +12,7 @@ import { ScoreUiManager } from './ScoreUI/UIScoreManager';
 import { UINotifyManager } from './UINotifycation/UINotifyManager';
 import { UIShop } from './UIShop/UIShop';
 import { OverLayUIInput } from './OverLayUI';
+import { UICredit } from './Other/UICredit';
 export class UiManager extends pc.Entity
 {
     private app : pc.Application;
@@ -23,6 +24,7 @@ export class UiManager extends pc.Entity
     private uiSetting !:UISetting;
     private uiPauseGame !:UIPauseGame;
     private uiShop !: UIShop;
+    private uiCredit !: UICredit;
     private uiOverlayInPut !: OverLayUIInput;
 
     private uiNotifycation !: UINotifyManager
@@ -45,6 +47,7 @@ export class UiManager extends pc.Entity
         EventManager.on(SafeKeyEvent.OpenUISetting, this.OpenUISetting.bind(this));
         EventManager.on(SafeKeyEvent.OPenUIPauseGame, this.OpenUiPauseGame.bind(this));
         EventManager.on(SafeKeyEvent.OpenUIShop, this.OpenUIShop.bind(this));
+        EventManager.on(SafeKeyEvent.OpenUICredit, this.OpenUICredit.bind(this));
     }
 
     private setUpBegin()
@@ -112,6 +115,11 @@ export class UiManager extends pc.Entity
         this.addChild(this.uiNotifycation);
 
 
+        //UICredit
+        this.uiCredit = new UICredit(this.app);
+        this.addChild(this.uiCredit);
+        this.uiCredit.enabled = false;
+
         //OpenUI MainMenu
         this.OpenUIMainMenu();
 
@@ -120,11 +128,12 @@ export class UiManager extends pc.Entity
     }
 
 
+    
     private OpenUIMainMenu()
     {
         this.heplerOpenUI(this.uiMainMenu)
     }
-
+    
     private OpenUILoading()
     {
         this.heplerOpenUI(this.uiLoanding)
@@ -154,6 +163,13 @@ export class UiManager extends pc.Entity
         this.heplerOpenUI(this.uiShop);
     }
 
+
+
+    private OpenUICredit()
+    {
+        this.heplerOpenUI(this.uiCredit);
+    }
+
     private heplerOpenUI(ui :IUIController )
     {
         if(this.currentUI != null) this.currentUI.Close();
@@ -171,6 +187,7 @@ export class UiManager extends pc.Entity
       this.uiSetting.update();
       this.uiLose.update();
       this.uiShop.update();
+      this.uiCredit.update();
     }
     
     private CloseUI()

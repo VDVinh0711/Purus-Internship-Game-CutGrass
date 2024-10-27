@@ -12,7 +12,11 @@ export class InputSystem
     {
         //setup for mouse
         const mouse = new pc.Mouse(document.body);
-        mouse.on('mousedown', this.OnClick.bind(this));
+        mouse.on('mousedown', (event) =>
+        {
+            if(event.y <=50) return;
+            this.OnClick();
+        });
 
         const touch = new pc.TouchDevice(document.body);
         touch.on('touchstart', this.OnClick.bind(this));

@@ -5,10 +5,9 @@ import { ImodelChaiSaw } from '../Interface/Imodeltexure';
 
 export class Blade extends pc.Entity {
     private modelChild!: pc.Entity;
-
-
+    private dirRotate : number   =1;
     private readonly speedRotate : number = 1000;
-    private readonly scaleModel : pc.Vec3 = new pc.Vec3(1,1,1.5);
+    private readonly scaleModel : pc.Vec3 = new pc.Vec3(1.25,1.25,2);
     private readonly radiusColision : number = 1;
     private readonly heightColision : number = 0.5;
 
@@ -22,6 +21,11 @@ export class Blade extends pc.Entity {
         this.AddComponent();
         this.loadModelChild();
         return this;
+    }
+
+    public setDirRotate(value : number)
+    {   
+        this.dirRotate = value;
     }
 
     private loadModelChild() {
@@ -98,6 +102,6 @@ export class Blade extends pc.Entity {
     }
 
     public update(dt: number) {
-        this.rotate(0, this.speedRotate * dt, 0);
+        this.rotate(0, this.speedRotate * this.dirRotate * dt, 0);
     }
 }

@@ -77,6 +77,8 @@ export enum SafeKeyEvent {
     OpenUIShop = "OpenUIShop",
     //Open UI Show Notify Text
     OpenUITextNotifyCation = "OpenUITextNotifyCation",
+    //Open UI Credit
+    OpenUICredit = "OpenUICredit",
 
     //================Particle==================
     //PLayparticle Lose

@@ -11,8 +11,6 @@ import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 import { LevelManager } from '../Level/LevelManager';
 import { ScoreManager } from '../Player/ScoreManager';
 import { BladeStat } from './BladeStat';
-import { AssetManager } from '../Utils/AssetManager';
-import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 import { ImodelChaiSaw } from '../Interface/Imodeltexure';
 import { ItemHelper } from '../ItemHelper/itemhelper';
 export class BladeManager extends pc.Entity {
@@ -25,16 +23,10 @@ export class BladeManager extends pc.Entity {
     private dir: number = 1;
     private rope !: Rope;
     private countGrassCutted: number = 0;
-    public isPause: boolean = true;
     private grassManager !: GrassManager;
     public bladeStat !: BladeStat;
-
-
-    private originRadius: number = 2;
-
-
-
-
+    private originRadius: number = 3;
+    public isPause: boolean = true;
 
 
     constructor() {
@@ -44,8 +36,6 @@ export class BladeManager extends pc.Entity {
         this.registerEvent();
         EntityManager.getInstance().registerEntity(SafeNameEntity.BladeManager, this);
 
-
-      
     }
 
     private Init() {
@@ -60,9 +50,11 @@ export class BladeManager extends pc.Entity {
 
         //Blade 1
         this.enRoot = new Blade('blade1').Init(new pc.Vec3(0, 0, 0));
+        this.enRoot.setDirRotate(-1);
         this.root.addChild(this.enRoot);
         //Blade 2
         this.enRotating = new Blade('blade2').Init(new pc.Vec3(0, 0, 0));
+        this.enRotating.setDirRotate(1);
         this.root.addChild(this.enRotating);
 
         this.grassManager = EntityManager.getInstance().getEntity(SafeNameEntity.GrassManager) as GrassManager;
@@ -131,10 +123,10 @@ export class BladeManager extends pc.Entity {
 
             let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().addScore(scoreAdd);
-            EventManager.emit(SafeKeyEvent.SpawmScoreUI,result.other.getPosition(),scoreAdd);
+            EventManager.emit(SafeKeyEvent.SpawmScoreUI, result.other.getPosition(), scoreAdd);
 
             EventManager.emit(SafeKeyEvent.PlayParticle, result.other.getPosition());
-            
+
             //check win 
             this.countGrassCutted++;
             if (this.countGrassCutted != this.grassManager.getCountGrass()) return;
@@ -143,15 +135,15 @@ export class BladeManager extends pc.Entity {
         }
         else
 
-        if (result.other instanceof  ItemHelper ) {
-            result.other.onCollision(this);
-        }
+            if (result.other instanceof ItemHelper) {
+                result.other.onCollision(this);
+            }
     }
 
     //reset Blade
     private reset() {
         this.isPause = true;
-        this.enRoot.enabled = true; 
+        this.enRoot.enabled = true;
         this.radius = 0;
         this.countGrassCutted = 0;
         this.bladeStat.setIsPowering(false);
@@ -181,21 +173,20 @@ export class BladeManager extends pc.Entity {
 
     //change root rotate and dir
     private reverseDirectionAndRotate() {
-       
+
         this.ChangeRotationDirection();
         this.angle += Math.PI;
         [this.enRoot, this.enRotating] = [this.enRotating, this.enRoot];
 
     }
 
-    public ChangeRotationDirection()
-    {
+    public ChangeRotationDirection() {
         this.dir *= -1;
     }
 
     //update
     public update(dt: number) {
-        if (this.isPause ||GameManger.getInstance().isLose ) return;
+        if (this.isPause || GameManger.getInstance().isLose) return;
         this.handelSetBeginBlade(dt);
         this.bladeStat.update(dt);
         this.enRoot.update(dt);
@@ -225,16 +216,14 @@ export class BladeManager extends pc.Entity {
         if (this.isPause) return false;
         const posStart = this.enRoot.getPosition().clone();
         const posEnd = new pc.Vec3(posStart.x, posStart.y - 10, posStart.z);
-       // pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
+        // pc.Application.getApplication()?.drawLine(posStart, posEnd, new pc.Color(1, 0, 1));
         const resultRay = pc.Application.getApplication()?.systems.rigidbody?.raycastFirst(posStart, posEnd);
         return resultRay != null;
     }
 
 
     //ChangeModelBlade
-
-    private changeModelBlade(dataModel : ImodelChaiSaw) 
-    {
+    private changeModelBlade(dataModel: ImodelChaiSaw) {
         this.enRoot.setModelBlade(dataModel);
         this.enRotating.setModelBlade(dataModel);
         this.rope.changeRopeColor(dataModel.colorRope);

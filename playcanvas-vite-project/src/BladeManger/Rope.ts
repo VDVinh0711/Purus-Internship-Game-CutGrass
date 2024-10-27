@@ -1,8 +1,8 @@
 import * as pc from 'playcanvas'
 export class Rope extends pc.Entity {
 
-    private readonly scaleX: number = 0.1;
-    private readonly scaleY: number = 0.1;
+    private readonly scaleX: number = 0.15;
+    private readonly scaleY: number = 0.15;
     private scaleZ: number = 3;
     constructor(name: string) {
         super();
@@ -27,7 +27,7 @@ export class Rope extends pc.Entity {
         this.addComponent('collision');
         if (this.collision == null) return;
         this.collision.type = 'box';
-        this.collision.halfExtents = new pc.Vec3(this.scaleX * 4 , this.scaleY/2, this.scaleZ / 2);
+        this.collision.halfExtents = new pc.Vec3(this.scaleX * 7 , this.scaleY/2, this.scaleZ / 2);
         this.collision.on('collisionstart', this.eventColision.bind(this));
 
     }

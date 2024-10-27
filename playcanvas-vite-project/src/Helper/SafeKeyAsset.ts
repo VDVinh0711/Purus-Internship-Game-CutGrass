@@ -51,11 +51,17 @@ export enum SafeKeyAsset
     IMGBtnShop = "IMGBtnShop",
     IMGIconActive = "IMGIconActive",
     IMGBackgroundShop = "IMGBackgroundShop",
+    IMGTitleCredit = "IMGTitleCredit",
+    IMGIconCredit = "IMGIconCredit",
 
     //===========IMG-ICON==========
     IMGIconBladeSimple = "IMGIconBladeSimple",
     IMGIconBladeNormal = "IMGIconBladeNormal",
     IMGIconBladeMonster = "IMGIconBladeMonster",
+
+    //============= Other ===============
+    IMGICONCATBOTTOMLEFT  = "IMGICONCATBOTTOMLEFT" ,
+    IMGICONCATBOTTOMRIGHT  = "IMGICONCATBOTTOMRIGHT" ,
 
     
     //===========Sound ========================

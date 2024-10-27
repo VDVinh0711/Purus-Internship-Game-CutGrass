@@ -8,11 +8,13 @@ import { UIShowDimond } from './UIShowDimondMainMenu';
 
 import * as TWEEN from '@tweenjs/tween.js'
 import { BtnShop } from './BtnShop';
+import { BtnCredit } from './BtnCredit';
 
 export class UIMainMenu extends pc.Entity implements IUIController {
     private app: pc.Application;
     private btn_Play!: BtnPlay;
     private btn_Setting!: BtnSetting;
+    private btn_credit !: BtnCredit;
     private txt_Score!: TextScoreMainMenu;
     private txt_Level!: TextLevelMainMenu;
     private uiShowDimond!: UIShowDimond;
@@ -45,26 +47,37 @@ export class UIMainMenu extends pc.Entity implements IUIController {
    
 
     private setUpBegin() {
+        //Btn Play
         this.btn_Play = new BtnPlay();
         this.addChild(this.btn_Play);
         this.btn_Play.setLocalPosition(0, -50, 0);
 
+        //Btn setting
         this.btn_Setting = new BtnSetting();
         this.addChild(this.btn_Setting);
         this.btn_Setting.setLocalPosition(100, -200, 0);
 
+        //Btn Shop
         this.btn_shop = new BtnShop();
         this.addChild(this.btn_shop);
-        this.btn_shop.setLocalPosition(-100, -200, 0)
+        this.btn_shop.setLocalPosition(-100, -200, 0);
 
+        //Btn Credit
+        this.btn_credit = new BtnCredit()
+        this.addChild(this.btn_credit);
+        this.btn_credit.setLocalPosition(0,-300,0);
+
+        //Text Score
         this.txt_Score = new TextScoreMainMenu();
         this.addChild(this.txt_Score);
         this.txt_Score.setLocalPosition(0, 300, 0);
 
+        //Text Level
         this.txt_Level = new TextLevelMainMenu();
         this.addChild(this.txt_Level);
         this.txt_Level.setLocalPosition(0, 400, 0);
 
+        //Text Dimond
         this.uiShowDimond = new UIShowDimond();
         this.addChild(this.uiShowDimond);
         this.uiShowDimond.setLocalPosition(0, 200, 0);

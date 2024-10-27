@@ -78,9 +78,15 @@ export class AssetManager {
             [SafeKeyAsset.IMGBtnShop] : new pc.Asset('IMGBtnShop' , 'texture' , {url : "../../Asset/ICON/btn/shop.png"}),
             [SafeKeyAsset.IMGIconActive] : new pc.Asset('IMGIconActive' , 'texture' , {url : "../../Asset/ICON/shop/dot_a.png"}),
             [SafeKeyAsset.IMGBackgroundShop] : new pc.Asset('IMGBackgroundShop' , 'texture' , {url : "../../Asset/ICON/shop/background.png"}),
+            [SafeKeyAsset.IMGTitleCredit] : new pc.Asset('IMGTitleCredit' , 'texture' , {url : "../../Asset/ICON/titleCredit.png"}),
+            [SafeKeyAsset.IMGIconCredit] : new pc.Asset('IMGIconCredit' , 'texture' , {url : "../../Asset/ICON/btn/about.png"}),
 
 
-            //====================================================IMG ICON==========================================================
+            //==================================================== OTHER =============================================================
+            [SafeKeyAsset.IMGICONCATBOTTOMLEFT] : new pc.Asset('IMGICONCATBOTTOMLEFT' , 'texture' , {url : "../../Asset/Other/cute_cat_water.png"}),
+            [SafeKeyAsset.IMGICONCATBOTTOMRIGHT] : new pc.Asset('IMGICONCATBOTTOMRIGHT' , 'texture' , {url : "../../Asset/Other/catthankyou.png"}),
+
+            //==================================================== IMG ICON ==========================================================
             [SafeKeyAsset.IMGIconBladeSimple] : new pc.Asset('IMGIconBladeSimple' , 'texture' , {url : "../../Asset/ImageIcon/BladeSimple.png"}),
             [SafeKeyAsset.IMGIconBladeNormal] : new pc.Asset('IMGIconBladeNormal' , 'texture' , {url : "../../Asset/ImageIcon/Bladenormal.png"}),
             [SafeKeyAsset.IMGIconBladeMonster] : new pc.Asset('IMGIconBladeMonster' , 'texture' , {url : "../../Asset/ImageIcon/BladeMonster.png"}),
