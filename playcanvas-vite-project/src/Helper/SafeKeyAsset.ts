@@ -5,8 +5,9 @@ export enum SafeKeyAsset
     FontCreanBeige  = "FontCreanBeige",
 
     //===========MODEL===============
-    ModelBlade1 = "ModelBlade1",
-    ModelBlade2 = "ModelBlade2",
+    ModelBladeSimple = "ModelBladeSimple",
+    ModelBladeNormal = "ModelBladeNormal",
+    ModelBladeMonster = "ModelBladeMonster",
     ModelGrass = "ModelGrass",
     ModelFlower = "ModelFlower",
     ModelParticleGrass = "ModelParticleGrass",
@@ -15,8 +16,13 @@ export enum SafeKeyAsset
     ModelChest = "ModelChest",
    
 
-    // =========IMAGE TEXURE=========
-    TexureBlade = "TexureBlade",
+    // =========TEXURE=========
+    TexureBladeSimple = "TexureBladeSimple",
+    TexureBladeNormal = "TexureBladeNormal",
+    TexureBladeMonster = "TexureBladeMonster",
+
+
+    //===========IMAGE===============
     IMGButtonPlay = "IMGButtonPlay",
     IMGBUttonSetting = "IMGButtonSetting",
     IMGBackGroundPaper = "IMGBackGroundPaper",
@@ -39,7 +45,17 @@ export enum SafeKeyAsset
     IMGIconPause = "IMGIconPause",
     BackGroundWood = "BackGroundWood",
     TextureBackgroundWater = "TextureBackgroundWate",
-    ICONScore = "ICONScore",
+    IConDimond = "IConDimond",
+    IMGTitleShop = "IMGTitleShop",
+    IMGIconLock = "IMGIconLock",
+    IMGBtnShop = "IMGBtnShop",
+    IMGIconActive = "IMGIconActive",
+    IMGBackgroundShop = "IMGBackgroundShop",
+
+    //===========IMG-ICON==========
+    IMGIconBladeSimple = "IMGIconBladeSimple",
+    IMGIconBladeNormal = "IMGIconBladeNormal",
+    IMGIconBladeMonster = "IMGIconBladeMonster",
 
     
     //===========Sound ========================

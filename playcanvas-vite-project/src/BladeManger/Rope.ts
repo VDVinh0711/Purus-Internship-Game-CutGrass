@@ -51,7 +51,7 @@ export class Rope extends pc.Entity {
         this.addComponent('render');
         if (this.render == null) return;
         this.render.type = 'box';
-        this.render.material = this.createMaterial( new pc.Color(0.8, 0.14, 0.49));
+        this.render.material = this.createMaterial( new pc.Color(1,1,1  ));
     }
 
 

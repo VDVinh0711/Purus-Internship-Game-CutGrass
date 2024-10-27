@@ -19,10 +19,10 @@ export class DimondRewardPopUp extends pc.Entity {
     constructor(app: pc.Application) {
         super();
         this.app = app;
-        this.initializeComponents();
+        this.setUpBegin();
     }
 
-    private initializeComponents(): void {
+    private setUpBegin(): void {
         this.setElement();
         this.setOverlay();
         this.setBackground();

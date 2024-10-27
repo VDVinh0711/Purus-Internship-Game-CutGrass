@@ -1,6 +1,8 @@
 import * as pc from 'playcanvas'
 import { AssetManager } from '../../../Utils/AssetManager';
 import { SafeKeyAsset } from '../../../Helper/SafeKeyAsset';
+import { EventManager } from '../../../Utils/Observer';
+import { SafeKeyEvent } from '../../../Helper/SafeKeyEvent';
 
 export class UIPriceItem extends pc.Entity
 {
@@ -21,8 +23,6 @@ export class UIPriceItem extends pc.Entity
         this.setUpIconDimond();
         
     }
-
-
     private setUpElement()
     {
         this.addComponent('element',{
@@ -63,7 +63,8 @@ export class UIPriceItem extends pc.Entity
                 pivot : [0,0.5],
                 widht : this.height,
                 height : this.height,
-                color : new pc.Color(0.4,0.7,1),
+                color : new pc.Color(1,1,1),
+                textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IConDimond)
             }
         )
       
@@ -80,12 +81,17 @@ export class UIPriceItem extends pc.Entity
                 pivot : [1,0.5],
                 width : this.width - this.height,
                 height : this.height,
-                fontSize : 20,
-                alignment: new pc.Vec2(0.5,0.5),
+                autoWidth: false,
+                autoFitWidth: false,
+                alignment: new pc.Vec2(0.5, 0.5),
+                outlineColor: new pc.Color(0,0,0) ,
+                outlineThickness : 0.5,
+                fontSize : 25,
                 fontAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
                 text : "1000"
             }
         )
+       
     }
 
     public setPrice(price : number)

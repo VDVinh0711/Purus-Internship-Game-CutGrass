@@ -141,7 +141,7 @@ export class UIPauseGame extends pc.Entity implements IUIController {
         const optionEnd  = {x: 0, y:0 , z:0};
         
         this.tweenIn = new TWEEN.Tween(optionStart)
-        .to(optionEnd,500)
+        .to(optionEnd,300)
         .easing(TWEEN.Easing.Bounce.Out)
         .onUpdate(()=>
         {
@@ -157,7 +157,7 @@ export class UIPauseGame extends pc.Entity implements IUIController {
         const optionEnd  = {x: 0, y:-1000, z:0};
         
         this.tweenOut = new TWEEN.Tween(optionStart)
-        .to(optionEnd,300)
+        .to(optionEnd,200)
         .easing(TWEEN.Easing.Linear.None)
         .onComplete(()=>
         {

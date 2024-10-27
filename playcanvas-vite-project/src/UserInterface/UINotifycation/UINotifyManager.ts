@@ -2,6 +2,7 @@ import * as  pc from 'playcanvas'
 import { DimondRewardPopUp } from './DimondPopUp/DiamondRewardPopup';
 import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
+import { NotifyText } from './NotifyText/NotifyText';
 
 export class UINotifyManager extends pc.Entity
 {
@@ -9,6 +10,7 @@ export class UINotifyManager extends pc.Entity
     private app : pc.Application;
    
     private dimondReward !: DimondRewardPopUp;
+    private notifyText !: NotifyText;
     constructor(app : pc.Application)
     {
         super();
@@ -22,6 +24,7 @@ export class UINotifyManager extends pc.Entity
     private registerEvent()
     {
         EventManager.on(SafeKeyEvent.OpenUiDimondReward, this.OpenUINotifyDimondReward.bind(this));   
+        EventManager.on(SafeKeyEvent.OpenUITextNotifyCation, this.OpenUINotifyText.bind(this));
     }
 
     private setElement()
@@ -38,26 +41,33 @@ export class UINotifyManager extends pc.Entity
 
     private setUpBegin()
     {
-        
-
         this.dimondReward = new DimondRewardPopUp(this.app);
         this.addChild(this.dimondReward);
         this.dimondReward.setLocalPosition(0,0,0);
         this.dimondReward.enabled = false;
+
+
+        this.notifyText =  new NotifyText(this.app);
+        this.addChild(this.notifyText);
+        this.notifyText.setLocalPosition(0,0,0);
+        this.notifyText.enabled = false;
     }
 
 
     private OpenUINotifyDimondReward(dimondCount : number)
     {
         this.dimondReward.OpenUI(dimondCount);
-        
     }
 
+    private OpenUINotifyText (text : string)
+    {
+        this.notifyText.OpenUI(text);
+    }
 
     public update()
     {
-        
         this.dimondReward.update();
+        this.notifyText.update();
     }
 
     

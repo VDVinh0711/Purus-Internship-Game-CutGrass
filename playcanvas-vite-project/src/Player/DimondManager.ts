@@ -1,3 +1,6 @@
+import { SafeKeyEvent } from "../Helper/SafeKeyEvent";
+import { EventManager } from "../Utils/Observer";
+
 export class DimondManager 
 {
 
@@ -27,7 +30,7 @@ export class DimondManager
     public addDimond(count : number) 
     {
         this.countDimond += count;
-        console.log(`Dimond ${this.countDimond}`);
+        EventManager.emit(SafeKeyEvent.OnChangeDimond, this.countDimond);
     }
     
     public canReduceDimond(count : number) : boolean
@@ -38,6 +41,7 @@ export class DimondManager
     public reduceDimond (count : number)
     {
         this.countDimond -= count;
+        EventManager.emit(SafeKeyEvent.OnChangeDimond, this.countDimond);
     }
     
 }

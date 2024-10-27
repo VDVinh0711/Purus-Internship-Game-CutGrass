@@ -61,12 +61,12 @@ export class Blade extends pc.Entity {
 
         this.modelChild.addComponent("model", {
             type: "asset",
-            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBlade1),
+            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.ModelBladeSimple),
         });
         this.modelChild.setLocalScale(this.scaleModel);
 
         const material = new pc.StandardMaterial();
-        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBlade);
+        const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBladeSimple);
         material.diffuseMap = assetTexure?.resource;
         material.update();
         const meshInstance = this.modelChild.model?.meshInstances[0];

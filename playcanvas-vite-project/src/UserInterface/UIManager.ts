@@ -44,6 +44,7 @@ export class UiManager extends pc.Entity
         EventManager.on(SafeKeyEvent.OpenUILoseGame, this.OpenUILoseGame.bind(this));
         EventManager.on(SafeKeyEvent.OpenUISetting, this.OpenUISetting.bind(this));
         EventManager.on(SafeKeyEvent.OPenUIPauseGame, this.OpenUiPauseGame.bind(this));
+        EventManager.on(SafeKeyEvent.OpenUIShop, this.OpenUIShop.bind(this));
     }
 
     private setUpBegin()
@@ -82,7 +83,7 @@ export class UiManager extends pc.Entity
         this.uiSetting.enabled = false;
 
         //Shop
-        this.uiShop = new UIShop();
+        this.uiShop = new UIShop(this.app);
         this.addChild(this.uiShop);
         this.uiShop.setLocalPosition(0,0,0);
         this.uiShop.enabled = false;
@@ -112,7 +113,7 @@ export class UiManager extends pc.Entity
 
 
         //OpenUI MainMenu
-        this.OpenUIShop();
+        this.OpenUIMainMenu();
 
        
        
@@ -169,6 +170,7 @@ export class UiManager extends pc.Entity
       this.uiPauseGame.update();
       this.uiSetting.update();
       this.uiLose.update();
+      this.uiShop.update();
     }
     
     private CloseUI()

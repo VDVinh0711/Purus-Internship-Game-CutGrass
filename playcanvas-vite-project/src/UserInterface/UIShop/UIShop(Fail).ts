@@ -1,5 +1,5 @@
 import * as pc from 'playcanvas';
-import { UiItemInShop } from './UIItemInShop/UIShowItemInShop';
+import { UiItemInShop } from './UIItemInShop/UIItemInShop';
 import { IUIController } from '../IUiController';
 
 export class UIShopdsdsd extends pc.Entity implements IUIController {

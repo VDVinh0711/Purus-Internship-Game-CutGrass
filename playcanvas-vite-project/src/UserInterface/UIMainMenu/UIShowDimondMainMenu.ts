@@ -54,7 +54,7 @@ export class UIShowDimond extends pc.Entity
                 width : this.height,
                 height : this.height,
                 color : new pc.Color(1,1,1),
-                textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.ICONScore) 
+                textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IConDimond) 
             }
         );
         this.iconDimond.setLocalPosition(10, 0, 0);

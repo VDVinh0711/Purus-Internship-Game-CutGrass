@@ -7,6 +7,7 @@ import { IUIController } from '../IUiController';
 import { UIShowDimond } from './UIShowDimondMainMenu';
 
 import * as TWEEN from '@tweenjs/tween.js'
+import { BtnShop } from './BtnShop';
 
 export class UIMainMenu extends pc.Entity implements IUIController {
     private app: pc.Application;
@@ -15,6 +16,7 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     private txt_Score!: TextScoreMainMenu;
     private txt_Level!: TextLevelMainMenu;
     private uiShowDimond!: UIShowDimond;
+    private btn_shop !: BtnShop;
     private paddingBottom: number = 100;
     private posStart: number = 300;
 
@@ -49,7 +51,11 @@ export class UIMainMenu extends pc.Entity implements IUIController {
 
         this.btn_Setting = new BtnSetting();
         this.addChild(this.btn_Setting);
-        this.btn_Setting.setLocalPosition(0, -200, 0);
+        this.btn_Setting.setLocalPosition(100, -200, 0);
+
+        this.btn_shop = new BtnShop();
+        this.addChild(this.btn_shop);
+        this.btn_shop.setLocalPosition(-100, -200, 0)
 
         this.txt_Score = new TextScoreMainMenu();
         this.addChild(this.txt_Score);

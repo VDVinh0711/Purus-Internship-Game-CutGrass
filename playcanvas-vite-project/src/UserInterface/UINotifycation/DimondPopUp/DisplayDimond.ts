@@ -54,10 +54,10 @@ export class DisplayDimond extends pc.Entity
                 width : this.height,
                 height : this.height,
                 color : new pc.Color(1,1,1),
-                textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.ICONScore) 
+                textureAsset : AssetManager.getInstance().getAsset(SafeKeyAsset.IConDimond) 
             }
         );
-        // Dịch chuyển icon sang phải một nửa chiều rộng của text
+        
         this.iconDimond.setLocalPosition(10, 0, 0);
     }
 
@@ -77,7 +77,7 @@ export class DisplayDimond extends pc.Entity
             fontSize: 40,
             text: '+3',
         });
-        // Dịch chuyển text sang trái một chút để tạo khoảng cách với icon
+        
         this.txtDimond.setLocalPosition(-10, 0, 0);
     }
 

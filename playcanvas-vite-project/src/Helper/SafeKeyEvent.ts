@@ -42,6 +42,8 @@ export enum SafeKeyEvent {
     OnChangeMap = 'OnChangeMap',
     //Change ModelBlade
     OnChangeModelBlade = "OnChangeModelBlade",
+    //OnChangeDimond
+    OnChangeDimond = "OnChangeDimond",
 
 
     //================UI=======================
@@ -71,6 +73,10 @@ export enum SafeKeyEvent {
     OpenUiDimondReward = "OpenUiDimondReward",
     //OpenUIPauseGame
     OPenUIPauseGame = "OpenUIPauseGame",
+    //Open UI Shop
+    OpenUIShop = "OpenUIShop",
+    //Open UI Show Notify Text
+    OpenUITextNotifyCation = "OpenUITextNotifyCation",
 
     //================Particle==================
     //PLayparticle Lose
