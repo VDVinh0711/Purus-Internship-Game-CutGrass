@@ -118,6 +118,8 @@ export enum SafeKeyEvent {
     PLaySoundSFXLoseGame = "PLaySoundSFXLoseGame",
     //PlaySFX Win Map
     PlaySoundSFXWinMap = "PlaySoundSFXWinMap",
+    //Play SFX cut grass
+    playSFXCutGrass = "playSFXCutGrass"
 
 
     

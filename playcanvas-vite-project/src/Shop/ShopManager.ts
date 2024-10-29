@@ -22,6 +22,7 @@ export class ShopManager {
     }
 
     private createDataShop() {
+
         const bladeSimple = new ItemDataShop(
             {
                 model: SafeKeyAsset.ModelBladeSimple,
@@ -41,7 +42,7 @@ export class ShopManager {
             {
                 model: SafeKeyAsset.ModelBladeNormal,
                 texure: SafeKeyAsset.TexureBladeNormal,
-                colorRope: new pc.Color(1, 1, 1)
+                colorRope: new pc.Color(77/255, 166/255, 255/255)
             },
             10,
             AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIconBladeNormal)!
@@ -54,7 +55,7 @@ export class ShopManager {
             {
                 model: SafeKeyAsset.ModelBladeMonster,
                 texure: SafeKeyAsset.TexureBladeMonster,
-                colorRope: new pc.Color(1, 1, 1)
+                colorRope: new pc.Color(255/255, 51/255, 51/255)
             },
             10,
             AssetManager.getInstance().getAsset(SafeKeyAsset.IMGIconBladeMonster)!

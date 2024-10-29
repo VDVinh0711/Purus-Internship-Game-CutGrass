@@ -100,6 +100,7 @@ export class AssetManager {
             [SafeKeyAsset.SoundCutItem] : new pc.Asset ('SoundCutItem', 'audio' , {url : '../../Asset/Music/cutItem.mp3'}),
             [SafeKeyAsset.SoundWoodBreak] : new pc.Asset ('SoundWoodBreak', 'audio' , {url : '../../Asset/Music/woodBreak.mp3'}),
             [SafeKeyAsset.SoundWinMap] : new pc.Asset ('SoundWinMap', 'audio' , {url : '../../Asset/Music/winmap.mp3'}),
+            [SafeKeyAsset.SoundCutGrass] : new pc.Asset ('SoundCutGrass', 'audio' , {url : '../../Asset/Music/cutGrass.mp3'}),
             
 
 

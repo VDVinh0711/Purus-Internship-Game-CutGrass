@@ -8,7 +8,7 @@ export class BladeStat {
     private bladeManager: BladeManager;
 
     private timeCountDown: number = 0;
-    private speedScaling: number = 4;
+    private speedScaling: number = 3;
     private radiusOrigin: number;
     private speedOrigin: number;
     private readonly radiusPower: number = 5;

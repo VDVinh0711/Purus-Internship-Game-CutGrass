@@ -6,7 +6,7 @@ import { ImodelChaiSaw } from '../Interface/Imodeltexure';
 export class Blade extends pc.Entity {
     private modelChild!: pc.Entity;
     private dirRotate : number   =1;
-    private readonly speedRotate : number = 1000;
+    private readonly speedRotate : number = 500
     private readonly scaleModel : pc.Vec3 = new pc.Vec3(1.25,1.25,2);
     private readonly radiusColision : number = 1;
     private readonly heightColision : number = 0.5;

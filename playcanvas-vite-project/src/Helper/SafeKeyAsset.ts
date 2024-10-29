@@ -73,4 +73,5 @@ export enum SafeKeyAsset
     SoundCutItem = "SoundCutLevel",
     SoundLoseGame = "SoundLoseGame",
     SoundWoodBreak = "SoundWoodBreak",
+    SoundCutGrass = "SoundCutGrass",
 }   

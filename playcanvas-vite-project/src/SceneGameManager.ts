@@ -36,10 +36,8 @@ export class SceneGameManager {
     constructor(app: pc.Application) {
         this.app = app;
         this.app.start();
-        this.setupPhysics();
         this.setupEventListeners();
         this.initializeGame();
-        
     }
 
     private async initializeGame() {
@@ -115,10 +113,7 @@ export class SceneGameManager {
 
     }
 
-    private setupPhysics() {
-        this.app.systems.rigidbody?.gravity.set(0, -9.8, 0);
-    }
-
+    
     private setupEventListeners() {
         window.addEventListener('resize', () => this.app.resizeCanvas());
         this.app.on('update', this.update.bind(this));
@@ -129,7 +124,7 @@ export class SceneGameManager {
         this.bladeManager.update(dt);
         this.camera.update(dt);
         this.UIManager.upDate(dt);
-       
+       //this.mapManager.update(dt);
         //console.log(`FPS : ${this.app.stats.frame.fps}`);
     }
 }

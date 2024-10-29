@@ -33,6 +33,8 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
+            outlineColor: new pc.Color(0,0,0) ,
+            outlineThickness : 0.5,
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Success Text',
@@ -46,6 +48,8 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0, 0.5, 0],
             pivot: [0.5, 0],
+            outlineColor: new pc.Color(0,0,0) ,
+            outlineThickness : 0.5,
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Click To Continue'

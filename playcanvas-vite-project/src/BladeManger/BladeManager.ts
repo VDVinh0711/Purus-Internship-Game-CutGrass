@@ -19,7 +19,7 @@ export class BladeManager extends pc.Entity {
     private enRotating!: Blade;
     private angle: number = 0;
     private radius: number = 0;
-    private speed: number = 4;
+    private speed: number = 3;
     private dir: number = 1;
     private rope !: Rope;
     private countGrassCutted: number = 0;
@@ -120,6 +120,7 @@ export class BladeManager extends pc.Entity {
         if (result.other.name === 'grass') {
 
             PoolingGrass.getInstance().deSpawmGrass(result.other);
+            EventManager.emit(SafeKeyEvent.playSFXCutGrass);
 
             let scoreAdd = this.bladeStat.getIsPowering() ? 2 : 1;
             ScoreManager.getInstance().addScore(scoreAdd);

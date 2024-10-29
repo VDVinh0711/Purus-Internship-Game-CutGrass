@@ -27,7 +27,7 @@ export class Rope extends pc.Entity {
         this.addComponent('collision');
         if (this.collision == null) return;
         this.collision.type = 'box';
-        this.collision.halfExtents = new pc.Vec3(this.scaleX * 7 , this.scaleY/2, this.scaleZ / 2);
+        this.collision.halfExtents = new pc.Vec3(this.scaleX * 2 , this.scaleY/2, this.scaleZ / 2);
         this.collision.on('collisionstart', this.eventColision.bind(this));
 
     }
@@ -36,7 +36,7 @@ export class Rope extends pc.Entity {
         this.scaleZ = scaleZ;
         this.setLocalScale(this.scaleX, this.scaleY, this.scaleZ);
         if (this.collision == null) return;
-        this.collision.halfExtents = new pc.Vec3(this.scaleX , this.scaleY , this.scaleZ);
+        this.collision.halfExtents = new pc.Vec3(this.scaleX *2, this.scaleY , this.scaleZ/2);
     }
 
     private setRigidbody() {
@@ -51,7 +51,7 @@ export class Rope extends pc.Entity {
         this.addComponent('render');
         if (this.render == null) return;
         this.render.type = 'box';
-        this.render.material = this.createMaterial( new pc.Color(1,1,1  ));
+        this.render.material = this.createMaterial( new pc.Color(1,1,1));
     }
 
 

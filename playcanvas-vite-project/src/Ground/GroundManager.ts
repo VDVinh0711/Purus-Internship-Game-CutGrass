@@ -33,12 +33,12 @@ export class GroundManager extends pc.Entity
     {
         for(let i = -10 ;i<= this.width;i+=this.space)
         {
-            pc.Application.getApplication()?.drawLine(new pc.Vec3(i,1,-10), new pc.Vec3(i,1,10) , new pc.Color(1,1,0) );
+            pc.Application.getApplication()?.drawLine(new pc.Vec3(i*2,1,-10), new pc.Vec3(i*2,1,10) , new pc.Color(1,1,0) );
         }
 
         for(let i = -10 ;i<= this.height;i+=this.space)
         {
-            pc.Application.getApplication()?.drawLine(new pc.Vec3(-10,1,i), new pc.Vec3(this.width,1,i) , new pc.Color(1,0,0)  );
+            pc.Application.getApplication()?.drawLine(new pc.Vec3(-10,1,i*2), new pc.Vec3(this.width,1,i*2) , new pc.Color(1,0,0)  );
         }
     }
 

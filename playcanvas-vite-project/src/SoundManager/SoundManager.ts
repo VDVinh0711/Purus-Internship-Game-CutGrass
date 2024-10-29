@@ -18,7 +18,8 @@ export class SoundManager extends pc.Entity {
         CUTITEM : 'cutItem',
         LOSEGAME : 'loseGame',
         WINLEVEL : 'Winlevel',
-        WINMAP : 'WinMap'
+        WINMAP : 'WinMap',
+        CUTGRASS : 'CUTGRASS'
     }
     private readonly SOUND_BACKGROUND = {
         BACKGROUND: 'soundBK',
@@ -51,6 +52,7 @@ export class SoundManager extends pc.Entity {
         EventManager.on(SafeKeyEvent.PLaySoundSFXLoseGame, this.playSFXLoseGame.bind(this));
         EventManager.on(SafeKeyEvent.PlaySoundSFXWinLevel, this.playSFXWinLevel.bind(this));
         EventManager.on(SafeKeyEvent.PlaySoundSFXWinMap, this.playSFXWinMap.bind(this));
+        EventManager.on(SafeKeyEvent.playSFXCutGrass, this.playSFXCutGrass.bind(this));
     }
 
 
@@ -92,7 +94,7 @@ export class SoundManager extends pc.Entity {
         this.sound.addSlot(this.SOUND_SFX.TOUCH, {
             startTime: 0,
             overlap: true,
-            volume: this.volumeSFX,
+            volume: this.volumeSFX/2,
             pitch: 1,
             asset: AssetManager.getInstance().getAsset(SafeKeyAsset.SoundTouchClick)?.id
         });
@@ -144,7 +146,20 @@ export class SoundManager extends pc.Entity {
             pitch: 1,
             asset: AssetManager.getInstance().getAsset(SafeKeyAsset.SoundWinMap)?.id
         });
+
+
+         //CutGrass
+         this.sound.addSlot(this.SOUND_SFX.CUTGRASS, {
+            startTime: 0,
+            overlap: true,
+            volume: this.volumeSFX/4,
+            pitch: 1,
+            asset: AssetManager.getInstance().getAsset(SafeKeyAsset.SoundCutGrass)?.id
+        });
+
         
+
+
     }
 
 
@@ -201,6 +216,12 @@ export class SoundManager extends pc.Entity {
         this.sound.slot(this.SOUND_SFX.WINMAP)?.play();
     }
 
+    private playSFXCutGrass()
+    {
+        if(this.sound == null) return;
+        if(this.sound.slot(this.SOUND_SFX.CUTGRASS) == null ) return;
+        this.sound.slot(this.SOUND_SFX.CUTGRASS)?.play();
+    }
 
     
 
