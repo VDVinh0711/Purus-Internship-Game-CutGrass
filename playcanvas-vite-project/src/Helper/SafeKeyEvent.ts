@@ -79,7 +79,7 @@ export enum SafeKeyEvent {
     OpenUITextNotifyCation = "OpenUITextNotifyCation",
     //Open UI Credit
     OpenUICredit = "OpenUICredit",
-
+    OpenUINotifiSelect = "OpenUINotifiSelect",
     //================Particle==================
     //PLayparticle Lose
     PlayParticleOutGround = "PlayParticleOutGround",

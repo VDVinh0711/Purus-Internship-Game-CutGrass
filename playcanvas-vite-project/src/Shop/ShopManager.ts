@@ -72,12 +72,15 @@ export class ShopManager {
         const index = this.itemsShop.indexOf(item);
         if (index == -1) return;
         if (this.itemsShop[index].getPrice() > DimondManager.getInstace().getDimond()) {
-            EventManager.emit(SafeKeyEvent.OpenUITextNotifyCation, "You don't have enough Star !");
+           EventManager.emit(SafeKeyEvent.OpenUITextNotifyCation, "You don't have enough Star !");
             return;
         }
-        DimondManager.getInstace().reduceDimond(this.itemsShop[index].getPrice());
-        this.itemsShop[index].setIsBought(true);
-        this.changeActiveItem(this.itemsShop[index]);
+        EventManager.emit(SafeKeyEvent.OpenUINotifiSelect, "Do you want buy it" , () =>
+            {
+                DimondManager.getInstace().reduceDimond(this.itemsShop[index].getPrice());
+                this.itemsShop[index].setIsBought(true);
+                this.changeActiveItem(this.itemsShop[index]);
+            });
     }
 
     public changeActiveItem(item: ItemDataShop) {

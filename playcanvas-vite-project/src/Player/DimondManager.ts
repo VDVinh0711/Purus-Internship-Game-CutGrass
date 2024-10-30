@@ -4,7 +4,7 @@ import { EventManager } from "../Utils/Observer";
 export class DimondManager 
 {
 
-    private countDimond : number = 0;
+    private countDimond : number = 50;
     private static instance : DimondManager;
     constructor()
     {

@@ -11,7 +11,7 @@ export class BtnExit extends BaseButtonUI {
         super({
             width: 50,
             height: 50,
-            textureAsset: SafeKeyAsset.IMGButtonCLose,
+            textureAsset: SafeKeyAsset.IMGButtonCLoseCircle,
         });
         this.setAnchorPivot();
         this.setButtonOnclick();
