@@ -6,7 +6,6 @@ import { TextLevelMainMenu } from './TextLevelMainMenu';
 import { IUIController } from '../IUiController';
 import { UIShowDimond } from './UIShowDimondMainMenu';
 
-import * as TWEEN from '@tweenjs/tween.js'
 import { BtnShop } from './BtnShop';
 import { BtnCredit } from './BtnCredit';
 
@@ -19,11 +18,8 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     private txt_Level!: TextLevelMainMenu;
     private uiShowDimond!: UIShowDimond;
     private btn_shop !: BtnShop;
-    private paddingBottom: number = 100;
-    private posStart: number = 300;
-
-
-   
+    
+    
 
     constructor(app: pc.Application) {
         super();
@@ -32,6 +28,7 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         this.setElement();
         this.setUpBegin();
         this.init();
+       
     }
 
     private setElement() {
@@ -55,17 +52,17 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         //Btn setting
         this.btn_Setting = new BtnSetting();
         this.addChild(this.btn_Setting);
-        this.btn_Setting.setLocalPosition(100, -200, 0);
+       
 
         //Btn Shop
         this.btn_shop = new BtnShop();
         this.addChild(this.btn_shop);
-        this.btn_shop.setLocalPosition(-100, -200, 0);
+       
 
         //Btn Credit
         this.btn_credit = new BtnCredit()
         this.addChild(this.btn_credit);
-        this.btn_credit.setLocalPosition(0,-300,0);
+       
 
         //Text Score
         this.txt_Score = new TextScoreMainMenu();
@@ -81,6 +78,9 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         this.uiShowDimond = new UIShowDimond();
         this.addChild(this.uiShowDimond);
         this.uiShowDimond.setLocalPosition(0, 200, 0);
+
+
+        this.updateResizeWindow();
     }
 
     public update(dt : number)
@@ -101,7 +101,40 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     }
 
     Close(): void {
-        
         this.enabled = false;
+    }
+
+
+
+    private updateResizeWindow()
+    {
+        const innerWidth = window.innerWidth;
+        const innerHeight = window.innerHeight;
+
+        if(innerWidth < innerHeight)
+        {
+            this.btn_credit.setAnchorPivot(new pc.Vec4(0,0,0,0), new pc.Vec2(0,0));
+            this.btn_credit.setLocalPosition(0,0,0);
+
+            this.btn_Setting.setAnchorPivot(new pc.Vec4(1,0,1,0), new pc.Vec2(1,0));
+            this.btn_Setting.setLocalPosition(0,0,0);
+
+          
+            this.btn_shop.setAnchorPivot(  new pc.Vec4(0.5,0,0.5,0), new pc.Vec2(0.5,0))
+            this.btn_shop.setLocalPosition(0,0,0);
+        }
+        else
+        {
+            this.btn_credit.setAnchorPivot(new pc.Vec4(0.5,0.5,0.5,0.5), new pc.Vec2(0.5,0.5));
+            this.btn_credit.setLocalPosition(0,-300,0);
+
+
+            this.btn_Setting.setAnchorPivot(new pc.Vec4(0.5,0.5,0.5,0.5), new pc.Vec2(0.5,0.5));
+            this.btn_Setting.setLocalPosition(100, -200, 0);
+
+          
+            this.btn_shop.setAnchorPivot(new pc.Vec4(0.5,0.5,0.5,0.5), new pc.Vec2(0.5,0.5))
+            this.btn_shop.setLocalPosition(-100, -200, 0);
+        }
     }
 }

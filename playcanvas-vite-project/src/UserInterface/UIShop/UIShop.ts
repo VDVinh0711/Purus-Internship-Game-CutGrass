@@ -7,6 +7,8 @@ import { BtnBackUIShop } from './BtnBackShop';
 import { UIDimondUserShop } from './UIDimodUserShop';
 import { ShopManager } from '../../Shop/ShopManager';
 import * as TWEEN from '@tweenjs/tween.js';
+import { EventManager } from '../../Utils/Observer';
+import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 
 export class UIShop extends pc.Entity implements IUIController {
     private app !: pc.Application;
@@ -17,6 +19,19 @@ export class UIShop extends pc.Entity implements IUIController {
     private groupItems !: pc.Entity;
     private dimondUser !: UIDimondUserShop;
 
+
+    private paddingGroup !: pc.Vec4;
+    private posBtnBack !: pc.Vec3;
+
+
+
+
+    private minScale : number = 0.8;
+    private maxScale : number = 1;
+
+    private widthGroupItem : number = 600;
+    private heightGroupItem : number = 600;
+    private paddingGroupItem : number = 100;
 
     private tweenIn !: TWEEN.Tween;
     private tweenOut !: TWEEN.Tween;
@@ -37,20 +52,31 @@ export class UIShop extends pc.Entity implements IUIController {
     }
 
     private setUpBegin() {
+
+       
+
+
+       
+        
+        this.updateSizeShop();
+
         this.setUpElement();
         this.setUpOverLay();
-
         this.setUpBackground();
         this.setUpGroupItems();
         this.setUpTitleShop();
 
         this.btnBack = new BtnBackUIShop();
         this.addChild(this.btnBack);
-
+        this.btnBack.setLocalPosition(this.posBtnBack);
+       
         this.dimondUser = new UIDimondUserShop();
         this.addChild(this.dimondUser);
-        this.dimondUser.setLocalPosition(-50, 0, 0);
         this.setupItemShop();
+
+
+      
+
 
         this.setUpTweenIn();
         this.setUpTweenOut();
@@ -60,8 +86,8 @@ export class UIShop extends pc.Entity implements IUIController {
             type: pc.ELEMENTTYPE_GROUP,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 600,
-            height: 600
+            width: this.widthGroupItem,
+            height: this.heightGroupItem
         });
     }
 
@@ -72,8 +98,8 @@ export class UIShop extends pc.Entity implements IUIController {
             type: pc.ELEMENTTYPE_IMAGE,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 500,
-            height: 500,
+            width: this.widthGroupItem,
+            height: this.heightGroupItem,
             color: new pc.Color(1, 1, 1),
             textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGBackGroundPaper),
         });
@@ -86,15 +112,15 @@ export class UIShop extends pc.Entity implements IUIController {
             type: pc.ELEMENTTYPE_GROUP,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: 500,
-            height: 500
+            width: this.widthGroupItem - this.paddingGroupItem,
+            height: this.widthGroupItem - this.paddingGroupItem
         });
 
         this.groupItems.addComponent('layoutgroup', {
             orientation: pc.ORIENTATION_HORIZONTAL,
             reverseY: true,
             alignment: new pc.Vec2(0, 1),
-            padding: new pc.Vec4(70, 0, 0, 70),
+            padding: this.paddingGroup,
             spacing: new pc.Vec2(30, 30),
             widthFitting: pc.FITTING_NONE,
             heightFitting: pc.FITTING_NONE,
@@ -111,8 +137,8 @@ export class UIShop extends pc.Entity implements IUIController {
                 type: pc.ELEMENTTYPE_IMAGE,
                 anchor: [0.5, 1, 0.5, 1],
                 pivot: [0.5, 1],
-                width: 250,
-                height: 100,
+                width: this.widthGroupItem/3,
+                height: this.widthGroupItem/6,
                 color: new pc.Color(1, 1, 1),
                 textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGTitleShop)
             }
@@ -131,8 +157,13 @@ export class UIShop extends pc.Entity implements IUIController {
                 height: this.app.graphicsDevice.height,
                 color: new pc.Color(1, 1, 1),
                 opacity: 0.5,
+                useInput : true,
             }
         )
+        if(this.overLay.element == null) return;
+        this.overLay.element?.on('click', () => {
+            this.Close();
+        });
     }
 
 
@@ -163,9 +194,43 @@ export class UIShop extends pc.Entity implements IUIController {
             })
             .onComplete(() => {
                 this.enabled = false;
+                EventManager.emit(SafeKeyEvent.OpenUIMainMenu);
             });
     }
 
+
+
+
+    protected updateSizeShop() {
+       
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const scaleX = screenWidth / 1920;
+        const scaleY = screenHeight / 1080;
+        
+       
+        const scale = Math.min(scaleX, scaleY);
+        
+        
+        const finalScale = Math.max(this.minScale, Math.min(this.maxScale, scale));
+
+        this.widthGroupItem *= finalScale;
+        this.heightGroupItem *= finalScale;
+
+        if(screenWidth < screenHeight)
+        {
+            this.paddingGroup = new pc.Vec4(20,0,0,20)
+            this.posBtnBack = new pc.Vec3(-20,-10,0);
+         
+        }
+        else
+        {
+            this.paddingGroup = new pc.Vec4(20,0 ,0,20)
+            this.posBtnBack = new pc.Vec3(0,0,0);
+        }
+
+    }
 
     public update()
     {
