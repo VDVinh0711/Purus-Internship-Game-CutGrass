@@ -13,13 +13,13 @@ export class Camera extends pc.Entity {
     private offset !: pc.Vec3;
 
     private readonly offsetoutGame : pc.Vec3 = new pc.Vec3(0,25,1);
-    private readonly offsetintGame : pc.Vec3 = new pc.Vec3(0,15,10);
+    private  offsetintGame !: pc.Vec3;
 
     constructor() {
         super();
-    
         this.name = SafeNameEntity.Camera;
         EntityManager.getInstance().registerEntity(SafeNameEntity.Camera, this);
+        
         this.setUpBegin();
        
     }
@@ -28,6 +28,7 @@ export class Camera extends pc.Entity {
     {
         this.init();
         this.offset  =this.offsetoutGame;
+        this.updateResizeWindow();
         this.registerEvent();
     }
     private init() {
@@ -56,6 +57,11 @@ export class Camera extends pc.Entity {
         this.offset  =this.offsetintGame;
     }
 
+
+
+
+
+
    
 
     public update() {
@@ -72,5 +78,22 @@ export class Camera extends pc.Entity {
 
         this.targetLookAt.lerp(this.targetLookAt, bladePosition, this.smoothFactor);
         this.lookAt(this.targetLookAt);
+    }
+
+
+
+    private updateResizeWindow()
+    {
+        const innerWidth = window.innerWidth;
+        const innerHeight = window.innerHeight;
+
+        if(innerWidth < innerHeight)
+        {
+            this.offsetintGame = new pc.Vec3(0,20,15);
+        }
+        else
+        {
+           this.offsetintGame = new pc.Vec3(0,15,10);
+        }
     }
 }

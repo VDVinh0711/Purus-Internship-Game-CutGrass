@@ -44,7 +44,7 @@ export class UILoading extends pc.Entity implements IUIController
     private setText()
     {
         this.text_Loading = new pc.Entity('Text');
-        this.app.assets.loadFromUrl('./Asset/Fonts/Cream Beige.json', 'font', (err, asset : pc.Asset | undefined) => {
+        this.app.assets.loadFromUrl('Fonts/Cream Beige.json', 'font', (err, asset : pc.Asset | undefined) => {
             if (err) {
                 console.error('Error loading font:', err);
             }
