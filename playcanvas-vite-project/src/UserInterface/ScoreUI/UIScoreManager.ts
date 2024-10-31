@@ -70,7 +70,7 @@ export class ScoreUiManager extends pc.Entity {
     } 
 
 
-    public update(dt : number)
+    public update()
     {
         if(!this.enabled) return;
         this.scoreUIActive.forEach(scoreUI => {
@@ -100,15 +100,15 @@ export class ScoreUiManager extends pc.Entity {
         return new pc.Vec3(screenX, screenY, 0);
     }
 
-    private clearScoreUI()
-    {
-        this.scoreUIActive.forEach(scoreUI => {
-            if(scoreUI.enabled)
-            {
-                this.deSpawScoreUI(scoreUI);
-            }
-        });
-    }
+    // private clearScoreUI()
+    // {
+    //     this.scoreUIActive.forEach(scoreUI => {
+    //         if(scoreUI.enabled)
+    //         {
+    //             this.deSpawScoreUI(scoreUI);
+    //         }
+    //     });
+    // }
 
 
 }

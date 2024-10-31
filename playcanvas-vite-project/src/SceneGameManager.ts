@@ -12,7 +12,6 @@ import { AssetManager } from './Utils/AssetManager';
 import { GameManger } from './GameManager';
 import { Plane } from './Entity/Plane';
 import { LevelManager } from './Level/LevelManager';
-import * as TWEEN from '@tweenjs/tween.js'
 import { SoundManager } from './SoundManager/SoundManager';
 
 
@@ -52,6 +51,7 @@ export class SceneGameManager {
 
         //input
         this.inputSystem = new InputSystem();
+        this.inputSystem.doSomething();
 
          //UiManager
         this.UIManager = new UiManager(this.app);
@@ -122,9 +122,7 @@ export class SceneGameManager {
     private update(dt: number) {
         if(this.isLoading) return;
         this.bladeManager.update(dt);
-        this.camera.update(dt);
-        this.UIManager.upDate(dt);
-       //this.mapManager.update(dt);
-        //console.log(`FPS : ${this.app.stats.frame.fps}`);
+        this.camera.update();
+        this.UIManager.upDate();
     }
 }

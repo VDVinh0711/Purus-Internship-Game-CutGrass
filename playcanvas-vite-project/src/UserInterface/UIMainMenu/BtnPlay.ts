@@ -40,7 +40,7 @@ export class BtnPlay extends BaseButtonUI {
             .start();
     }
 
-    public update(dt: number) {
+    public update() {
         this.scaleTween.update();
     }
 }

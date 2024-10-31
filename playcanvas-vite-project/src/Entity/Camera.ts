@@ -58,7 +58,7 @@ export class Camera extends pc.Entity {
 
    
 
-    public update(dt: number) {
+    public update() {
        
         const bladeManager = EntityManager.getInstance().getEntity(SafeNameEntity.BladeManager) as BladeManager;
         if (!bladeManager) return;

@@ -4,8 +4,6 @@ import { SafeKeyAsset } from '../../../Helper/SafeKeyAsset';
 import { AssetManager } from '../../../Utils/AssetManager';
 import { ItemDataShop } from '../../../Shop/ItemShopData';
 import { ShopManager } from '../../../Shop/ShopManager';
-import { EventManager } from '../../../Utils/Observer';
-import { SafeKeyEvent } from '../../../Helper/SafeKeyEvent';
 
 export class UiItemInShop extends pc.Entity {
     private iconLock !: pc.Entity;

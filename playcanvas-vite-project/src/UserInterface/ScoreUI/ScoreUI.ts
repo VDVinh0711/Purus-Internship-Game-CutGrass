@@ -3,7 +3,6 @@ import { AssetManager } from '../../Utils/AssetManager';
 import { SafeKeyAsset } from '../../Helper/SafeKeyAsset';
 
 import * as TWEEN from '@tweenjs/tween.js'
-import { ScoreManager } from '../../Player/ScoreManager';
 export class ScoreUI extends pc.Entity {
 
     private tweenMove !: TWEEN.Tween;

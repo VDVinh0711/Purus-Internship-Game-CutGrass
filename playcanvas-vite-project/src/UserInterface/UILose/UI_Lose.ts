@@ -8,7 +8,7 @@ import { TxtScoreLoseGame } from './TxtScoreLoseGame';
 import * as TWEEN from '@tweenjs/tween.js'
 
 export class UiLoseGame extends pc.Entity implements IUIController {
-    private app: pc.Application;
+
     private icon_Lose !: pc.Entity;
     private btn_BacktoMain !: BtnBackMainMenu;
     private btn_PlayAgain !: BtnPlayAgain;
@@ -16,14 +16,14 @@ export class UiLoseGame extends pc.Entity implements IUIController {
     private background !: pc.Entity;
 
 
-    private readonly width : number = 400;
-    private readonly height : number = 600;
+    private readonly width: number = 400;
+    private readonly height: number = 600;
 
     private tweenIn !: TWEEN.Tween;
     private tweenOut !: TWEEN.Tween;
-    constructor(app: pc.Application) {
+    constructor() {
         super();
-        this.app = app;
+
         this.setElement();
         this.setUpBegin();
     }
@@ -91,51 +91,43 @@ export class UiLoseGame extends pc.Entity implements IUIController {
         this.icon_Lose.setLocalPosition(0, 0, 0);
     }
 
-    
 
-    private setUpTweenIn()
-    {
-        const optionStart = {x : 0, y:1000, z:0};
-        const optionEnd  = {x: 0, y:0 , z:0};
+
+    private setUpTweenIn() {
+        const optionStart = { x: 0, y: 1000, z: 0 };
+        const optionEnd = { x: 0, y: 0, z: 0 };
         this.tweenIn = new TWEEN.Tween(optionStart)
-        .to(optionEnd,500)
-        .easing(TWEEN.Easing.Bounce.Out)
-        .onUpdate(()=>
-        {
-            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
-        })
-        .yoyo(false)
+            .to(optionEnd, 500)
+            .easing(TWEEN.Easing.Bounce.Out)
+            .onUpdate(() => {
+                this.setLocalPosition(optionStart.x, optionStart.y, optionStart.z);
+            })
+            .yoyo(false)
     }
 
-    private setUpTweenOut()
-    {
-       
-        const optionStart = {x :0, y: 0, z: 0};
-        const optionEnd  = {x: 0, y:-1000, z:0};
+    private setUpTweenOut() {
+
+        const optionStart = { x: 0, y: 0, z: 0 };
+        const optionEnd = { x: 0, y: -1000, z: 0 };
         this.tweenOut = new TWEEN.Tween(optionStart)
-        .to(optionEnd,300)
-        .easing(TWEEN.Easing.Linear.None)
-        .onComplete(()=>
-        {
-            this.enabled = false;
-        })
-        .onUpdate(()=>
-        {
-            this.setLocalPosition(optionStart.x,optionStart.y,optionStart.z);
-        })
-        .yoyo(false)
+            .to(optionEnd, 300)
+            .easing(TWEEN.Easing.Linear.None)
+            .onComplete(() => {
+                this.enabled = false;
+            })
+            .onUpdate(() => {
+                this.setLocalPosition(optionStart.x, optionStart.y, optionStart.z);
+            })
+            .yoyo(false)
     }
 
 
-    public update()
-    {
-        if(!this.enabled) return
-        if(this.tweenIn.isPlaying())
-        {
+    public update() {
+        if (!this.enabled) return
+        if (this.tweenIn.isPlaying()) {
             this.tweenIn.update();
         }
-        if(this.tweenOut.isPlaying())
-        {
+        if (this.tweenOut.isPlaying()) {
             this.tweenOut.update();
         }
     }

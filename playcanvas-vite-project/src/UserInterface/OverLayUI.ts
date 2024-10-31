@@ -1,6 +1,4 @@
 import * as pc from 'playcanvas'
-import { EventManager } from '../Utils/Observer';
-import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 
 export class OverLayUIInput extends pc.Entity
 {

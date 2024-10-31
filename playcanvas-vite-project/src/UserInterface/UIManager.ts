@@ -97,7 +97,7 @@ export class UiManager extends pc.Entity
         this.uiInGame.enabled = false;
 
         //Lose
-        this.uiLose = new UiLoseGame(this.app);
+        this.uiLose = new UiLoseGame();
         this.addChild(this.uiLose);
         this.uiLose.enabled = false;
 
@@ -178,10 +178,10 @@ export class UiManager extends pc.Entity
     }
 
 
-    public upDate(dt : number)
+    public upDate()
     {
-      this.uiMainMenu.update(dt);
-      this.scoreUIManager.update(dt);
+      this.uiMainMenu.update();
+      this.scoreUIManager.update();
       this.uiNotifycation.update();
       this.uiPauseGame.update();
       this.uiSetting.update();
@@ -190,8 +190,8 @@ export class UiManager extends pc.Entity
       this.uiCredit.update();
     }
     
-    private CloseUI()
-    {
-        this.currentUI?.Close();
-    }
+    // private CloseUI()
+    // {
+    //     this.currentUI?.Close();
+    // }
 }

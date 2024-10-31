@@ -1,8 +1,6 @@
 import * as pc from 'playcanvas'
 import { AssetManager } from '../../../Utils/AssetManager';
 import { SafeKeyAsset } from '../../../Helper/SafeKeyAsset';
-import { EventManager } from '../../../Utils/Observer';
-import { SafeKeyEvent } from '../../../Helper/SafeKeyEvent';
 
 export class UIPriceItem extends pc.Entity
 {

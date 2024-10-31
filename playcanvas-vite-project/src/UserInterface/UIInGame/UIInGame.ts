@@ -8,7 +8,6 @@ import { EventManager } from '../../Utils/Observer';
 import { SafeKeyEvent } from '../../Helper/SafeKeyEvent';
 import { UIWinMap } from './SubUI/UI_Winmap';
 import { UIBladeStat } from './UIBladeStats';
-import { UIShowScoreInGame } from './UIShowScoreInGame';
 import { BtnPauseGame } from './BtnPauseGame';
 
 export class UIInGame extends pc.Entity implements IUIController {

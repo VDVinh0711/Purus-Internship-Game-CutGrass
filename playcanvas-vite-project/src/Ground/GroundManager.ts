@@ -71,7 +71,7 @@ export class GroundManager extends pc.Entity
      
       });
     }
-    update(dt:number)
+    update()
     {
       this.createGridMap();
     }

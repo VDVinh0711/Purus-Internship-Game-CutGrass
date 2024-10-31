@@ -10,7 +10,6 @@ export class InputSystem
 
     private setUpBegin()
     {
-        //setup for mouse
         const mouse = new pc.Mouse(document.body);
         mouse.on('mousedown', (event) =>
         {
@@ -28,5 +27,10 @@ export class InputSystem
     {
         EventManager.emit(SafeKeyEvent.ClickIntoScreen);  
       
+    }
+
+    public doSomething()
+    {
+        
     }
 }

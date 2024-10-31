@@ -13,15 +13,8 @@ export class BtnExit extends BaseButtonUI {
             height: 50,
             textureAsset: SafeKeyAsset.IMGButtonCLoseCircle,
         });
-        this.setAnchorPivot();
+        this.setAnchorPivot(new pc.Vec4(1,1,1,1), new pc.Vec2(1,1));
         this.setButtonOnclick();
-    }
-
-    private setAnchorPivot()
-    {
-        if(this.element == null) return;
-        this.element.anchor = new pc.Vec4(1,1,1,1);
-        this.element.pivot = new pc.Vec2(1,1);
     }
     private setButtonOnclick() {
         if (this.button == null) return;

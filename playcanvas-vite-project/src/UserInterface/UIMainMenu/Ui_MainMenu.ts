@@ -83,9 +83,9 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         this.updateResizeWindow();
     }
 
-    public update(dt : number)
+    public update()
     {
-        this.btn_Play.update(dt);
+        this.btn_Play.update();
     }
 
 
