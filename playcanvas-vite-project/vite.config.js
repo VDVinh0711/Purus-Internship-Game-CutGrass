@@ -1,8 +1,26 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import del from "rollup-plugin-delete";
 
 export default defineConfig({
-  base : '/Purus-Internship-Game-CutGrass/',
+  plugins: [
+    del({ targets: "dist/*", ignore: ["dist/assets"], runOnce: true }),
+    del({ targets: "dist/*", ignore: ["dist/assets", "dist/index"], runOnce: true, hook: "buildEnd" }),
+  ],
+  base: "/Purus-Internship-Game-CutGrass/",
+  mode: "development",
   server: {
-    host: true 
-  }
-})
+    port: 8080,
+    watch: {
+      usePolling: true,
+    }
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "",
+    minify: false,
+    emptyOutDir: false,
+    copyPublicDir: true,
+    chunkSizeWarningLimit: 1024 * 2, // 2MB
+  },
+  publicDir: "assets"
+});
