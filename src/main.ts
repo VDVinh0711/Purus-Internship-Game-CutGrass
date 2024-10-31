@@ -4,9 +4,9 @@ import { SceneGameManager } from './SceneGameManager';
 
 // Configure and load Ammo.js
 pc.WasmModule.setConfig('Ammo', {
-  glueUrl: '/Physics/ammo.js',
-  wasmUrl: '/Physics/ammo.wasm.wasm',
-  fallbackUrl: '/Physics/ammo.wasm.js'
+  glueUrl: './Physics/ammo.js',
+  wasmUrl: './Physics/ammo.wasm.wasm',
+  fallbackUrl: './Physics/ammo.wasm.js'
 });
 
 async function main() {

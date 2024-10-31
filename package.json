@@ -14,6 +14,7 @@
     "vite": "^5.4.8"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
     "playcanvas": "^2.0.0",
     "tween.js": "^16.6.0"
   }
