@@ -14,6 +14,7 @@ export class BtnPlay extends BaseButtonUI {
             height: 150,
             textureAsset: SafeKeyAsset.IMGButtonPlay,
         });
+        this.updateButtonSize();
         this.setButtonOnclick();
         this.setUpTween();
     }
@@ -42,5 +43,31 @@ export class BtnPlay extends BaseButtonUI {
 
     public update() {
         this.scaleTween.update();
+    }
+
+
+    protected updateButtonSize() {
+       
+
+        const minScale = 0.7;
+        const maxScale = 1;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const scaleX = screenWidth / 1920;
+        const scaleY = screenHeight / 1080;
+       
+        const scale = Math.min(scaleX, scaleY);
+        
+        const finalScale = Math.max(minScale, Math.min(maxScale, scale));
+
+        this.width *= finalScale;
+        this.height *= finalScale;
+
+
+        if(this.element == null) return;
+        this.element.width = this.width;
+        this.element.height = this.height;
+
     }
 }

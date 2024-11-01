@@ -19,6 +19,7 @@ export class UIMainMenu extends pc.Entity implements IUIController {
     private uiShowDimond!: UIShowDimond;
     private btn_shop !: BtnShop;
     
+    private paddingTxtInfo : number = 100;
     
 
     constructor(app: pc.Application) {
@@ -67,17 +68,17 @@ export class UIMainMenu extends pc.Entity implements IUIController {
         //Text Score
         this.txt_Score = new TextScoreMainMenu();
         this.addChild(this.txt_Score);
-        this.txt_Score.setLocalPosition(0, 300, 0);
+        this.txt_Score.setLocalPosition(0, this.paddingTxtInfo*2, 0);
 
         //Text Level
         this.txt_Level = new TextLevelMainMenu();
         this.addChild(this.txt_Level);
-        this.txt_Level.setLocalPosition(0, 400, 0);
+        this.txt_Level.setLocalPosition(0, this.paddingTxtInfo*3, 0);
 
         //Text Dimond
         this.uiShowDimond = new UIShowDimond();
         this.addChild(this.uiShowDimond);
-        this.uiShowDimond.setLocalPosition(0, 200, 0);
+        this.uiShowDimond.setLocalPosition(0, this.paddingTxtInfo, 0);
 
 
         this.updateResizeWindow();
@@ -117,7 +118,7 @@ export class UIMainMenu extends pc.Entity implements IUIController {
             this.btn_credit.setLocalPosition(0,0,0);
 
             this.btn_Setting.setAnchorPivot(new pc.Vec4(1,0,1,0), new pc.Vec2(1,0));
-            this.btn_Setting.setLocalPosition(0,0,0);
+            this.btn_Setting.setLocalPosition(-16,0,0);
 
           
             this.btn_shop.setAnchorPivot(  new pc.Vec4(0.5,0,0.5,0), new pc.Vec2(0.5,0))

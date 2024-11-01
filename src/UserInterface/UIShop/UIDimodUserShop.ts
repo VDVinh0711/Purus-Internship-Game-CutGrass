@@ -41,7 +41,7 @@ export class UIDimondUserShop extends pc.Entity
             {
                 type: pc.ELEMENTTYPE_GROUP,
                 anchor : [1,0,1,0],
-                pivot : [1,0],
+                pivot : [1,1],
                 width : this.width,
                 height : this.height,
             }

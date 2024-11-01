@@ -20,6 +20,11 @@ export class UIInGame extends pc.Entity implements IUIController {
     private uiStats !: UIBladeStat;
     private btnPauseGame !: BtnPauseGame;
 
+    private paddingtxtInfo : number = 60;
+    private sizeText : number = 35;
+
+    private readonly paddingUIInGame : number = 20;
+
    
 
     constructor(app: pc.Application) {
@@ -46,27 +51,32 @@ export class UIInGame extends pc.Entity implements IUIController {
         this.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: this.app.graphicsDevice.width,
-            height: this.app.graphicsDevice.height,
+            width: this.app.graphicsDevice.width-this.paddingUIInGame,
+            height: this.app.graphicsDevice.height-this.paddingUIInGame,
             type: pc.ELEMENTTYPE_GROUP,
             useInput : false,
         });
     }
 
     private setUpBegin() {
-        const margiin = 60;
+        
+
+        this.updateResizeWindow();
 
         this.txt_Score = new TextScoreInGame();
         this.addChild(this.txt_Score);
+        this.txt_Score.setSizeText(this.sizeText);
         this.txt_Score.setLocalPosition(0, 0, 0);
 
         this.txt_Level = new TextLevelInGame();
         this.addChild(this.txt_Level);
-        this.txt_Level.setLocalPosition(0, -margiin, 0);
+        this.txt_Level.setSizeText(this.sizeText);
+        this.txt_Level.setLocalPosition(0, -this.paddingtxtInfo, 0);
 
         this.txt_Map = new TextMapInGame();
         this.addChild(this.txt_Map);
-        this.txt_Map.setLocalPosition(0, -margiin * 2, 0);
+        this.txt_Map.setSizeText(this.sizeText);
+        this.txt_Map.setLocalPosition(0, -this.paddingtxtInfo * 2, 0);
 
         this.uiWinLevel = new UIWinLevel(this.app);
         this.addChild(this.uiWinLevel);
@@ -82,6 +92,11 @@ export class UIInGame extends pc.Entity implements IUIController {
 
         this.btnPauseGame = new BtnPauseGame();
         this.addChild(this.btnPauseGame);
+
+
+
+
+     
 
     }
 
@@ -130,4 +145,23 @@ export class UIInGame extends pc.Entity implements IUIController {
         this.enabled = false;
     }
 
+
+
+    private updateResizeWindow()
+    {
+        const innerWidth = window.innerWidth;
+        const innerHeight = window.innerHeight;
+
+        if(innerWidth < innerHeight)
+        {
+           this.sizeText = 25;
+           this.paddingtxtInfo = 35;
+
+        }
+        else
+        {
+            this.sizeText = 35;
+            this.paddingtxtInfo = 60;
+        }
+    }
 }

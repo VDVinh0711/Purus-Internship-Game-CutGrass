@@ -3,10 +3,9 @@ import { AssetManager } from '../Utils/AssetManager';
 
 export class BaseButtonUI extends pc.Entity {
 
-    protected baseWidth !: number;
-    protected baseHeight !: number;
-    protected minScale: number = 0.8;
-    protected maxScale: number = 1;
+    protected width !: number;
+    protected height !: number;
+    
 
     constructor(options: {
         width: number;
@@ -16,9 +15,8 @@ export class BaseButtonUI extends pc.Entity {
 
       
         super();
-        this.baseWidth = options.width;
-        this.baseHeight = options.height;
-        this.updateButtonSize();
+        this.width = options.width;
+        this.height = options.height;
         this.setElement(options.textureAsset);
         this.addComponent('button');
       
@@ -28,8 +26,8 @@ export class BaseButtonUI extends pc.Entity {
         this.addComponent('element', {
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            width: this.baseWidth,
-            height: this.baseHeight,
+            width: this.width,
+            height: this.height,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: true,
             color: new pc.Color(1, 1, 1),
@@ -46,25 +44,7 @@ export class BaseButtonUI extends pc.Entity {
     }
 
 
-    protected updateButtonSize() {
-       
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-
-       
-        const scaleX = screenWidth / 1920;
-        const scaleY = screenHeight / 1080;
-        
-       
-        const scale = Math.min(scaleX, scaleY);
-        
-        
-        const finalScale = Math.max(this.minScale, Math.min(this.maxScale, scale));
-
-        this.baseWidth *= finalScale;
-        this.baseHeight *= finalScale;
-
-    }
+    
 
     
 

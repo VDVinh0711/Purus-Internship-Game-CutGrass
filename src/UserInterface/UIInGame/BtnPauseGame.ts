@@ -15,7 +15,7 @@ export class BtnPauseGame extends BaseButtonUI {
         });
         this.setAnchorPivot(new pc.Vec4(1,1,1,1), new pc.Vec2(1,1));
         this.setButtonOnclick();
-        this.setLocalPosition(-20,0,0);
+      
     }
  
     private setButtonOnclick() {

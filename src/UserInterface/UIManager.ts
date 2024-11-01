@@ -53,7 +53,7 @@ export class UiManager extends pc.Entity
     private setUpBegin()
     {
         this.addComponent('screen', {
-            referenceResolution: new pc.Vec2(this.app.graphicsDevice.width, this.app.graphicsDevice.height),
+            referenceResolution: new pc.Vec2(window.innerWidth, window.innerHeight),
             scaleBlend: 0,
             scaleMode: pc.SCALEMODE_NONE,
             screenSpace: true

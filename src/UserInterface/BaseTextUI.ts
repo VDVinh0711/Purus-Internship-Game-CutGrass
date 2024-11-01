@@ -26,4 +26,11 @@ import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
             this.element.text = text;
         }
     }
+
+    public setSizeText(size : number)
+    {
+        if(this.element == null) return;
+        this.element.fontSize = size;
+    }
+      
 }

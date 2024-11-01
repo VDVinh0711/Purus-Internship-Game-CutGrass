@@ -26,7 +26,7 @@ export class UIShop extends pc.Entity implements IUIController {
 
 
 
-    private minScale : number = 0.8;
+    private minScale : number = 0.7;
     private maxScale : number = 1;
 
     private widthGroupItem : number = 600;
@@ -55,9 +55,6 @@ export class UIShop extends pc.Entity implements IUIController {
 
        
 
-
-       
-        
         this.updateSizeShop();
 
         this.setUpElement();
@@ -106,7 +103,7 @@ export class UIShop extends pc.Entity implements IUIController {
     }
 
     private setUpGroupItems() {
-        this.groupItems = new pc.Entity('gropItem');
+        this.groupItems = new pc.Entity('groupItem');
         this.addChild(this.groupItems);
         this.groupItems.addComponent('element', {
             type: pc.ELEMENTTYPE_GROUP,
@@ -136,9 +133,9 @@ export class UIShop extends pc.Entity implements IUIController {
             {
                 type: pc.ELEMENTTYPE_IMAGE,
                 anchor: [0.5, 1, 0.5, 1],
-                pivot: [0.5, 1],
-                width: this.widthGroupItem/3,
-                height: this.widthGroupItem/6,
+                pivot: [0.5, 0.5],
+                width: this.widthGroupItem/2,
+                height: this.widthGroupItem/5,
                 color: new pc.Color(1, 1, 1),
                 textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGTitleShop)
             }
@@ -211,8 +208,6 @@ export class UIShop extends pc.Entity implements IUIController {
         
        
         const scale = Math.min(scaleX, scaleY);
-        
-        
         const finalScale = Math.max(this.minScale, Math.min(this.maxScale, scale));
 
         this.widthGroupItem *= finalScale;
@@ -220,13 +215,12 @@ export class UIShop extends pc.Entity implements IUIController {
 
         if(screenWidth < screenHeight)
         {
-            this.paddingGroup = new pc.Vec4(20,0,0,20)
+            this.paddingGroup = new pc.Vec4(40,40,0,40)
             this.posBtnBack = new pc.Vec3(-20,-10,0);
-         
         }
         else
         {
-            this.paddingGroup = new pc.Vec4(20,0 ,0,20)
+            this.paddingGroup = new pc.Vec4(50,0 ,0,40)
             this.posBtnBack = new pc.Vec3(0,0,0);
         }
 
