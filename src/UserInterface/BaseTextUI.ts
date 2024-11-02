@@ -3,8 +3,11 @@ import { AssetManager } from '../Utils/AssetManager';
 import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 
  export class BaseTextUI extends pc.Entity {
-    constructor(fontSize: number = 42, initialText: string = '0',  pivot: pc.Vec2 = new pc.Vec2(0.5, 0.5),anchor: pc.Vec4 = new pc.Vec4(0.5, 0.5,0.5, 0.5)) {
+
+    protected fontSize !: number;
+    constructor(fontSize: number, initialText: string = '0',  pivot: pc.Vec2 = new pc.Vec2(0.5, 0.5),anchor: pc.Vec4 = new pc.Vec4(0.5, 0.5,0.5, 0.5)) {
         super();
+        this.fontSize = fontSize;
         this.setElement(fontSize, initialText,pivot, anchor);
     }
 

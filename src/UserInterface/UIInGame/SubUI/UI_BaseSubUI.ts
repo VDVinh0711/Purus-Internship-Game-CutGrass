@@ -6,10 +6,18 @@ export class UIBaseSubUI extends pc.Entity {
     protected app: pc.Application;
     protected txt_title!: pc.Entity;
     protected txt_direction!: pc.Entity;
+    protected fontSizeText: number = 40;
 
     constructor(app: pc.Application) {
         super();
         this.app = app;
+        this.setUpBegin();
+    }
+    
+
+    private setUpBegin()
+    {
+        this.setUpResize();
         this.setElement();
         this.setText();
         this.setTextDirection();
@@ -33,8 +41,8 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0.5, 0.5, 0.5],
             pivot: [0.5, 0.5],
-            outlineColor: new pc.Color(0,0,0) ,
-            outlineThickness : 0.5,
+            outlineColor: new pc.Color(0, 0, 0),
+            outlineThickness: 0.5,
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Success Text',
@@ -48,12 +56,32 @@ export class UIBaseSubUI extends pc.Entity {
             type: pc.ELEMENTTYPE_TEXT,
             anchor: [0.5, 0, 0.5, 0],
             pivot: [0.5, 0],
-            outlineColor: new pc.Color(0,0,0) ,
-            outlineThickness : 0.5,
+            outlineColor: new pc.Color(0, 0, 0),
+            outlineThickness: 0.5,
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             fontSize: 40,
             text: 'Click To Continue'
         });
         this.txt_direction.setLocalPosition(0, 100, 0);
+    }
+
+
+    private setUpResize() {
+        const minScale = 0.7;
+        const maxScale = 1;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const scaleX = screenWidth / 1920;
+        const scaleY = screenHeight / 1080;
+
+        const scale = Math.min(scaleX, scaleY);
+
+        const finalScale = Math.max(minScale, Math.min(maxScale, scale));
+
+
+        this.fontSizeText *= finalScale;
+
+
     }
 }

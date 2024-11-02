@@ -184,6 +184,7 @@ export class UiManager extends pc.Entity
       this.scoreUIManager.update();
       this.uiNotifycation.update();
       this.uiPauseGame.update();
+      this.uiInGame.update();
       this.uiSetting.update();
       this.uiLose.update();
       this.uiShop.update();

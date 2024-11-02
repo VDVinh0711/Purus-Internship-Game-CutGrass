@@ -92,12 +92,6 @@ export class UIInGame extends pc.Entity implements IUIController {
 
         this.btnPauseGame = new BtnPauseGame();
         this.addChild(this.btnPauseGame);
-
-
-
-
-     
-
     }
 
 
@@ -130,10 +124,10 @@ export class UIInGame extends pc.Entity implements IUIController {
 
 
     private OpenUIStat() {
-        this.uiStats.enabled = true;
+        this.uiStats.Open();
     }
     private CloseUIStat() {
-        this.uiStats.enabled = false;
+        this.uiStats.Close();
     }
 
     Open(): void {
@@ -146,6 +140,11 @@ export class UIInGame extends pc.Entity implements IUIController {
     }
 
 
+
+    public update()
+    {
+        this.uiStats.update();
+    }
 
     private updateResizeWindow()
     {

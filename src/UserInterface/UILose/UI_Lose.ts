@@ -19,12 +19,15 @@ export class UiLoseGame extends pc.Entity implements IUIController {
     private  width: number = 400;
     private  height: number = 600;
 
+    
+    
+
     private tweenIn !: TWEEN.Tween;
     private tweenOut !: TWEEN.Tween;
     constructor() {
         super();
 
-        this.setElement();
+     
         this.setUpBegin();
     }
 
@@ -42,6 +45,8 @@ export class UiLoseGame extends pc.Entity implements IUIController {
     private setUpBegin() {
 
 
+        this.updateResize(); 
+        this.setElement();
         this.setUpBackGround();
         this.setIconLose();
 
@@ -80,9 +85,9 @@ export class UiLoseGame extends pc.Entity implements IUIController {
         this.addChild(this.icon_Lose);
         this.icon_Lose.addComponent('element', {
             anchor: [0.5, 1, 0.5, 1],
-            pivot: [0.5, 1],
-            width: 300,
-            height: 150,
+            pivot: [0.5, 0.5],
+            width: this.width/1.5,
+            height: this.height/4,
             type: pc.ELEMENTTYPE_IMAGE,
             useInput: false,
             color: new pc.Color(1, 1, 1),
@@ -144,7 +149,7 @@ export class UiLoseGame extends pc.Entity implements IUIController {
 
 
 
-    protected updateShopSize() {
+    private updateResize() {
         const minScale = 0.7;
         const maxScale = 1;
         const screenWidth = window.innerWidth;
@@ -161,9 +166,9 @@ export class UiLoseGame extends pc.Entity implements IUIController {
         this.height *= finalScale;
 
 
-        if(this.element == null) return;
-        this.element.width = this.width;
-        this.element.height = this.height;
+        // if(this.element == null) return;
+        // this.element.width = this.width;
+        // this.element.height = this.height;
 
     }
 }

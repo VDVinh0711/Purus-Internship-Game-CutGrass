@@ -51,7 +51,7 @@ export class SceneGameManager {
 
         //input
         this.inputSystem = new InputSystem();
-        this.inputSystem.doSomething();
+        this.inputSystem.init();
 
          //UiManager
         this.UIManager = new UiManager(this.app);

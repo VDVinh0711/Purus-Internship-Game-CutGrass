@@ -4,7 +4,7 @@ import * as pc from 'playcanvas'
 
 export class TextLevelMainMenu extends BaseTextUI {
     constructor() {
-        super();
+        super(35);
         this.setTextColor();
         this.init();
     }
