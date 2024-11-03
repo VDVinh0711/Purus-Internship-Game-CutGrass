@@ -73,7 +73,16 @@ export class Blade extends pc.Entity {
         const assetTexure = AssetManager.getInstance().getAsset(SafeKeyAsset.TexureBladeSimple);
         material.diffuseMap = assetTexure?.resource;
         material.update();
+
+
+        const yellowMaterial = new pc.StandardMaterial();
+        yellowMaterial.diffuse = new pc.Color(1, 1, 0); 
+        yellowMaterial.update();
+
+
+        
         const meshInstance = this.modelChild.model?.meshInstances[0];
+
         if (meshInstance) {
             meshInstance.material = material;
         }

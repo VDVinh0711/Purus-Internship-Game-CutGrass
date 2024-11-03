@@ -7,6 +7,7 @@ import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 import { ItemHelper } from './itemhelper';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
+import { GameManger } from '../GameManager';
 
 export class PowerUpItem extends ItemHelper {
     public duration: number = 4;
@@ -31,9 +32,6 @@ export class PowerUpItem extends ItemHelper {
         if (this.collision == null) return;
         this.collision.type = 'box';
         this.collision.halfExtents = new pc.Vec3(0.1, 3, 0.1);
-
-
-        //this.collision.on('collisionstart', this.onColisionEnter.bind(this));
     }
     protected setRigidbody() {
         this.addComponent('rigidbody');
@@ -61,6 +59,10 @@ export class PowerUpItem extends ItemHelper {
     }
 
     public onCollision(bladeManager: BladeManager): void {
+        if(GameManger.getInstance().isPlayFirstTime)
+        {
+            EventManager.emit(SafeKeyEvent.OpenTurPowerUpItem);
+        }
        EventManager.emit(SafeKeyEvent.PlayParticleCutItem, this.getPosition());
        EventManager.emit(SafeKeyEvent.PlaySoundSFXCutItem);
         bladeManager.bladeStat.reciveItemPowerUp(this);

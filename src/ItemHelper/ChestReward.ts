@@ -8,6 +8,7 @@ import { SafeKeyAsset } from '../Helper/SafeKeyAsset';
 import { DimondManager } from '../Player/DimondManager';
 import { EventManager } from '../Utils/Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
+import { GameManger } from '../GameManager';
 
 
 
@@ -96,6 +97,11 @@ export class ChestReward extends ItemHelper {
 
     public onCollision(bladeManager: BladeManager): void {
 
+
+        if(GameManger.getInstance().isPlayFirstTime && this.currentHP == this.maxHP)
+            {
+                EventManager.emit(SafeKeyEvent.OpenTurChestInGame);
+            }
         this.currentHP--;
         this.setHitEffect();
         bladeManager.ChangeRotationDirection();

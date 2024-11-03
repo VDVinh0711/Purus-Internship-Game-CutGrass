@@ -13,6 +13,7 @@ import { UINotifyManager } from './UINotifycation/UINotifyManager';
 import { UIShop } from './UIShop/UIShop';
 import { OverLayUIInput } from './OverLayUI';
 import { UICredit } from './Other/UICredit';
+import { TurtorialManager } from './Turtorial/TurtorialManager';
 export class UiManager extends pc.Entity
 {
     private app : pc.Application;
@@ -26,10 +27,10 @@ export class UiManager extends pc.Entity
     private uiShop !: UIShop;
     private uiCredit !: UICredit;
     private uiOverlayInPut !: OverLayUIInput;
+    private uiNotifycation !: UINotifyManager;
+    private scoreUIManager !: ScoreUiManager;
 
-    private uiNotifycation !: UINotifyManager
-
-    private scoreUIManager !: ScoreUiManager
+    private uiTurtorial !: TurtorialManager;
     constructor( app : pc.Application)
     {
         super();
@@ -69,6 +70,8 @@ export class UiManager extends pc.Entity
     public init()
     {
 
+
+        
         
         //UI Input
         this.uiOverlayInPut = new OverLayUIInput(this.app);
@@ -120,7 +123,12 @@ export class UiManager extends pc.Entity
         this.addChild(this.uiCredit);
         this.uiCredit.enabled = false;
 
-        //OpenUI MainMenu
+
+        //TURTORIAL
+        this.uiTurtorial = new TurtorialManager(this.app);
+        this.addChild(this.uiTurtorial);
+
+         //OpenUI MainMenu
         this.OpenUIMainMenu();
 
        
@@ -189,6 +197,7 @@ export class UiManager extends pc.Entity
       this.uiLose.update();
       this.uiShop.update();
       this.uiCredit.update();
+      this.uiTurtorial.update();
     }
     
     // private CloseUI()

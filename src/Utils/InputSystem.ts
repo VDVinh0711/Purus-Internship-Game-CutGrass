@@ -13,16 +13,13 @@ export class InputSystem
         const mouse = new pc.Mouse(document.body);
         mouse.on('mousedown', (event) =>
         {
-           
-            if(event.y <=50 && event.x < window.innerWidth -100) return;
-            console.log('onclick');
+            if(event.y <=50 ) return;
             this.OnClick();
         });
 
         const touch = new pc.TouchDevice(document.body);
         touch.on('touchstart',(event) =>
-        {
-            console.log(event);
+        {;
             if(event.y <=50 && event.x < window.innerWidth -50) return;
             this.OnClick();
         } );

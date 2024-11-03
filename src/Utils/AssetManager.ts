@@ -84,6 +84,11 @@ export class AssetManager {
             [SafeKeyAsset.IMGTitleCredit] : new pc.Asset('IMGTitleCredit' , 'texture' , {url : "ICON/titleCredit.png"}),
             [SafeKeyAsset.IMGIconCredit] : new pc.Asset('IMGIconCredit' , 'texture' , {url : "ICON/btn/about.png"}),
 
+            //==================================================== IMG TURTORIAL ====================================================
+            [SafeKeyAsset.IMGControllBlade] : new pc.Asset('IMGControllBlade' , 'texture' , {url : "Other/IMGTUR/Controll.png"}),
+            [SafeKeyAsset.IMGTurPowerUp] : new pc.Asset('IMGTurPowerUp' , 'texture' , {url : "Other/IMGTUR/PowerUp.png"}),
+            [SafeKeyAsset.IMGTurChest] : new pc.Asset('IMGTurChest' , 'texture' , {url : "Other/IMGTUR/HitChest.png"}),
+            [SafeKeyAsset.IMGIConCLick] : new pc.Asset('IMGIConCLick' , 'texture' , {url : "Other/IMGTUR/clickIcon.png"}),
 
             //==================================================== OTHER =============================================================
             [SafeKeyAsset.IMGICONCATBOTTOMLEFT] : new pc.Asset('IMGICONCATBOTTOMLEFT' , 'texture' , {url : "Other/cute_cat_water.png"}),

@@ -30,6 +30,12 @@ export enum SafeKeyEvent {
     //Call set origin posCamera when back to UI or out of game scene
     SetCameraOutGame = 'SetCameraOutGame',
 
+    //===============TURTORIAL=============================
+    OpenTurControllBlade = "OpenTurControllBlade",
+    OpenTurPowerUpItem = "OpenTurPowerUpItem",
+    OpenTurChestInGame = "OpenTurChestInGame",
+    OpenTurGuidControll = "OpenTurGuidControll",
+
 
     //===============Some Event Change Value ======================
     //Call when change Level

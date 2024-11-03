@@ -82,6 +82,5 @@ export class UIBaseSubUI extends pc.Entity {
 
         this.fontSizeText *= finalScale;
 
-
     }
 }

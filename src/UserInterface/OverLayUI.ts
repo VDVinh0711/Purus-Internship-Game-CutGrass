@@ -1,4 +1,6 @@
 import * as pc from 'playcanvas'
+// import { EventManager } from '../Utils/Observer';
+// import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 
 export class OverLayUIInput extends pc.Entity
 {
@@ -13,6 +15,7 @@ export class OverLayUIInput extends pc.Entity
 
     private setUpElement()
     {
+        this.addComponent('button');
         this.addComponent('element',{
             type: pc.ELEMENTTYPE_IMAGE,
             anchor : [0.5,0.5,0.5,0.5],
@@ -24,10 +27,10 @@ export class OverLayUIInput extends pc.Entity
             useInput : true
         })
 
-        if(this.element == null) return;
-        this.element?.on('click', () => {
-            console.log("click");
-           // EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
+        if(this.button == null) return;
+        this.button.on('click', () => {
+            // console.log("click screen");
+            // EventManager.emit(SafeKeyEvent.ClickIntoScreen);   
         });
     }
 

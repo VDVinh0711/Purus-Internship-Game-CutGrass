@@ -12,6 +12,8 @@ export class GameManger {
     private scoreBegin : number = 0;
 
 
+    public isPlayFirstTime : boolean  = true;
+
     constructor() { }
     public static getInstance() {
         if (GameManger.instance == null) {
@@ -31,6 +33,7 @@ export class GameManger {
         }
         EventManager.emit(SafeKeyEvent.PlaySoundSFXWinMap);
         EventManager.emit(SafeKeyEvent.OpenUIWinMap);
+        this.isPlayFirstTime = false
 
     }
     public onLose() {
@@ -56,6 +59,10 @@ export class GameManger {
         EventManager.emit(SafeKeyEvent.UnSetPauseBlade);
         EventManager.emit(SafeKeyEvent.OpenUIInGame);
         EventManager.emit(SafeKeyEvent.SetCameraInGame);
+
+
+        EventManager.emit(SafeKeyEvent.OpenTurGuidControll);
+
     }
 
 

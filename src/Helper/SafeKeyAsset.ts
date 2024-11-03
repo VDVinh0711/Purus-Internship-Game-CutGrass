@@ -55,6 +55,14 @@ export enum SafeKeyAsset
     IMGTitleCredit = "IMGTitleCredit",
     IMGIconCredit = "IMGIconCredit",
 
+
+
+    //===========IMG TURTORIAL=========================
+    IMGControllBlade = "IMGControllBlade",
+    IMGTurPowerUp = "IMGTurPowerUp",
+    IMGTurChest = "IMGTurChest",
+    IMGIConCLick = "IMGIConCLick",
+
     //===========IMG-ICON==========
     IMGIconBladeSimple = "IMGIconBladeSimple",
     IMGIconBladeNormal = "IMGIconBladeNormal",
