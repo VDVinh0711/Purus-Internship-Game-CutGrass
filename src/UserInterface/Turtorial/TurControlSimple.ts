@@ -21,7 +21,7 @@ export class TurtorialGuidControll extends pc.Entity
     private group !: pc.Entity;
     private overLay !: pc.Entity;
 
-    private fontSize : number = 25;
+    private fontSize : number = 35;
 
 
 
@@ -109,7 +109,7 @@ export class TurtorialGuidControll extends pc.Entity
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             outlineColor: new pc.Color(0,0,0) ,
             outlineThickness : 0.5,
-            color : new pc.Color(1,1,1),
+            color : new pc.Color(255/255,167/255,38/255),
             text : "Click To Move Blade"
         });
     }

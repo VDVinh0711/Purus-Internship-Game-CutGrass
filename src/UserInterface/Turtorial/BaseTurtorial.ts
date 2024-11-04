@@ -17,6 +17,9 @@ export abstract class BaseTurtorial extends pc.Entity
 
     private padding : number = 60;
     private fontSize : number = 30;
+    private lineHeight : number = 45;
+
+    private widthHeightBtn : number = 70;
     private background !: pc.Entity;
     private btnAccept !: pc.Entity;
 
@@ -138,11 +141,12 @@ export abstract class BaseTurtorial extends pc.Entity
             autoWidth: false,
             autoHeight : false,
             wrapLines : true,
+            lineHeight : this.lineHeight,
             alignment : new pc.Vec2(0.5,0.8),
             fontAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.FontCreanBeige),
             outlineColor: new pc.Color(0,0,0) ,
             outlineThickness : 0.5,
-            color : new pc.Color(1,1,1),
+            color : new pc.Color(255/255,167/255,38/255),
             text : this.txtDes,
         });
     }
@@ -156,9 +160,9 @@ export abstract class BaseTurtorial extends pc.Entity
         this.btnAccept.addComponent('element',{
             type : pc.ELEMENTTYPE_IMAGE,
             anchor : [0.5,0,0.5,0],
-            pivot : [0.5,0],
-            width : 50,
-            height : 50,
+            pivot : [0.5,1],
+            width : this.widthHeightBtn,
+            height : this.widthHeightBtn,
             useInput : true,
             color : new pc.Color(1,1,1),
             textureAsset: AssetManager.getInstance().getAsset(SafeKeyAsset.IMGButtonOK),
@@ -248,6 +252,8 @@ export abstract class BaseTurtorial extends pc.Entity
         this.height *= finalScale;
         this.padding *= finalScale;
         this.fontSize *= finalScale;
+        this.lineHeight *= finalScale;
+        this.widthHeightBtn *= finalScale;
 
     }
 

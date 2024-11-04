@@ -32,7 +32,8 @@ export class GameManger {
             return;
         }
         EventManager.emit(SafeKeyEvent.PlaySoundSFXWinMap);
-        EventManager.emit(SafeKeyEvent.OpenUIWinMap);
+        //EventManager.emit(SafeKeyEvent.OpenUIWinMap);
+        EventManager.emit(SafeKeyEvent.OpenUIWinLevel);
         this.isPlayFirstTime = false
 
     }

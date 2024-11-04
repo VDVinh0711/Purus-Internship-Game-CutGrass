@@ -75,12 +75,14 @@ export class Blade extends pc.Entity {
         material.update();
 
 
+        
         const yellowMaterial = new pc.StandardMaterial();
         yellowMaterial.diffuse = new pc.Color(1, 1, 0); 
         yellowMaterial.update();
 
 
         
+        console.log(this.modelChild.model?.meshInstances);
         const meshInstance = this.modelChild.model?.meshInstances[0];
 
         if (meshInstance) {

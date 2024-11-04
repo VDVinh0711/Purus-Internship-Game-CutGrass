@@ -86,8 +86,8 @@ export class AssetManager {
 
             //==================================================== IMG TURTORIAL ====================================================
             [SafeKeyAsset.IMGControllBlade] : new pc.Asset('IMGControllBlade' , 'texture' , {url : "Other/IMGTUR/Controll.png"}),
-            [SafeKeyAsset.IMGTurPowerUp] : new pc.Asset('IMGTurPowerUp' , 'texture' , {url : "Other/IMGTUR/PowerUp.png"}),
-            [SafeKeyAsset.IMGTurChest] : new pc.Asset('IMGTurChest' , 'texture' , {url : "Other/IMGTUR/HitChest.png"}),
+            [SafeKeyAsset.IMGTurPowerUp] : new pc.Asset('IMGTurPowerUp' , 'texture' , {url : "Other/IMGTUR/PowerUpItem.png"}),
+            [SafeKeyAsset.IMGTurChest] : new pc.Asset('IMGTurChest' , 'texture' , {url : "Other/IMGTUR/ChestItem.png"}),
             [SafeKeyAsset.IMGIConCLick] : new pc.Asset('IMGIConCLick' , 'texture' , {url : "Other/IMGTUR/clickIcon.png"}),
 
             //==================================================== OTHER =============================================================

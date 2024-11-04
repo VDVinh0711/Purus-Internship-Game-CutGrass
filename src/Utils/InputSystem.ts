@@ -3,10 +3,7 @@ import { EventManager } from './Observer';
 import { SafeKeyEvent } from '../Helper/SafeKeyEvent';
 export class InputSystem
 {
-    constructor()
-    {
-        
-    }
+    constructor(){}
 
     public init()
     {
@@ -19,8 +16,8 @@ export class InputSystem
 
         const touch = new pc.TouchDevice(document.body);
         touch.on('touchstart',(event) =>
-        {;
-            if(event.y <=50 && event.x < window.innerWidth -50) return;
+        {
+            if(event.changedTouches[0].y <=50 ) return;
             this.OnClick();
         } );
     }
